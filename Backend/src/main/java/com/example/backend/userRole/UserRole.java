@@ -15,13 +15,13 @@ public class UserRole implements Serializable {
 
     @MapsId("userId")
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id")
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @MapsId("roleId")
     @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "roleId")
+    @JoinColumn(name = "role_id")
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     private Role role;
 

@@ -1,8 +1,8 @@
 package com.example.backend.listOfLandmarks;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
+import com.example.backend.landmark.Landmark;
+import com.example.backend.landmarkList.LandmarkList;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -14,7 +14,19 @@ public class ListOfLandmarks implements Serializable {
     @Column(columnDefinition = "integer")
     private Integer priority;
 
-    // TODO: PUNE Fk
+    // Foreign Keys
+
+    // With Landmark
+    @ManyToOne
+    @MapsId("landmarkId")
+    @JoinColumn(name = "landmark_id", referencedColumnName = "landmarkId")
+    private Landmark landmark;
+
+    // With Landmark List
+    @ManyToOne
+    @MapsId("landmarkListId")
+    @JoinColumn(name = "landmark_list_id", referencedColumnName = "landmarkListId")
+    private LandmarkList landmarkList;
 
     public ListOfLandmarks() {
     }

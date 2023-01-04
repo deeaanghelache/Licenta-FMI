@@ -1,12 +1,15 @@
 package com.example.backend.city;
 
 import com.example.backend.airport.Airport;
+import com.example.backend.cityTag.CityTag;
+import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.landmark.Landmark;
 import com.example.backend.landmarkList.LandmarkList;
 import com.example.backend.preference.Preference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -50,6 +53,14 @@ public class City implements Serializable {
     // With LandmarkList
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private Set<LandmarkList> landmarkLists;
+
+    // With CityWishList
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private Set<CityWishlist> cityWishlists;
+
+    // With CityTag
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private Set<CityTag> cityTags;
 
     public City() {
     }

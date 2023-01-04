@@ -1,5 +1,7 @@
 package com.example.backend.cityWishlist;
 
+import com.example.backend.city.City;
+import com.example.backend.user.User;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -12,7 +14,19 @@ public class CityWishlist implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String status;
 
-    // TODO: PUNE FK
+    // Foreign Keys
+
+    // With City
+    @MapsId("cityId")
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    // With User
+    @MapsId("userId")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public CityWishlist() {
     }

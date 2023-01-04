@@ -1,10 +1,12 @@
 package com.example.backend.landmarkList;
 
 import com.example.backend.city.City;
+import com.example.backend.listOfLandmarks.ListOfLandmarks;
 import com.example.backend.user.User;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class LandmarkList implements Serializable {
@@ -27,6 +29,10 @@ public class LandmarkList implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cityId", nullable = false, referencedColumnName = "cityId")
     private City city;
+
+    // With ListOfLandmarks
+    @OneToMany(mappedBy = "landmarkList")
+    private Set<ListOfLandmarks> listOfLandmarks;
 
     public LandmarkList() {
     }

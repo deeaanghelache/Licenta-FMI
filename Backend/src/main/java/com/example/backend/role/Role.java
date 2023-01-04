@@ -1,5 +1,6 @@
 package com.example.backend.role;
 
+import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.userRole.UserRole;
 import jakarta.persistence.*;
 
@@ -17,6 +18,9 @@ public class Role implements Serializable {
     @Column(columnDefinition = "varchar(15)")
     private String roleName;
 
+    // Foreign Keys
+
+    // With UserRole
     @OneToMany(mappedBy = "role")
     private Set<UserRole> userRoles;
 

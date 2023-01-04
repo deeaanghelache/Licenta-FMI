@@ -10,6 +10,6 @@ public class ListOfLandmarksId implements Serializable {
     @Column(name = "landmark_id")
     private Integer landmarkId;
 
-    @Column(name = "landmark_wishlist_id")
-    private Integer landmarkWishlistId;
+    @Column(name = "landmark_List_id")
+    private Integer landmarkListId;
 }

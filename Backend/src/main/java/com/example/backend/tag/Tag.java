@@ -1,8 +1,11 @@
 package com.example.backend.tag;
 
+import com.example.backend.cityTag.CityTag;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 // TODO: FK
 @Entity
@@ -17,6 +20,12 @@ public class Tag implements Serializable {
 
     @Column(columnDefinition = "varchar(500)")
     private String tagNameRom;
+
+    // Foreign Keys
+
+    // With CityTag
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
+    private Set<CityTag> cityTags = new HashSet<>();
 
     public Tag() {
     }

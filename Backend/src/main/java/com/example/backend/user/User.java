@@ -1,5 +1,6 @@
 package com.example.backend.user;
 
+import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.landmarkList.LandmarkList;
 import com.example.backend.preference.Preference;
 import com.example.backend.userRole.UserRole;
@@ -47,6 +48,10 @@ public class User implements Serializable {
     // With LandmarkWishlist
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<LandmarkList> landmarkLists;
+
+    // With CityWishList
+    @OneToMany(mappedBy = "user")
+    private Set<CityWishlist> cityWishlists;
 
     public User() {
     }

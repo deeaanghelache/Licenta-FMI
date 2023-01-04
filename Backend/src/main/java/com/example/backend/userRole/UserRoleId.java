@@ -12,4 +12,31 @@ public class UserRoleId implements Serializable {
 
     @Column(name = "user_id", nullable = false)
     private Integer userId;
+
+    public UserRoleId() {
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRoleId{" +
+                "roleId=" + roleId +
+                ", userId=" + userId +
+                '}';
+    }
 }
