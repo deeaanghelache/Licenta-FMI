@@ -23,10 +23,10 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String lastName;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(100)", unique = true)
     private String email;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(100)", unique = true)
     private String username;
 
     @Column(columnDefinition = "varchar(200)")

@@ -15,7 +15,7 @@ public class Role implements Serializable {
     @Column(nullable = false, updatable = false)
     private Integer roleId;
 
-    @Column(columnDefinition = "varchar(15)")
+    @Column(columnDefinition = "varchar(15)", unique = true)
     private String roleName;
 
     // Foreign Keys

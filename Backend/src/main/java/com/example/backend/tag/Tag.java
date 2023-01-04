@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-// TODO: FK
 @Entity
 public class Tag implements Serializable {
     @Id
@@ -15,10 +14,10 @@ public class Tag implements Serializable {
     @Column(nullable = false, updatable = false)
     private Integer tagId;
 
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "varchar(200)", unique = true)
     private String tagNameEng;
 
-    @Column(columnDefinition = "varchar(500)")
+    @Column(columnDefinition = "varchar(500)", unique = true)
     private String tagNameRom;
 
     // Foreign Keys
