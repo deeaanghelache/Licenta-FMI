@@ -1,107 +1,118 @@
 package com.example.backend.user;
 
+import com.example.backend.preference.Preference;
+import com.example.backend.userRole.UserRole;
+import com.example.backend.role.Role;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Integer UserId;
+    private Integer userId;
 
     @Column(columnDefinition = "varchar(100)")
-    private String FirstName;
+    private String firstName;
 
     @Column(columnDefinition = "varchar(100)")
-    private String LastName;
+    private String lastName;
 
     @Column(columnDefinition = "varchar(100)")
-    private String Email;
+    private String email;
 
     @Column(columnDefinition = "varchar(100)")
-    private String Username;
+    private String username;
 
     @Column(columnDefinition = "varchar(200)")
-    private String Password;
+    private String password;
 
     @Column(columnDefinition = "varchar(100)")
-    private String Photo;
+    private String photo;
+
+    @OneToMany(mappedBy = "user")
+    Set<UserRole> userRoles;
+
+    @OneToMany(mappedBy = "user")
+    Set<Preference> preferences;
 
     public User() {
     }
 
     public User(String firstName, String lastName, String email, String username, String password, String photo) {
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
-        Username = username;
-        Password = password;
-        Photo = photo;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.photo = photo;
     }
 
     public Integer getUserId() {
-        return UserId;
+        return userId;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getPhoto() {
-        return Photo;
+        return photo;
     }
 
     public void setPhoto(String photo) {
-        Photo = photo;
+        this.photo = photo;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "UserId=" + UserId +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Username='" + Username + '\'' +
-                ", Password='" + Password + '\'' +
-                ", Photo='" + Photo + '\'' +
+                "UserId=" + userId +
+                ", FirstName='" + firstName + '\'' +
+                ", LastName='" + lastName + '\'' +
+                ", Email='" + email + '\'' +
+                ", Username='" + username + '\'' +
+                ", Password='" + password + '\'' +
+                ", Photo='" + photo + '\'' +
                 '}';
     }
 }

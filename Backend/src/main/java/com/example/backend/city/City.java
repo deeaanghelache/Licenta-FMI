@@ -9,7 +9,7 @@ public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Integer CityId;
+    private Integer cityId;
 
     @Column(columnDefinition = "varchar(100)")
     private String nameEng;
@@ -46,7 +46,7 @@ public class City implements Serializable {
     }
 
     public Integer getCityId() {
-        return CityId;
+        return cityId;
     }
 
     public String getNameEng() {
@@ -108,7 +108,7 @@ public class City implements Serializable {
     @Override
     public String toString() {
         return "City{" +
-                "CityId=" + CityId +
+                "CityId=" + cityId +
                 ", nameEng='" + nameEng + '\'' +
                 ", nameRom='" + nameRom + '\'' +
                 ", countryEng='" + countryEng + '\'' +
