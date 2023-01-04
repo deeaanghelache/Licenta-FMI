@@ -10,7 +10,7 @@ public class Airport implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Integer AirportId;
+    private Integer airportId;
 
     @Column(columnDefinition = "varchar(500)")
     private String nameEng;
@@ -34,7 +34,7 @@ public class Airport implements Serializable {
     }
 
     public Integer getAirportId() {
-        return AirportId;
+        return airportId;
     }
 
     public String getNameEng() {
@@ -56,7 +56,7 @@ public class Airport implements Serializable {
     @Override
     public String toString() {
         return "Airport{" +
-                "AirportId=" + AirportId +
+                "AirportId=" + airportId +
                 ", nameEng='" + nameEng + '\'' +
                 ", nameRom='" + nameRom + '\'' +
                 '}';
