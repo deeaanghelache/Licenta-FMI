@@ -1,5 +1,6 @@
 package com.example.backend.user;
 
+import com.example.backend.landmarkList.LandmarkList;
 import com.example.backend.preference.Preference;
 import com.example.backend.userRole.UserRole;
 import com.example.backend.role.Role;
@@ -33,11 +34,19 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String photo;
 
-    @OneToMany(mappedBy = "user")
-    Set<UserRole> userRoles;
+    // Foreign Keys
 
+    // With UserRole
     @OneToMany(mappedBy = "user")
-    Set<Preference> preferences;
+    private Set<UserRole> userRoles;
+
+    // With Preference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Preference> preferences;
+
+    // With LandmarkWishlist
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<LandmarkList> landmarkLists;
 
     public User() {
     }

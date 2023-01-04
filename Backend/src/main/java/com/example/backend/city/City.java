@@ -1,8 +1,13 @@
 package com.example.backend.city;
 
+import com.example.backend.airport.Airport;
+import com.example.backend.landmark.Landmark;
+import com.example.backend.landmarkList.LandmarkList;
+import com.example.backend.preference.Preference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class City implements Serializable {
@@ -31,6 +36,20 @@ public class City implements Serializable {
 
     @Column(columnDefinition = "varchar(50)")
     private String currencyName;
+
+    // Foreign Keys
+
+    // With Airport
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private Set<Airport> airports;
+
+    // With Landmark
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private Set<Landmark> landmarks;
+
+    // With LandmarkList
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private Set<LandmarkList> landmarkLists;
 
     public City() {
     }

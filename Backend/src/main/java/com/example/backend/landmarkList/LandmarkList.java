@@ -1,5 +1,7 @@
 package com.example.backend.landmarkList;
 
+import com.example.backend.city.City;
+import com.example.backend.user.User;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -11,10 +13,20 @@ public class LandmarkList implements Serializable {
     @Column(nullable = false, updatable = false)
     private Integer landmarkListId;
 
-    @Column(columnDefinition="Decimal(10,2)")
+    @Column(columnDefinition="Decimal(5,2)")
     private Double totalPrice;
 
-    // TODO: pune fk
+    // Foreign Keys
+
+    // With User
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false, referencedColumnName = "userId")
+    private User user;
+
+    // With City
+    @ManyToOne
+    @JoinColumn(name = "cityId", nullable = false, referencedColumnName = "cityId")
+    private City city;
 
     public LandmarkList() {
     }

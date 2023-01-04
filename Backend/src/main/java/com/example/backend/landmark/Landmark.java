@@ -1,11 +1,13 @@
 package com.example.backend.landmark;
 
+import com.example.backend.city.City;
 import com.example.backend.price.Price;
+import com.example.backend.user.User;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-// TODO: PUS FK
+
 @Entity
 public class Landmark implements Serializable {
     @Id
@@ -28,9 +30,17 @@ public class Landmark implements Serializable {
     @Column(columnDefinition = "varchar(200)")
     private String typeRom;
 
+    // Foreign Keys
+
+    // With Price
     @OneToOne(mappedBy = "landmark", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Price price;
+
+    // With City
+    @ManyToOne
+    @JoinColumn(name = "cityId", nullable = false, referencedColumnName = "cityId")
+    City city;
 
     public Landmark() {
     }

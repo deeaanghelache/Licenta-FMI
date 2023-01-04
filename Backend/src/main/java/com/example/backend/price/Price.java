@@ -11,11 +11,11 @@ public class Price implements Serializable {
     @Column(nullable = false, updatable = false)
     private Integer landmarkId;
 
-    @Column(columnDefinition = "integer")
-    private Integer full;
+    @Column(columnDefinition="Decimal(5,2)")
+    private Double full;
 
-    @Column(columnDefinition = "integer")
-    private Integer discount;
+    @Column(columnDefinition="Decimal(5,2)")
+    private Double discount;
 
     @Column(columnDefinition = "varchar(500)")
     private String freeTicketsRequirementsEng;
@@ -23,6 +23,9 @@ public class Price implements Serializable {
     @Column(columnDefinition = "varchar(500)")
     private String getFreeTicketsRequirementsRom;
 
+    // Foreign keys
+
+    // With Landmark
     @OneToOne
     @MapsId
     @JoinColumn(name = "landmark_id")
@@ -31,7 +34,7 @@ public class Price implements Serializable {
     public Price() {
     }
 
-    public Price(Integer full, Integer discount, String freeTicketsRequirementsEng, String getFreeTicketsRequirementsRom, Landmark landmark) {
+    public Price(Double full, Double discount, String freeTicketsRequirementsEng, String getFreeTicketsRequirementsRom, Landmark landmark) {
         this.full = full;
         this.discount = discount;
         this.freeTicketsRequirementsEng = freeTicketsRequirementsEng;
@@ -43,19 +46,19 @@ public class Price implements Serializable {
         return landmarkId;
     }
 
-    public Integer getFull() {
+    public Double getFull() {
         return full;
     }
 
-    public void setFull(Integer full) {
+    public void setFull(Double full) {
         this.full = full;
     }
 
-    public Integer getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Integer discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 

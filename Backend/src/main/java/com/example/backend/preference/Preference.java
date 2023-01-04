@@ -18,9 +18,12 @@ public class Preference implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String getPreferenceNameRom;
 
+    // Foreign Keys
+
+    // With User
     @ManyToOne
-    @JoinColumn(name = "userId")
-    User user;
+    @JoinColumn(name = "userId", nullable = false, referencedColumnName = "userId")
+    private User user;
 
     public Preference() {
     }

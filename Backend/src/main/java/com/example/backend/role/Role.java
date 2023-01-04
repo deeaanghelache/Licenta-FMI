@@ -18,7 +18,7 @@ public class Role implements Serializable {
     private String roleName;
 
     @OneToMany(mappedBy = "role")
-    Set<UserRole> userRoles;
+    private Set<UserRole> userRoles;
 
     public Role() {
     }

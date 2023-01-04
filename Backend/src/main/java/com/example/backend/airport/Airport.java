@@ -1,10 +1,10 @@
 package com.example.backend.airport;
 
+import com.example.backend.city.City;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-// TODO: pune FK
 @Entity
 public class Airport implements Serializable {
     @Id
@@ -17,6 +17,13 @@ public class Airport implements Serializable {
 
     @Column(columnDefinition = "varchar(500)")
     private String nameRom;
+
+    // Foreign keys
+
+    // With City
+    @ManyToOne
+    @JoinColumn(name = "cityId", nullable = false, referencedColumnName = "cityId")
+    private City city;
 
     public Airport() {
     }
