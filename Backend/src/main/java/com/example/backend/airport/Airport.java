@@ -18,6 +18,9 @@ public class Airport implements Serializable {
     @Column(columnDefinition = "varchar(500)")
     private String nameRom;
 
+    @Column(columnDefinition = "Decimal(5,2)")
+    private Double distanceToCity;
+
     // Foreign keys
 
     // With City
@@ -28,9 +31,10 @@ public class Airport implements Serializable {
     public Airport() {
     }
 
-    public Airport(String nameEng, String nameRom) {
+    public Airport(String nameEng, String nameRom, Double distanceToCity) {
         this.nameEng = nameEng;
         this.nameRom = nameRom;
+        this.distanceToCity = distanceToCity;
     }
 
     public Integer getAirportId() {
@@ -53,12 +57,22 @@ public class Airport implements Serializable {
         this.nameRom = nameRom;
     }
 
+    public Double getDistanceToCity() {
+        return distanceToCity;
+    }
+
+    public void setDistanceToCity(Double distanceToCity) {
+        this.distanceToCity = distanceToCity;
+    }
+
     @Override
     public String toString() {
         return "Airport{" +
-                "AirportId=" + airportId +
+                "airportId=" + airportId +
                 ", nameEng='" + nameEng + '\'' +
                 ", nameRom='" + nameRom + '\'' +
+                ", distanceToCity=" + distanceToCity +
+                ", city=" + city +
                 '}';
     }
 }

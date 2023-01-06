@@ -17,7 +17,7 @@ public class Tag implements Serializable {
     @Column(columnDefinition = "varchar(200)", unique = true)
     private String tagNameEng;
 
-    @Column(columnDefinition = "varchar(500)", unique = true)
+    @Column(columnDefinition = "varchar(200)", unique = true)
     private String tagNameRom;
 
     // Foreign Keys

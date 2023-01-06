@@ -16,7 +16,7 @@ public class Preference implements Serializable {
     private String preferenceNameEng;
 
     @Column(columnDefinition = "varchar(100)")
-    private String getPreferenceNameRom;
+    private String preferenceNameRom;
 
     // Foreign Keys
 
@@ -28,9 +28,9 @@ public class Preference implements Serializable {
     public Preference() {
     }
 
-    public Preference(String preferenceNameEng, String getPreferenceNameRom) {
+    public Preference(String preferenceNameEng, String preferenceNameRom) {
         this.preferenceNameEng = preferenceNameEng;
-        this.getPreferenceNameRom = getPreferenceNameRom;
+        this.preferenceNameRom = preferenceNameRom;
     }
 
     public Integer getPreferenceId() {
@@ -45,11 +45,11 @@ public class Preference implements Serializable {
         this.preferenceNameEng = preferenceNameEng;
     }
 
-    public String getGetPreferenceNameRom() {
-        return getPreferenceNameRom;
+    public String getPreferenceNameRom() {
+        return preferenceNameRom;
     }
 
-    public void setGetPreferenceNameRom(String getPreferenceNameRom) {
-        this.getPreferenceNameRom = getPreferenceNameRom;
+    public void setPreferenceNameRom(String preferenceNameRom) {
+        this.preferenceNameRom = preferenceNameRom;
     }
 }

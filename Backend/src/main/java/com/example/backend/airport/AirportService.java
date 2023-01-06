@@ -33,6 +33,10 @@ public class AirportService {
         return airportInterface.findAirportByNameRom(romanianAirportName).orElseThrow(() -> new NameRomNotFoundException("Couldn't find any airport with the romanian name: " + romanianAirportName));
     }
 
+    public List<Airport> findAirportByCityId(Integer cityId){
+        return airportInterface.queryBy(cityId);
+    }
+
     // POST
     public Airport addAirport(Airport airport){
         return airportInterface.save(airport);
@@ -42,6 +46,7 @@ public class AirportService {
     // TODO: put
 
     // DELETE
+    // TODO: delete airports by cityId
 
     void deleteAllAirports(){
         airportInterface.deleteAll();
