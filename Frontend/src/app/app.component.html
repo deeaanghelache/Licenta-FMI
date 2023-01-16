@@ -1,1 +1,8 @@
+<div class="themeSwitchContainer">
+    <button type = "button" class = "themeButton" (click) = "switchSiteTheme()">
+        <i class="fa fa-sun" *ngIf = "siteTheme === 'dark-theme'"></i>
+        <i class="fa fa-moon" *ngIf = "siteTheme === 'light-theme'"></i>
+    </button>
+</div>
+
 <router-outlet></router-outlet>
