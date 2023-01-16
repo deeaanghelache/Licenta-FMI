@@ -1,0 +1,104 @@
+// Login SCSS
+
+// Site's colors
+$color-1: #FF36D6;
+$color-2: #9F2FDE;
+$color-3: #5D3FF5;
+$color-4: #2F62DE;
+$color-5: #25C5FA;
+
+.homeButtonContainer{
+    position: absolute;
+    bottom: 70px;
+    right: 10px;
+}
+
+$standardMargin: 40px;
+
+h1{
+    text-align: center;
+}
+
+.loginGrid{
+    position: relative;
+    top: 0;
+    left: 20vw;
+    display: grid;
+    margin: $standardMargin;
+    padding: 10px;
+    width: 100vh;
+    grid-template-columns: auto;
+    box-shadow: 1px 1px 18px #888888;
+}
+
+.leftSide{
+    background-color: $color-2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 40vh;
+    animation: background-color 5s linear infinite;
+}
+
+@keyframes background-color {
+    0% {
+      background-color: $color-1;
+    }
+    50% {
+        background-color: $color-3;
+    }
+    100% {
+        background-color: $color-5;
+    }
+  }
+
+  .rightSide{
+    margin: $standardMargin;
+    padding: 20px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    width: 20vw;
+}
+
+input {
+    border-width: 3px;
+    border-top: solid white;
+    border-right: solid white;
+    border-left: solid white;
+    border-image: 
+    linear-gradient(to right, $color-1 0%, $color-4 100%) 0 0 100% 0;
+    width: 100%;
+    height: 4vh;
+    margin: 10px;
+    background-color: var(--input-color);
+}
+
+#loginButton{
+    position: relative;
+    top: 0;
+    left: 0vw;
+    width: 100%;
+    height: 5vh;
+    border-radius: 0;
+    background-image: linear-gradient(to right, $color-1 0%, $color-3 100%);
+    border: 1px solid white;
+    color: white;
+    font-size: large;
+    margin: 15px;
+    transition: background-image 0.5s ease 0s;
+}
+
+#loginButton:hover{
+    background-image: linear-gradient(to right, $color-5 0%, $color-4 100%);
+}
+
+#goToLogin{
+    color: var(--text-color);
+}
+
+#goToRegister{
+    color: var(--text-color);
+}
