@@ -8,6 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
