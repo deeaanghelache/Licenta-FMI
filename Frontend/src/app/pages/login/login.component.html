@@ -1,1 +1,65 @@
-<p>login works!</p>
+<main>
+    <div class="homeButtonContainer">
+        <button type = "button" class = "themeButton" (click)="goHome()">
+            <i class="fas fa-home"></i>
+        </button>
+    </div>
+
+    <div class="loginGrid">
+        <div class="leftSide">
+
+        </div>
+        <div class="rightSide">
+            <h1>{{ loginTitle }}</h1>
+
+            <br>
+            <br>
+            <br>
+
+            <form [formGroup]="loginForm" (ngSubmit)="loginUserFunction()">
+                <div class="form-group">
+                    <input class="form-control" 
+                    placeholder="Email Address"
+                    [ngClass]="loginForm.controls['email'].errors ? 'is-invalid' : ''"
+                    formControlName="email" />
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" 
+                    placeholder="Password"
+                    [ngClass]="loginForm.controls['password'].errors ? 'is-invalid' : ''"
+                    formControlName="password" />
+                </div>
+
+                <br>
+
+                <button 
+                id="loginButton" 
+                [disabled]="loginForm.invalid" 
+                type="submit">
+                    Login
+                </button>
+
+                <div id="extra">
+                    <p>
+                        Not a member?
+                        <a href="/register" id="goToRegister">
+                            Sign up
+                        </a>
+                    </p>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+            </form>
+        </div>
+    </div>
+
+</main>

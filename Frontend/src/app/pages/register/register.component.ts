@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserAuthenticationService } from 'src/app/services/userAuthentication/user-authentication.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
   public registerTitle:String = "Sign Up";
   public registerForm!:FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private userAuthentication:UserAuthenticationService) { }
+  constructor(private formBuilder:FormBuilder, private router: Router, private userAuthentication:UserAuthenticationService) { }
 
   passwordAndConfirmPasswordChecker : ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
     let password = group.get('password')?.value;
@@ -31,6 +32,10 @@ export class RegisterComponent implements OnInit {
         confirmPassword : ['', Validators.required]
       }, { validators: this.passwordAndConfirmPasswordChecker }
     );
+  }
+
+  goHome(){
+    this.router.navigateByUrl('/homepage');
   }
 
   registerUserFunction(){
