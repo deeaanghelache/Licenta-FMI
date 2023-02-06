@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserAuthenticationService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
@@ -29,6 +30,13 @@ export class UserAuthenticationService {
     return this.http.post(
       this.baseUrl + 'user/login',
       user, 
+      this.privateHttpHeaders
+    )
+  }
+
+  adminLoginCheck(email: any){
+    return this.http.get(
+      this.baseUrl + 'user/checkAdminRole/' + email,
       this.privateHttpHeaders
     )
   }

@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   public loginTitle:String = "Log In";
   public loginForm!:FormGroup;
   public userNotFound:String = "";
+  public userRole:string = "";
 
   constructor(private router:Router, private formBuilder:FormBuilder, private userAuthentication: UserAuthenticationService) { }
 
@@ -26,6 +27,11 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/homepage');
   }
 
+  userCurrentSessionUpdate(){
+    sessionStorage.setItem("loggedUserEmail", this.loginForm.value.email);
+    sessionStorage.setItem("admin", this.userRole);
+  }
+
   loginUserFunction(){
     console.log(this.loginForm);
 
@@ -34,7 +40,17 @@ export class LoginComponent implements OnInit {
         this.loginForm.value
       ).subscribe((response : any) => {
         if (response != null){
-          this.goHome();
+          this.userAuthentication.adminLoginCheck(this.loginForm.value.email).subscribe((response:any) => {
+            if (response === false){
+              this.userRole = "user";
+            }
+            else{
+              this.userRole = "admin";
+            } 
+
+            this.userCurrentSessionUpdate();
+            this.goHome();
+          })
         }
         else {
           this.loginForm.reset();

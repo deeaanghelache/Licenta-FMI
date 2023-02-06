@@ -1,5 +1,8 @@
 package com.example.backend.user;
 
+import com.example.backend.role.Role;
+import com.example.backend.userRole.UserRole;
+import com.example.backend.userRole.UserRoleInterface;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +14,12 @@ import java.util.List;
 public class UserService {
     // injectam interfata user-ului
     private final UserInterface userInterface;
+    private final UserRoleInterface userRoleInterface;
 
     @Autowired
-    public UserService(UserInterface userInterface) {
+    public UserService(UserInterface userInterface, UserRoleInterface userRoleInterface) {
         this.userInterface = userInterface;
+        this.userRoleInterface = userRoleInterface;
     }
 
     // FIND (GET)
@@ -22,7 +27,7 @@ public class UserService {
         return userInterface.findAll();
     }
 
-    public User getUserByUserId(Integer userId){
+    public User getUserByUserId(Long userId){
         return userInterface.findUserByUserId(userId).orElseThrow(() -> new UserIdNotFoundException("Couldn't find any user with the id: " + userId));
     }
 
@@ -32,6 +37,11 @@ public class UserService {
 
     public User getUserByUsername(String username){
         return userInterface.findUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Couldn't find any user with the username: " + username));
+    }
+
+    public List<UserRole> getAllRolesForGivenUser(String email){
+        var currentUser = getUserByUserEmail(email);
+        return userRoleInterface.queryBy(currentUser.getUserId());
     }
 
     public Boolean checkIfUsernameExists(String username){

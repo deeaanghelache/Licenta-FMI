@@ -15,7 +15,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Integer userId;
+    private Long userId;
 
     @Column(columnDefinition = "varchar(100)")
     private String firstName;
@@ -67,7 +67,7 @@ public class User implements Serializable {
         this.photo = photo;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 

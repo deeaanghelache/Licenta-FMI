@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
         this.registerForm.value
       ).subscribe((response : any) => {
           if (response != null){
-             // un navigate la o pagina din site!
              this.router.navigateByUrl('/login');
           }
           else{

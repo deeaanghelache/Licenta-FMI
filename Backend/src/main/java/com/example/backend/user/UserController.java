@@ -1,5 +1,6 @@
 package com.example.backend.user;
 
+import com.example.backend.userRole.UserRoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,11 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final UserRoleService userRoleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRoleService userRoleService) {
         this.userService = userService;
+        this.userRoleService = userRoleService;
     }
 
     @GetMapping("/findAllUsers")
@@ -22,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/findUserByUserId/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Integer userId){
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
         User user = userService.getUserByUserId(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -37,6 +40,20 @@ public class UserController {
     public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
         User user = userService.getUserByUserEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/checkAdminRole/{email}")
+    public ResponseEntity<Boolean> checkAdminRoleForGivenUser(@PathVariable("email") String email){
+        var userRoles = userService.getAllRolesForGivenUser(email);
+        System.out.println(userRoles);
+
+        for (var userRole : userRoles) {
+            if (userRole.getRole().getRoleName().equalsIgnoreCase("Admin")) {
+                System.out.println(userRole.getRole().getRoleName());
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
     }
 
     // TODO: post si put
@@ -56,7 +73,17 @@ public class UserController {
 
         // TODO: hash password
 
+        System.out.println("\n1111\n");
+
         User user = userService.addUser(newUser);
+        System.out.println("\n1\n");
+
+        System.out.println(user.getUserId());
+
+        userRoleService.addUserRoleForUsers(user.getUserId());
+
+        System.out.println("\n2\n");
+        System.out.println(user.getUserId());
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
@@ -70,7 +97,7 @@ public class UserController {
                 String password2 = userTryingToLogIn.getPassword();
 
                 if (password1.equals(password2)){
-                    return new ResponseEntity(userTryingToLogIn, HttpStatus.OK);
+                    return new ResponseEntity<>(userTryingToLogIn, HttpStatus.OK);
                 }
                 // TODO: verificare pe hashed passwords
             }

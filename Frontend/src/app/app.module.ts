@@ -9,6 +9,9 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CitiesComponent } from './pages/cities/cities.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { ListCardsComponent } from './pages/reusableComponents/list-cards/list-cards.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     HomepageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    CitiesComponent,
+    WishlistComponent,
+    ListCardsComponent,
   ],
   imports: [
     BrowserModule,
