@@ -102,3 +102,11 @@ input {
 #goToRegister{
     color: var(--text-color);
 }
+
+#userNotFound{
+    color: red;
+    font-weight: bold;
+    position: relative;
+    top: 0;
+    left: 0vw;
+}

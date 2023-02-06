@@ -1,13 +1,13 @@
 <header>
     <nav>
         <ul>
-            <li class="mainMenu"><a href="">Home</a></li>
+            <li class="mainMenu"><a routerLink="/homepage">Home</a></li>
             <li class="mainMenu"><a href="/aboutUs">About Us</a></li>
             <li class="mainMenu"><a href="/cities">Cities</a></li>
             <li class="mainMenu"><a href="/blog">Blog</a></li>
             <li class="" *ngIf = "userAdmin === true"><a href="/profile"><i class="fa fa-user"></i></a></li>
-            <li class="mainMenu" id="loginButton"><a href="/login">Sign in</a></li>
-            <li class="mainMenu" id="registerButton"><a href="/register">Join</a></li>
+            <li class="mainMenu" id="loginButton"><a routerLink="/login">Sign in</a></li>
+            <li class="mainMenu" id="registerButton"><a routerLink="/register">Join</a></li>
         </ul>
     </nav>
 </header>

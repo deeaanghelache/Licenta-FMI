@@ -11,6 +11,7 @@ import { UserAuthenticationService } from 'src/app/services/userAuthentication/u
 export class RegisterComponent implements OnInit {
   public registerTitle:String = "Sign Up";
   public registerForm!:FormGroup;
+  public userAlreadyExists:String = "";
 
   constructor(private formBuilder:FormBuilder, private router: Router, private userAuthentication:UserAuthenticationService) { }
 
@@ -45,8 +46,15 @@ export class RegisterComponent implements OnInit {
       this.userAuthentication.register(
         this.registerForm.value
       ).subscribe((response : any) => {
-          console.log(response);
-          // un navigate la o pagina din site!
+          if (response != null){
+             // un navigate la o pagina din site!
+             this.router.navigateByUrl('/login');
+          }
+          else{
+             // User already exists
+             this.registerForm.reset();
+             this.userAlreadyExists = "Username or Email already exists";
+          }
       })
     }
   }

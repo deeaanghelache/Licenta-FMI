@@ -46,6 +46,7 @@ public class UserService {
     public User addUser(User user){
         // TODO: criptare parola
 
+
         return userInterface.save(user);
     }
 

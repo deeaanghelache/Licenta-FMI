@@ -41,6 +41,44 @@ public class UserController {
 
     // TODO: post si put
 
+    // POST
+    @PostMapping("/addUser")
+    public ResponseEntity<User> register(@RequestBody User newUser) {
+        var users = userService.getAllUsers();
+
+        for (var user : users){
+            if ((user.getEmail().equals(newUser.getEmail())) || (user.getUsername().equals(newUser.getUsername()))){
+                return new ResponseEntity<>(null, HttpStatus.OK);
+            }
+        }
+
+        var password = newUser.getPassword();
+
+        // TODO: hash password
+
+        User user = userService.addUser(newUser);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User userTryingToLogIn){
+        var users = userService.getAllUsers();
+
+        for (var user : users){
+            if (user.getEmail().equals(userTryingToLogIn.getEmail())){
+                String password1 = user.getPassword();
+                String password2 = userTryingToLogIn.getPassword();
+
+                if (password1.equals(password2)){
+                    return new ResponseEntity(userTryingToLogIn, HttpStatus.OK);
+                }
+                // TODO: verificare pe hashed passwords
+            }
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
     @DeleteMapping("/deleteAllUsers")
     public ResponseEntity<?> deleteAllUsers(){
         userService.deleteAllUsers();
