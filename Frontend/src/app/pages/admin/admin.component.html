@@ -1,1 +1,11 @@
-<p>admin works!</p>
+<ul>
+    <li *ngFor="let user of users">
+        <app-user 
+        [firstName]="user.firstName"
+        [lastName]="user.lastName"
+        [username]="user.username"
+        [email]="user.email"
+        >
+        </app-user>
+    </li>
+</ul>

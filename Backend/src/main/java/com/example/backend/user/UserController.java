@@ -97,7 +97,7 @@ public class UserController {
                 String password2 = userTryingToLogIn.getPassword();
 
                 if (password1.equals(password2)){
-                    return new ResponseEntity<>(userTryingToLogIn, HttpStatus.OK);
+                    return new ResponseEntity<>(user, HttpStatus.OK);
                 }
                 // TODO: verificare pe hashed passwords
             }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthenticationService } from 'src/app/services/userAuthentication/user-authentication.service';
@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public loginForm!:FormGroup;
   public userNotFound:String = "";
   public userRole:string = "";
+  public currentUsername:string = "";
 
   constructor(private router:Router, private formBuilder:FormBuilder, private userAuthentication: UserAuthenticationService) { }
 
@@ -29,6 +30,8 @@ export class LoginComponent implements OnInit {
 
   userCurrentSessionUpdate(){
     sessionStorage.setItem("loggedUserEmail", this.loginForm.value.email);
+    sessionStorage.setItem("username", this.currentUsername);
+    console.log(sessionStorage.getItem("username"));
     sessionStorage.setItem("admin", this.userRole);  // value: user or admin
     sessionStorage.setItem("logged", "true");
   }
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
       this.userAuthentication.login(
         this.loginForm.value
       ).subscribe((response : any) => {
+        this.currentUsername = response.username;
         if (response != null){
           this.userAuthentication.adminLoginCheck(this.loginForm.value.email).subscribe((response:any) => {
             if (response === false){

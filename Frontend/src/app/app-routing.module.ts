@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuardGuard } from './guards/adminGuard/admin-guard.guard';
 import { AdminComponent } from './pages/admin/admin.component';
+import { BlogComponent } from './pages/blog/blog.component';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Page405Component } from './pages/page405/page405.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 
@@ -43,6 +45,14 @@ const routes: Routes = [
   {
     path: 'page405',
     component: Page405Component
+  },
+  {
+    path: 'blog',
+    component: BlogComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 
