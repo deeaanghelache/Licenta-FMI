@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
 
   userCurrentSessionUpdate(){
     sessionStorage.setItem("loggedUserEmail", this.loginForm.value.email);
-    sessionStorage.setItem("admin", this.userRole);
+    sessionStorage.setItem("admin", this.userRole);  // value: user or admin
+    sessionStorage.setItem("logged", "true");
   }
 
   loginUserFunction(){

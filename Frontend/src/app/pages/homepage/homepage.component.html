@@ -7,7 +7,7 @@
             <li class="mainMenu"><a href="/blog">Blog</a></li>
             <li class="mainMenu"><a routerLink="/wishlist">Wishlist</a></li>
             <li class="mainMenu" *ngIf = "logged === true && admin === false"><a href="/profile"><i class="fa fa-user"></i></a></li>
-            <li class="mainMenu" *ngIf = "logged === true && admin === true"><a href="/admin">Admin</a>
+            <li class="mainMenu" *ngIf = "logged === true && admin === true"><a routerLink="/admin">Admin</a>
             <li class="mainMenu"><button class="btn btn-light" id="loginButton" *ngIf = "logged === false"><a id="link" routerLink="/login">Sign in</a></button></li>
             <li class="mainMenu"><button class="btn btn-light" id="registerButton" *ngIf = "logged === false"><a id="link" routerLink="/register">Join</a></button></li>
             <li class="mainMenu"><button class="btn btn-light" id="logoutButton" *ngIf = "logged === true" (click)="logout()">Logout</button></li>
