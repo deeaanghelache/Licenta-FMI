@@ -23,7 +23,7 @@ public class UserRoleService {
     }
 
     // FIND(GET)
-    public List<User> getAllUsersForAGivenRole(Integer roleId){
+    public List<UserRole> getAllUsersForAGivenRole(Integer roleId){
         return userRoleInterface.queryBy(roleId);
     }
 

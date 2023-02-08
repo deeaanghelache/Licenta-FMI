@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -9,17 +9,29 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class AdminComponent implements OnInit {
   public users: any[] = [];
+  public usersThatAreNotAdmins: any[] = [];
+  public usersThatAreAdmins: any[] = [];
+  public admin:boolean = false;
+  public logged:boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService:UserService) { }
+
+  constructor(private activatedRoute: ActivatedRoute, private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
-      console.log('params', params);
     });
     this.activatedRoute.queryParams.subscribe((queryParams: any) => {
-      console.log('queryParams', queryParams);
     });
     this.getAllUsersFromDatabase();
+    this.getAllAdmins();
+    this.getAllUsers();
+    this.checkIfLoggedIn();
+  }
+
+  checkIfLoggedIn(){
+    if ("loggedUserEmail" in sessionStorage){
+      this.logged = true;
+    }
   }
 
   getAllUsersFromDatabase(){
@@ -27,5 +39,25 @@ export class AdminComponent implements OnInit {
       // response is any array of users
       this.users = response;
     })
+  }
+
+  getAllUsers():void {
+    // Users that are not admin
+    this.userService.getAllUsersForAGivenRole(2).subscribe((response:any) => {
+      this.usersThatAreNotAdmins = response;
+    })
+  }
+
+  getAllAdmins():void{
+    this.userService.getAllUsersForAGivenRole(1).subscribe((response:any) => {
+      this.usersThatAreAdmins = response;
+    })
+  }
+
+  logout(){
+    sessionStorage.clear();
+    this.admin = false;
+    this.logged = false;
+    this.router.navigateByUrl("/homepage");
   }
 }

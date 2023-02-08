@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
-      responseType: 'text',
+      responseType: 'json',
       observe: 'response'
     }),
   };
@@ -26,6 +26,13 @@ export class UserService {
   deleteUserByEmail(email: string){
     return this.http.delete(
       this.baseUrl + "user/deleteByEmail/" + email,
+      this.privateHttpHeaders
+    )
+  }
+
+  getAllUsersForAGivenRole(roleId: number){
+    return this.http.get(
+      this.baseUrl + "userRole/getAllUsersForGivenRole/" + roleId,
       this.privateHttpHeaders
     )
   }

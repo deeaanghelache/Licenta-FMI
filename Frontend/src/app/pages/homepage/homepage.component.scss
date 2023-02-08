@@ -23,7 +23,7 @@ ul>li>a{
 }
 
 nav{
-    height: 6.5vh;
+    height: 7vh;
     width: 100%;  
     top: 0;
     right:0;
@@ -39,7 +39,7 @@ ul>li{
     transition: background 0.5s linear;
 }
 
-ul>li:hover{
+#button1:hover, #button2:hover, #button3:hover, #button4:hover, #button5:hover, #button6:hover, #button7:hover{
     background-color: #25C5FA;
 }
 
@@ -48,6 +48,7 @@ ul>li:hover{
     text-decoration: none;
     height: 5vh;
     width: 6vw;
+    margin: 2px;
 }
 
 #logoutButton{

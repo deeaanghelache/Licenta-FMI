@@ -7,10 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  @Input() firstName: string = '';
-  @Input() lastName: string = '';
-  @Input() email: string = '';
-  @Input() username: string = '';
+  @Input() userData: any;
   
   @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
 

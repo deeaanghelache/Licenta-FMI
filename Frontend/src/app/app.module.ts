@@ -10,12 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
-import { ListCardsComponent } from './pages/reusableComponents/list-cards/list-cards.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BlogComponent } from './pages/blog/blog.component';
-import { UserComponent } from './details/user/user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardComponent } from './reusableComponents/card/card.component';
 
 @NgModule({
   declarations: [
@@ -25,18 +25,19 @@ import { UserComponent } from './details/user/user.component';
     HomepageComponent,
     CitiesComponent,
     WishlistComponent,
-    ListCardsComponent,
     AdminComponent,
     Page405Component,
     ProfileComponent,
-    BlogComponent
+    BlogComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, 
     HttpClientModule,
-    SharedInfoModule
+    SharedInfoModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

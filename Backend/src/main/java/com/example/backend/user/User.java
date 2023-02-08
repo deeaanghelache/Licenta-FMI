@@ -5,12 +5,14 @@ import com.example.backend.landmarkList.LandmarkList;
 import com.example.backend.preference.Preference;
 import com.example.backend.userRole.UserRole;
 import com.example.backend.role.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

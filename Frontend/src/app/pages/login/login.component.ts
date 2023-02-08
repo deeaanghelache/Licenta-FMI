@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   userCurrentSessionUpdate(){
     sessionStorage.setItem("loggedUserEmail", this.loginForm.value.email);
     sessionStorage.setItem("username", this.currentUsername);
-    console.log(sessionStorage.getItem("username"));
     sessionStorage.setItem("admin", this.userRole);  // value: user or admin
     sessionStorage.setItem("logged", "true");
   }
@@ -43,7 +42,6 @@ export class LoginComponent implements OnInit {
       this.userAuthentication.login(
         this.loginForm.value
       ).subscribe((response : any) => {
-        this.currentUsername = response.username;
         if (response != null){
           this.userAuthentication.adminLoginCheck(this.loginForm.value.email).subscribe((response:any) => {
             if (response === false){
@@ -52,7 +50,8 @@ export class LoginComponent implements OnInit {
             else{
               this.userRole = "admin";
             } 
-
+            
+            this.currentUsername = response.username;
             this.userCurrentSessionUpdate();
             this.goHome();
           })

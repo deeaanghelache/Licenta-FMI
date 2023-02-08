@@ -73,17 +73,9 @@ public class UserController {
 
         // TODO: hash password
 
-        System.out.println("\n1111\n");
-
         User user = userService.addUser(newUser);
-        System.out.println("\n1\n");
-
-        System.out.println(user.getUserId());
 
         userRoleService.addUserRoleForUsers(user.getUserId());
-
-        System.out.println("\n2\n");
-        System.out.println(user.getUserId());
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
@@ -127,6 +119,8 @@ public class UserController {
     @DeleteMapping("/deleteByEmail/{email}")
     public ResponseEntity<?> deleteUserByEmail(@PathVariable("email") String email){
         userService.deleteUserByUserEmail(email);
+
+        // TODO: cand stergi, sa se stearga si role
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

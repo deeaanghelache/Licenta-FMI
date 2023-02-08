@@ -13,7 +13,7 @@ public interface UserRoleInterface extends JpaRepository<UserRole, Integer> {
     @Query(value = "SELECT user_role.user_id, user_role.role_id " +
             "FROM user_role JOIN user ON (user_role.user_id = user.user_id) " +
             "WHERE user_role.role_id = :roleId", nativeQuery = true)
-    List<User> queryBy(@Param("roleId") Integer roleId);
+    List<UserRole> queryBy(@Param("roleId") Integer roleId);
 
     // get all roles for a given user
     @Query(value = "SELECT user_role.user_id, user_role.role_id " +

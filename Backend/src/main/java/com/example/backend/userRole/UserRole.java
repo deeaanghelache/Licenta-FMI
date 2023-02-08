@@ -2,6 +2,7 @@ package com.example.backend.userRole;
 
 import com.example.backend.role.Role;
 import com.example.backend.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 //import org.hibernate.annotations.OnDelete;
 //import org.hibernate.annotations.OnDeleteAction;
@@ -9,6 +10,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserRole implements Serializable {
     @EmbeddedId
     private UserRoleId userRoleId;
