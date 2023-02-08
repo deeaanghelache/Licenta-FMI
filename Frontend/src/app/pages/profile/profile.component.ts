@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -6,9 +7,11 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  currentUsername: string = '';
+  public currentUsername: string = '';
+  public admin:boolean = false;
+  public logged:boolean = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   getUsername(){
     this.currentUsername = sessionStorage.getItem("username") as string;
@@ -16,6 +19,26 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsername();
+    this.checkIfLoggedIn();
+    this.checkIfAdmin();
   }
 
+  checkIfLoggedIn(){
+    if ("loggedUserEmail" in sessionStorage){
+      this.logged = true;
+    }
+  }
+
+  checkIfAdmin(){
+    if (sessionStorage.getItem("admin") === "admin"){
+      this.admin = true;
+    }
+  }
+
+  logout(){
+    sessionStorage.clear();
+    this.admin = false;
+    this.logged = false;
+    this.router.navigateByUrl("/homepage");
+  }
 }
