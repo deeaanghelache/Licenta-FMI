@@ -1,5 +1,6 @@
 package com.example.backend.user;
 
+import com.example.backend.userRole.UserRoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,11 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final UserRoleService userRoleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRoleService userRoleService) {
         this.userService = userService;
+        this.userRoleService = userRoleService;
     }
 
     @GetMapping("/findAllUsers")
@@ -22,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/findUserByUserId/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Integer userId){
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
         User user = userService.getUserByUserId(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -39,7 +42,61 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/checkAdminRole/{email}")
+    public ResponseEntity<Boolean> checkAdminRoleForGivenUser(@PathVariable("email") String email){
+        var userRoles = userService.getAllRolesForGivenUser(email);
+        System.out.println(userRoles);
+
+        for (var userRole : userRoles) {
+            if (userRole.getRole().getRoleName().equalsIgnoreCase("Admin")) {
+                System.out.println(userRole.getRole().getRoleName());
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
+    }
+
     // TODO: post si put
+
+    // POST
+    @PostMapping("/addUser")
+    public ResponseEntity<User> register(@RequestBody User newUser) {
+        var users = userService.getAllUsers();
+
+        for (var user : users){
+            if ((user.getEmail().equals(newUser.getEmail())) || (user.getUsername().equals(newUser.getUsername()))){
+                return new ResponseEntity<>(null, HttpStatus.OK);
+            }
+        }
+
+        var password = newUser.getPassword();
+
+        // TODO: hash password
+
+        User user = userService.addUser(newUser);
+
+        userRoleService.addUserRoleForUsers(user.getUserId());
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User userTryingToLogIn){
+        var users = userService.getAllUsers();
+
+        for (var user : users){
+            if (user.getEmail().equals(userTryingToLogIn.getEmail())){
+                String password1 = user.getPassword();
+                String password2 = userTryingToLogIn.getPassword();
+
+                if (password1.equals(password2)){
+                    return new ResponseEntity<>(user, HttpStatus.OK);
+                }
+                // TODO: verificare pe hashed passwords
+            }
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 
     @DeleteMapping("/deleteAllUsers")
     public ResponseEntity<?> deleteAllUsers(){
@@ -62,6 +119,8 @@ public class UserController {
     @DeleteMapping("/deleteByEmail/{email}")
     public ResponseEntity<?> deleteUserByEmail(@PathVariable("email") String email){
         userService.deleteUserByUserEmail(email);
+
+        // TODO: cand stergi, sa se stearga si role
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

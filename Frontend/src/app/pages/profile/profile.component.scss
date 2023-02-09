@@ -1,0 +1,60 @@
+#logout{
+    cursor: pointer;
+}
+
+.backgroundPhoto{
+    z-index: -1;
+}
+
+#background{
+    position: relative;
+}
+
+.body{
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--input-color);
+    z-index: 1;
+}
+
+.profilePhoto{
+    position: absolute;
+    top: 35vh;
+    left: 20px;
+    width: 250px;
+    height: 250px;
+    border: 2px solid white;
+    border-radius: 50%;
+    // background-color: red;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.credits{
+    position: absolute;
+    bottom: 50vh;
+    right: 10px;
+    color: white;
+    z-index: 3;
+}
+
+.name{
+    position: absolute;
+    top: 1vh;
+    left: 25vw;
+    color: var(--text-color);
+    z-index: 4;
+}
+
+.nameParagraph{
+    font-size: 35px; 
+    font-weight: bolder;
+}
+
+// .email{
+//     word-spacing: 100px;
+// }
+

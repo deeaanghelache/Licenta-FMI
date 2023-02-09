@@ -8,43 +8,65 @@ $color-4: #2F62DE;
 $color-5: #25C5FA;
 
 // Main menu
-ul{
-    list-style: none;
-    float: right;
-    margin: 10px;
-}
+// ul{
+//     list-style: none;
+//     float: right;
+//     margin: 10px;
+// }
 
-ul>li>a{
-    text-decoration: none;
-    color: black;
-    display: block;
-    text-align: center;
-    padding: 10px;
+// ul>li>a{
+//     text-decoration: none;
+//     color: var(--text-color);
+//     display: block;
+//     text-align: center;
+//     padding: 10px;
+// }
+
+// nav{
+//     height: 7vh;
+//     width: 100%;  
+//     top: 0;
+//     right:0;
+//     float: left;
+//     background: var(--input-color);
+//     z-index: 10;
+//     position: fixed;
+// }
+
+// ul>li{
+//     display: inline;
+//     float: left;
+//     transition: background 0.5s linear;
+// }
+
+// #button1:hover, #button2:hover, #button3:hover, #button4:hover, #button5:hover, #button6:hover, #button7:hover{
+//     background-color: #25C5FA;
+// }
+
+// #loginButton, #registerButton{
+//     color: black;
+//     text-decoration: none;
+//     height: 5vh;
+//     width: 6vw;
+//     margin: 2px;
+// }
+
+// #logoutButton{
+//     height: 5vh;
+//     width: 6vw;
+// }
+
+// #link{
+//     color: black;
+//     text-decoration: none;
+// }
+
+#logout{
+    cursor: pointer;
 }
 
 nav{
-    height: 55px;
-    width: 100%;  
-    top: 0;
-    right:0;
-    float: left;
-    background: transparent;
     z-index: 10;
-    position: fixed;
-}
-
-ul>li{
-    display: inline;
-    float: left;
-    margin: 5px;
-}
-
-#loginButton, #registerButton{
-    background-color: transparent;
-    border: 1px solid black;
-    color: black;
-    cursor: pointer;
-    z-index: 100;
 }
 
 img{
@@ -67,19 +89,38 @@ img{
     border-top: 550px solid transparent;
     border-bottom: 550px solid transparent;
     border-left: 550px solid $color-3;
-    z-index: 10;
+    z-index: 1;
     position: absolute;
     top: 20vh;
     left: 0vw;
 }
 
+.triangleText{
+    color: black;
+    position: absolute;
+    top: -25vh;
+    left: -35vw;
+    width: 20vw;
+    height: 20vh;
+}
+
 // Rectangular
 #rectangular{
     width: 100%; 
-    height: 100vh;
+    height: 30vh;
     position: absolute;
-    bottom: 200vh;
+    bottom: 0vh;
     left: 0vw;
     z-index: 0;
-    background-color: $color-1;
+    background-color: white;
 }
+
+.rectangularText{
+    position: absolute;
+    top: 7vh;
+    right: 5vw;
+    width: 50vw;
+    height: 20vh;
+}
+
+

@@ -1,15 +1,25 @@
 <header>
-    <nav>
-        <ul>
-            <li class="mainMenu"><a href="">Home</a></li>
-            <li class="mainMenu"><a href="/aboutUs">About Us</a></li>
-            <li class="mainMenu"><a href="/cities">Cities</a></li>
-            <li class="mainMenu"><a href="/blog">Blog</a></li>
-            <li class="" *ngIf = "userAdmin === true"><a href="/profile"><i class="fa fa-user"></i></a></li>
-            <li class="mainMenu" id="loginButton"><a href="/login">Sign in</a></li>
-            <li class="mainMenu" id="registerButton"><a href="/register">Join</a></li>
-        </ul>
-    </nav>
+<!-- From bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">Travel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
+        <li class="mainMenu" id="button2"><a class="nav-link" href="/aboutUs">About Us</a></li>
+        <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
+        <li class="mainMenu" id="button4"><a class="nav-link" routerLink="/blog">Blog</a></li>
+        <li class="mainMenu" id="button5"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
+        <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+        <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
+        <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
+        <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
+        <li class="mainMenu" *ngIf = "logged === true" (click)="logout()" class="nav-link" id="logout">Logout</li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
 <main>
@@ -20,7 +30,14 @@
         </div>
     </div>
 
-    <div id="triangle1"></div>
-    <div id="rectangular"></div>
+    <div id="triangle1">
+        <div class="triangleText"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p></div>
+    </div>
+
+    <div id="rectangular">
+      <div class="rectangularText"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+    </div>
 
 </main>
+
+

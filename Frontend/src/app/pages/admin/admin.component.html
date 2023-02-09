@@ -1,0 +1,28 @@
+<div class="grid">
+    <div class="menu">
+        <nav>
+                <a routerLink="/homepage">Home</a>
+                <a href="/aboutUs">About Us</a>
+                <a routerLink="/cities">Cities</a>
+                <a routerLink="/blog">Blog</a>
+                <a routerLink="/wishlist">Wishlist</a>
+                <span *ngIf = "logged === true && admin === false"><a routerLink="/profile"><i class="fa fa-user"></i></a></span>
+                <div class="logout"><span *ngIf = "logged === true" (click)="logout()"><button class="btn btn-primary">Logout</button></span></div>
+        </nav>
+    </div>
+
+    <div class="table">
+        <div class="tables">
+            <br>
+            <h4>Admins</h4>
+            <div class="admins">
+                <app-user [userData]="usersThatAreAdmins"></app-user>
+            </div>
+
+            <h4>Users</h4>
+            <div class="users">
+                <app-user [userData]="usersThatAreNotAdmins"></app-user>
+            </div>
+    </div>
+</div>
+

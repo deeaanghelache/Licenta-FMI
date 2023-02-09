@@ -5,17 +5,19 @@ import com.example.backend.landmarkList.LandmarkList;
 import com.example.backend.preference.Preference;
 import com.example.backend.userRole.UserRole;
 import com.example.backend.role.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Integer userId;
+    private Long userId;
 
     @Column(columnDefinition = "varchar(100)")
     private String firstName;
@@ -67,7 +69,7 @@ public class User implements Serializable {
         this.photo = photo;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
