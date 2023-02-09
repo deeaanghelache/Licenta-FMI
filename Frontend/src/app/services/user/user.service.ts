@@ -23,6 +23,13 @@ export class UserService {
     )
   }
 
+  getUserByEmail(email: string){
+    return this.http.get(
+      this.baseUrl + "user/findUserByEmail/" + email,
+      this.privateHttpHeaders
+    )
+  }
+
   deleteUserByEmail(email: string){
     return this.http.delete(
       this.baseUrl + "user/deleteByEmail/" + email,

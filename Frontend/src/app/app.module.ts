@@ -15,7 +15,6 @@ import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CardComponent } from './reusableComponents/card/card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { CardComponent } from './reusableComponents/card/card.component';
     Page405Component,
     ProfileComponent,
     BlogComponent,
-    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +35,7 @@ import { CardComponent } from './reusableComponents/card/card.component';
     ReactiveFormsModule, 
     HttpClientModule,
     SharedInfoModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

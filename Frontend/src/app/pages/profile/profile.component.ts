@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,20 +8,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public currentUsername: string = '';
   public admin:boolean = false;
   public logged:boolean = false;
+  public currentFirstName:string = '';
+  public currentLastName:string = '';
+  public currentId:number = 0;
+  public currentEmail:string = '';
+  public currentUsername: string = '';
+  public currentPhoto:string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   getUsername(){
     this.currentUsername = sessionStorage.getItem("username") as string;
   }
 
+  getEmail(){
+    this.currentEmail = sessionStorage.getItem("loggedUserEmail") as string;
+  }
+
   ngOnInit(): void {
     this.getUsername();
+    this.getEmail();
     this.checkIfLoggedIn();
     this.checkIfAdmin();
+    this.getUserByEmail(this.currentEmail);
   }
 
   checkIfLoggedIn(){
@@ -33,6 +45,16 @@ export class ProfileComponent implements OnInit {
     if (sessionStorage.getItem("admin") === "admin"){
       this.admin = true;
     }
+  }
+
+  getUserByEmail(email:string){
+    this.userService.getUserByEmail(email).subscribe((response:any) => {
+      this.currentId = response.userId;
+      this.currentFirstName = response.firstName;
+      this.currentLastName = response.lastName;
+      this.currentPhoto = response.photo;
+      this.currentUsername = response.username;
+    })
   }
 
   logout(){

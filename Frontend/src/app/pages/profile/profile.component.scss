@@ -16,7 +16,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: var(--input-color);
     z-index: 1;
 }
 
@@ -40,3 +40,21 @@
     color: white;
     z-index: 3;
 }
+
+.name{
+    position: absolute;
+    top: 1vh;
+    left: 25vw;
+    color: var(--text-color);
+    z-index: 4;
+}
+
+.nameParagraph{
+    font-size: 35px; 
+    font-weight: bolder;
+}
+
+// .email{
+//     word-spacing: 100px;
+// }
+
