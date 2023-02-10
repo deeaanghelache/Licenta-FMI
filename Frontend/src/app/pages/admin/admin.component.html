@@ -1,28 +1,42 @@
-<div class="grid">
-    <div class="menu">
-        <nav>
-                <a routerLink="/homepage">Home</a>
-                <a href="/aboutUs">About Us</a>
-                <a routerLink="/cities">Cities</a>
-                <a routerLink="/blog">Blog</a>
-                <a routerLink="/wishlist">Wishlist</a>
-                <span *ngIf = "logged === true && admin === false"><a routerLink="/profile"><i class="fa fa-user"></i></a></span>
-                <div class="logout"><span *ngIf = "logged === true" (click)="logout()"><button class="btn btn-primary">Logout</button></span></div>
-        </nav>
+<!-- From bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">Travel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
+        <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+        <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
+        <li class="mainMenu"><a class="nav-link" (click)="setAirportsActive()">Airports</a></li>
+        <li class="mainMenu"><a class="nav-link" (click)="setCitiesActive()">Cities</a></li>
+        <li class="mainMenu"><a class="nav-link" (click)="setLandmarksActive()">Landmarks</a></li>
+        <li class="mainMenu"><a class="nav-link" (click)="setTagsActive()">Tags</a></li>
+        <li class="mainMenu"><a class="nav-link" (click)="setUsersActive()">Users</a></li>
+        <li class="mainMenu" *ngIf = "logged === true" (click)="logout()" class="nav-link" id="logout">Logout</li>
+      </ul>
+    </div>
+</nav>
+
+    <div id="usersId" *ngIf="usersActive === true">
+        <app-users></app-users>
     </div>
 
-    <div class="table">
-        <div class="tables">
-            <br>
-            <h4>Admins</h4>
-            <div class="admins">
-                <app-user [userData]="usersThatAreAdmins"></app-user>
-            </div>
-
-            <h4>Users</h4>
-            <div class="users">
-                <app-user [userData]="usersThatAreNotAdmins"></app-user>
-            </div>
+    <div id="airportsId" *ngIf="airportsActive === true">
+        <app-airports></app-airports>
     </div>
-</div>
+
+    <div id="citiesId" *ngIf="citiesActive === true">
+        <app-cities></app-cities>
+    </div>
+
+    <div id="landmarksId" *ngIf="landmarksActive === true">
+        <app-landmarks></app-landmarks>
+    </div>
+
+    <div id="tagsId" *ngIf="tagsActive === true">
+        <app-tags></app-tags>
+    </div>
+
 

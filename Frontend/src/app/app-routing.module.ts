@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuardGuard } from './guards/adminGuard/admin-guard.guard';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AirportsComponent } from './pages/admin/menuPages/airports/airports.component';
+import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
+import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
+import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
+import { UsersComponent } from './pages/admin/menuPages/users/users.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -40,7 +45,30 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AdminGuardGuard]
+    canActivate: [AdminGuardGuard],
+    children: [
+      // This pages open inside the admin page
+      {
+        path: 'users',
+        component: UsersComponent
+      },
+      {
+        path: 'airports',
+        component: AirportsComponent
+      },
+      {
+        path: 'tags',
+        component: TagsComponent
+      },
+      {
+        path: 'landmarks',
+        component: LandmarksComponent
+      },
+      {
+        path: 'citiesAdmin',
+        component: CitiesAdminComponent
+      }
+    ]
   },
   {
     path: 'page405',

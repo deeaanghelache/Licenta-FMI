@@ -8,12 +8,13 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  public users: any[] = [];
-  public usersThatAreNotAdmins: any[] = [];
-  public usersThatAreAdmins: any[] = [];
   public admin:boolean = false;
   public logged:boolean = false;
-
+  public usersActive:boolean = false;
+  public airportsActive:boolean = false;
+  public citiesActive:boolean = false;
+  public tagsActive:boolean = false;
+  public landmarksActive:boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private userService:UserService, private router:Router) { }
 
@@ -22,9 +23,6 @@ export class AdminComponent implements OnInit {
     });
     this.activatedRoute.queryParams.subscribe((queryParams: any) => {
     });
-    this.getAllUsersFromDatabase();
-    this.getAllAdmins();
-    this.getAllUsers();
     this.checkIfLoggedIn();
   }
 
@@ -34,24 +32,71 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  getAllUsersFromDatabase(){
-    this.userService.getAllUsers().subscribe((response:any) => {
-      // response is any array of users
-      this.users = response;
-    })
+  setUsersActive(){
+    if (this.usersActive === false){
+      this.usersActive = true;
+      this.tagsActive = false;
+      this.airportsActive = false;
+      this.landmarksActive = false;
+      this.citiesActive = false;
+    }
+    else {
+      this.usersActive = false;
+    }
   }
 
-  getAllUsers():void {
-    // Users that are not admin
-    this.userService.getAllUsersForAGivenRole(2).subscribe((response:any) => {
-      this.usersThatAreNotAdmins = response;
-    })
+  setAirportsActive(){
+    if (this.airportsActive === false){
+      this.usersActive = false;
+      this.tagsActive = false;
+      this.airportsActive = true;
+      this.landmarksActive = false;
+      this.citiesActive = false;
+    }
+    else {
+      this.airportsActive = false;
+    }
   }
 
-  getAllAdmins():void{
-    this.userService.getAllUsersForAGivenRole(1).subscribe((response:any) => {
-      this.usersThatAreAdmins = response;
-    })
+  setLandmarksActive(){
+    if (this.landmarksActive === false){
+      this.usersActive = false;
+      this.tagsActive = false;
+      this.airportsActive = false;
+      this.landmarksActive = true;
+      this.citiesActive = false;
+    }
+    else {
+      this.landmarksActive = false;
+    }
+
+  }
+
+  setTagsActive(){
+    if (this.tagsActive === false){
+      this.usersActive = false;
+      this.tagsActive = true;
+      this.airportsActive = false;
+      this.landmarksActive = false;
+      this.citiesActive = false;
+    }
+    else {
+      this.tagsActive = false;
+    }
+
+  }
+
+  setCitiesActive(){
+    if (this.citiesActive === false){
+      this.usersActive = false;
+      this.tagsActive = false;
+      this.airportsActive = false;
+      this.landmarksActive = false;
+      this.citiesActive = true;
+    }
+    else {
+      this.citiesActive = false;
+    }
   }
 
   logout(){
