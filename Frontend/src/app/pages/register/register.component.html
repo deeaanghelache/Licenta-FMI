@@ -74,6 +74,7 @@
                 <br> -->
 
                 <p id="userAlreadyExists"> {{ userAlreadyExists }} </p>
+                <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
 
                 <button 
                 id="registerButton" 
@@ -90,6 +91,7 @@
                         </a>
                     </p>
                 </div>
+                <br>
             </form>
         </div>
     </div>
