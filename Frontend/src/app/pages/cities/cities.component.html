@@ -23,7 +23,7 @@
 <main>
     <div class="grid">
         <div class="leftSide">
-                <!-- ceva cu tags -->
+            <!-- ceva cu tags -->
             <div class="tags">
                 tags
             </div>
@@ -31,16 +31,10 @@
             <div class="cityGrid">
                 <div *ngFor="let city of cities" class="city">
                     <div id="cityImg">
-                        <!-- <img src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="380vw" heigth="auto"> -->
+                        <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
                     </div>
-                    <div id="cityName">
-                        {{ city.name }}
-                    </div>
-                    <div id="cityCountry">
-                        {{ city.country }}
-                    </div>
-                    <div id="cityCurrency">
-                        {{ city.currency }}
+                    <div id="cityInfo">
+                        <span id="name"> {{ city.name }}</span>, &nbsp; <span id="country"> {{ city.country }} </span>
                     </div>
                 </div>
             </div>
