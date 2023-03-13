@@ -5,61 +5,69 @@ $color-3: #5D3FF5;
 $color-4: #2F62DE;
 $color-5: #25C5FA;
 
-.grid{
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    display: grid;
-    padding: 10px;
-    grid-template-columns: auto;
-    width: 98vw;
-    height: 97vh;
-    box-shadow: 1px 1px 18px #888888;
-    background-color: var(--input-color);
-}
+// .grid{
+//     position: absolute;
+//     top: 15px;
+//     left: 15px;
+//     right: 15px;
+//     display: grid;
+//     padding: 10px;
+//     grid-template-columns: auto;
+//     width: 98vw;
+//     height: 97vh;
+//     box-shadow: 1px 1px 18px #888888;
+//     background-color: var(--input-color);
+// }
 
-.table{
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 2;
-    grid-column-end: 15;
-}
+// .table{
+//     grid-row-start: 1;
+//     grid-row-end: 2;
+//     grid-column-start: 2;
+//     grid-column-end: 15;
+// }
 
-.menu{
-    background-color:  $color-5;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
+// .menu{
+//     background-color:  $color-5;
+//     grid-row-start: 1;
+//     grid-row-end: 2;
+//     grid-column-start: 1;
+//     grid-column-end: 2;
+// }
 
 h4{
     text-align: center;
     color: var(--text-color);
 }
 
-ul{
-    list-style: none;
-}
-  
-a{
-    background-color: $color-5; 
-    color: black; 
-    text-decoration: none; 
+.mainMenu{
+    cursor: pointer;
 }
 
-a{
-    display: block; 
-    padding: 12px; 
-}
-  
-.menu a:hover {
-    background-color: $color-1; 
+#logout{
+    cursor: pointer;
 }
 
-.logout{
-    position: absolute;
-    left: 3vw;
-    bottom: 2vw;
-}
+// ul{
+//     list-style: none;
+// }
+  
+// a{
+//     background-color: $color-5; 
+//     color: black; 
+//     text-decoration: none; 
+// }
+
+// a{
+//     display: block; 
+//     padding: 12px; 
+// }
+  
+// .menu a:hover {
+//     background-color: $color-1; 
+// }
+
+// .logout{
+//     position: absolute;
+//     left: 3vw;
+//     bottom: 2vw;
+// }

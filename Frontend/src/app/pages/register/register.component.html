@@ -44,6 +44,7 @@
                 <div class="form-group">
                     <input class="form-control" 
                     placeholder="Password"
+                    type="password"
                     [ngClass]="registerForm.controls['password'].errors ? 'is-invalid' : ''"
                     formControlName="password" />
                 </div>
@@ -51,6 +52,7 @@
                 <div class="form-group">
                     <input class="form-control" 
                     placeholder="Confirm your password"
+                    type="password"
                     [ngClass]="registerForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
                     formControlName="confirmPassword"/>
                 </div>
@@ -72,6 +74,7 @@
                 <br> -->
 
                 <p id="userAlreadyExists"> {{ userAlreadyExists }} </p>
+                <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
 
                 <button 
                 id="registerButton" 
@@ -88,6 +91,7 @@
                         </a>
                     </p>
                 </div>
+                <br>
             </form>
         </div>
     </div>

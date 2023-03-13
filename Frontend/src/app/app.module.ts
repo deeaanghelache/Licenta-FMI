@@ -15,6 +15,11 @@ import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UsersComponent } from './pages/admin/menuPages/users/users.component';
+import { AirportsComponent } from './pages/admin/menuPages/airports/airports.component';
+import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
+import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
+import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     Page405Component,
     ProfileComponent,
     BlogComponent,
+    UsersComponent,
+    AirportsComponent,
+    TagsComponent,
+    LandmarksComponent,
+    CitiesAdminComponent,
   ],
   imports: [
     BrowserModule,

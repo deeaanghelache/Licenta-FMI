@@ -27,11 +27,13 @@
                 <div class="form-group">
                     <input class="form-control" 
                     placeholder="Password"
+                    type="password"
                     [ngClass]="loginForm.controls['password'].errors ? 'is-invalid' : ''"
                     formControlName="password" />
                 </div>
 
                 <p id="userNotFound"> {{ userNotFound }} </p>
+                <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
 
                 <button 
                 id="loginButton" 
@@ -48,15 +50,12 @@
                         </a>
                     </p>
                 </div>
-
+<!-- 
                 <br>
                 <br>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br> -->
 
             </form>
         </div>

@@ -14,12 +14,14 @@ export class LoginComponent implements OnInit {
   public userNotFound:String = "";
   public userRole:string = "";
   public currentUsername:string = "";
+  public ok:boolean = false;
+  public tryAgain: String = "";
 
   constructor(private router:Router, private formBuilder:FormBuilder, private userAuthentication: UserAuthenticationService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email : ['', Validators.required],
+      email : ['', Validators.compose([Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
       password : ['', Validators.required]
     })
   }
@@ -61,6 +63,11 @@ export class LoginComponent implements OnInit {
           this.userNotFound = "Email or password incorrect";
         }
       })
+    }
+    else {
+      this.ok = false;
+      this.tryAgain = "Some of the data you typed didn't pass the validation tests. Please, be careful when completing this form.";
+      this.loginForm.reset();
     }
   }
 }

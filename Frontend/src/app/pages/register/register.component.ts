@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
   public registerTitle:String = "Sign Up";
   public registerForm!:FormGroup;
   public userAlreadyExists:String = "";
+  public ok:boolean = false;
+  public tryAgain: String = "";
 
   constructor(private formBuilder:FormBuilder, private router: Router, private userAuthentication:UserAuthenticationService) { }
 
@@ -26,12 +28,12 @@ export class RegisterComponent implements OnInit {
     {      
         firstName : ['', Validators.required],
         lastName : ['', Validators.required],
-        email : ['', Validators.required],
+        email : ['', Validators.compose([Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
         username : ['', Validators.required],
         password : ['', Validators.required],
         photo : [''],
         confirmPassword : ['', Validators.required]
-      }, { validators: this.passwordAndConfirmPasswordChecker }
+      }, { validators: [this.passwordAndConfirmPasswordChecker] }
     );
   }
 
@@ -43,6 +45,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm);
 
     if (this.registerForm.valid){
+      this.ok = true;
       this.userAuthentication.register(
         this.registerForm.value
       ).subscribe((response : any) => {
@@ -55,6 +58,11 @@ export class RegisterComponent implements OnInit {
              this.userAlreadyExists = "Username or Email already exists";
           }
       })
+    }
+    else {
+      this.ok = false;
+      this.tryAgain = "Some of the data you typed didn't pass the validation tests. Please, be careful when completing this form.";
+      this.registerForm.reset();
     }
   }
 
