@@ -1,5 +1,8 @@
 // Light/dark theme
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
 $color-1: #FF36D6;
 $color-2: #9F2FDE;
 $color-3: #5D3FF5;
@@ -28,7 +31,7 @@ body{
 
 .themeButton{
     color: var(--text-color);
-    background-color: var(--background-color);
+    // background-color: var(--background-color);
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -42,5 +45,4 @@ body{
     right: 10px;
     z-index: 10;
 }
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+
