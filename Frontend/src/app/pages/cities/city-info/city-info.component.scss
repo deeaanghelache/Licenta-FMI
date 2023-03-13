@@ -25,8 +25,29 @@ $color-5: #25C5FA;
     opacity: 0.9;
 }
 
-#nameCityText{
+#nameCityText {
     font-size: 50px;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
+}
+
+#buttons {
+    position: relative;
+    top: -50px;
+    left: 0;
+}
+
+.divs {
+    margin: 10px;
+    margin-top: 0;
+    padding: 10px;
+}
+
+.commonTags {
+    border: 1px solid lightgrey;
+    background-color: lightgrey;
+    margin-right: 10px;
+    border-radius: 15px;
+    display: inline-block;
+    height: 30px;
 }
