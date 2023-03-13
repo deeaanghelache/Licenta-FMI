@@ -31,6 +31,13 @@ $color-5: #25C5FA;
     height: 30vh;
     overflow-y: hidden;
     overflow-x: hidden;
+    box-shadow: none;
+    transition: box-shadow 0.5s linear;
+    cursor: pointer;
+}
+
+.city:hover {
+    box-shadow: 1px 1px 18px black;
 }
 
 .grid{
@@ -88,3 +95,30 @@ $color-5: #25C5FA;
     color: grey;
     font-size: 25px;
 }
+
+.btn {
+    margin-left: 10px;
+}
+
+.infos {
+    margin: 10px;
+}
+
+#goBack {
+    font-size: 30px;
+    transition: color 0.3s linear;
+    cursor: pointer;
+    z-index: 3;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#goBack:hover {
+    color: $color-3;
+}
+
+.cityImg {
+    z-index: 0;
+} 
+

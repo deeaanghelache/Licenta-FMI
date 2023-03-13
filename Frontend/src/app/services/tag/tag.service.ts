@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 
-export class CityService {
+export class TagService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
       responseType: 'text',
@@ -15,11 +15,10 @@ export class CityService {
   };
   private baseUrl: string = environment.backendUrl;
 
-
   constructor(private http: HttpClient) { }
 
-  getAllCities(){
-    return this.http.get(this.baseUrl + '/city/findAllCities',
+  getAllTags(){
+    return this.http.get(this.baseUrl + 'tag/findAllTags',
     this.privateHttpHeaders
     );
   }

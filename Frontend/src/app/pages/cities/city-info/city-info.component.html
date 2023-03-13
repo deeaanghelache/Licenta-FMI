@@ -1,0 +1,39 @@
+<div>
+    <div id="image">
+        <img src="../../../../assets/photos/pexels-alex-azabache-3757144.jpg" width="720vw" height="450vh">
+    </div>
+    <div id="nameCity">
+        <div id="nameCityText"> {{ city.name }} </div> 
+    </div>
+</div>
+
+<div>
+    <div id="buttons">
+        <button (click)="jumpToSection(general)" class="btn btn-secondary"> General Information </button>
+        <button (click)="jumpToSection(history)" class="btn btn-info"> Brief History </button>
+        <button (click)="jumpToSection(airports)" class="btn btn-secondary"> Airports </button>
+        <button (click)="jumpToSection(landmarks)" class="btn btn-info"> Landmarks </button>
+    </div>
+
+    <div #general>
+        <h3> General Information </h3>
+        {{ city.country }}
+        {{ city.currency }}
+    </div>
+
+    <div #history>
+        <h3> Brief History </h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+    </div>
+
+    <div #airports>
+        <h3> Airports </h3>
+    </div>
+
+    <div #landmarks>
+        <h3> Landmarks </h3>
+    </div>
+</div>
+

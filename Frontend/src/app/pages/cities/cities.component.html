@@ -9,7 +9,7 @@
             <li class="mainMenu" id="button2"><a class="nav-link" href="/aboutUs">About Us</a></li>
             <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
             <li class="mainMenu" id="button4"><a class="nav-link" routerLink="/blog">Blog</a></li>
-            <li class="mainMenu" id="button5"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
+            <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
             <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
             <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
             <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
@@ -24,18 +24,24 @@
     <div class="grid">
         <div class="leftSide">
             <!-- ceva cu tags -->
-            <div class="tags">
-                tags
+            <div class="tags"  *ngIf="display === true">
+                <button *ngFor="let tag of tags" class="btn btn-info"> {{ tag['tagNameEng'] }} </button>
             </div>
 
-            <div class="cityGrid">
-                <div *ngFor="let city of cities" class="city">
-                    <div id="cityImg">
-                        <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
+            <div>
+                <div class="cityGrid" *ngIf="display === false">
+                    <div *ngFor="let city of cities" class="city" (click)="showCityInfos(city)">
+                        <div id="cityImg">
+                            <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
+                        </div>
+                        <div id="cityInfo">
+                            <span id="name"> {{ city.name }}</span>, &nbsp; <span id="country"> {{ city.country }} </span>
+                        </div>
                     </div>
-                    <div id="cityInfo">
-                        <span id="name"> {{ city.name }}</span>, &nbsp; <span id="country"> {{ city.country }} </span>
-                    </div>
+                </div>
+                <div class="infos"  *ngIf="display === true">
+                    <div><i id="goBack" class="fa fa-arrow-left" (click)="closeCityInfos()"></i></div>
+                    <app-city-info [city]="currentCity"></app-city-info>
                 </div>
             </div>
         </div>

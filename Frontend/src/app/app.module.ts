@@ -20,6 +20,7 @@ import { AirportsComponent } from './pages/admin/menuPages/airports/airports.com
 import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
 import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
 import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
+import { CityInfoComponent } from './pages/cities/city-info/city-info.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/citie
     TagsComponent,
     LandmarksComponent,
     CitiesAdminComponent,
+    CityInfoComponent
   ],
   imports: [
     BrowserModule,
