@@ -28,6 +28,18 @@ public class CityTag implements Serializable {
     public CityTag() {
     }
 
+    public CityTagId getCityTagId() {
+        return cityTagId;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
+
     @Override
     public String toString() {
         return "CityTag{" +
