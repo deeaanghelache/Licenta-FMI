@@ -23,4 +23,18 @@ export class CityService {
     this.privateHttpHeaders
     );
   }
+
+  getAllCitiesForAGivenTag(tagId:any){
+    return this.http.get(this.baseUrl + '/cityTag/getAllCitiesForGivenTag/' + tagId,
+    this.privateHttpHeaders
+    )
+  }
+
+  addCity(city:any){
+    return this.http.post(
+      this.baseUrl + "city/addCity",
+      city, 
+      this.privateHttpHeaders
+    )
+  }
 }

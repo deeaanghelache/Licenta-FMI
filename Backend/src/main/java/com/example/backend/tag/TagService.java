@@ -25,6 +25,10 @@ public class TagService {
         return tagInterface.findTagByTagId(tagId).orElseThrow(() -> new TagIdNotFoundException("Couldn't find any tag with the id: " + tagId));
     }
 
+    public Tag findTagByTagName(String tagName){
+        return tagInterface.findTagByTagNameEng(tagName).orElseThrow(() -> new TagNameNotFound("Couldn't find any tag with the name: " + tagName));
+    }
+
     // POST
     public Tag addTag(Tag tag){
         return tagInterface.save(tag);

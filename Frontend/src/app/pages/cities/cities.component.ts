@@ -10,22 +10,23 @@ import { TagService } from 'src/app/services/tag/tag.service';
 export class CitiesComponent implements OnInit {
   public admin:boolean = false;
   public logged:boolean = false;
-  // public cities = [];
+  public cities = [];
   public currentCity: any;
-  public cities = [
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris111", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},    
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},
-    { name: "Paris", image: "", currency: "euro", country: "France"},    
-    { name: "Paris", image: "", currency: "euro", country: "France"}
-  ];
+  public currentTagForFilter: number = 0;
+  // public cities = [
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris111", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},    
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},
+  //   { name: "Paris", image: "", currency: "euro", country: "France"},    
+  //   { name: "Paris", image: "", currency: "euro", country: "France"}
+  // ];
   public tags = [];
   public display: boolean = false;
 
@@ -35,7 +36,7 @@ export class CitiesComponent implements OnInit {
     this.checkIfLoggedIn();
     this.checkIfAdmin();
     this.getAllTags();
-    // this.getAllCities();
+    this.getAllCities();
   }
 
   checkIfLoggedIn(){
@@ -59,15 +60,14 @@ export class CitiesComponent implements OnInit {
   getAllTags(){
     this.tagService.getAllTags().subscribe((response:any) => {
       this.tags = response;
-      console.log(this.tags);
     })
   }
 
   // NETESTAT
   getAllCities(){
     this.cityService.getAllCities().subscribe((response:any) => {
-      console.log(response);
       this.cities = response;
+      console.log(response);
     })
   }
 
@@ -78,5 +78,21 @@ export class CitiesComponent implements OnInit {
 
   closeCityInfos(){
     this.display = false;
+  }
+
+  getTagIdByName(tagName:any){
+    this.tagService.getTagIdByName(tagName).subscribe((response:any) => {
+      console.log(response);
+      this.currentTagForFilter = response;
+    })
+  }
+
+  filterByTag(tagName:string){
+    this.getTagIdByName(tagName);
+
+    this.cityService.getAllCitiesForAGivenTag(this.currentTagForFilter).subscribe((response:any) => {
+      console.log(response);
+      this.cities = response;
+    })
   }
 }

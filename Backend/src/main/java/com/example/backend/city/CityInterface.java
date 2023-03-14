@@ -13,6 +13,8 @@ public interface CityInterface extends JpaRepository<City, Integer> {
     Optional<Set<City>> findCitiesByCountryEng(String englishCountryName);
     Optional<Set<City>> findCitiesByCountryRom(String romanianCountryName);
 
+
+
     void deleteCityByCityId(Integer cityId);
     void deleteCityByNameEng(String englishName);
     void deleteCityByNameRom(String romanianName);

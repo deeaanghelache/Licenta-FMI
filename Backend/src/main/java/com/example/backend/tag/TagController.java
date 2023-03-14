@@ -27,6 +27,12 @@ public class TagController {
         return new ResponseEntity<>(tag, HttpStatus.OK);
     }
 
+    @GetMapping("/findTagByName/{name}")
+    public ResponseEntity<Integer> getTagIdByName(@PathVariable("name") String name){
+        Tag tag = tagService.findTagByTagName(name);
+        return new ResponseEntity<>(tag.getTagId(), HttpStatus.OK);
+    }
+
     // TODO: post si put
 
     @DeleteMapping("/deleteAllTags")

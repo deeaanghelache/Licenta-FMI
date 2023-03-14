@@ -22,4 +22,10 @@ export class TagService {
     this.privateHttpHeaders
     );
   }
+
+  getTagIdByName(name:string){
+    return this.http.get(this.baseUrl + 'tag/findTagByName/' + name,
+    this.privateHttpHeaders
+    );
+  }
 }

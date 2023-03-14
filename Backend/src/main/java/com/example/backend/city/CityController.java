@@ -1,9 +1,7 @@
 package com.example.backend.city;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
@@ -21,6 +19,12 @@ public class CityController {
     public ResponseEntity<List<City>> getAllCities(){
         List<City> cities = cityService.getAllCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @PostMapping("/addCity")
+    public ResponseEntity<City> addCity(@RequestBody City city) {
+        City newCity = cityService.addCity(city);
+        return new ResponseEntity<>(newCity, HttpStatus.CREATED);
     }
 }
 

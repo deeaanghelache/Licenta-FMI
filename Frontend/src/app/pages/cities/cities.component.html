@@ -25,7 +25,7 @@
         <div class="leftSide">
             <!-- ceva cu tags -->
             <div class="tags"  *ngIf="display === true">
-                <button *ngFor="let tag of tags" class="btn btn-info"> {{ tag['tagNameEng'] }} </button>
+                <button *ngFor="let tag of tags" class="btn btn-info" (click)="filterByTag(tag['tagNameEng'])"> {{ tag['tagNameEng'] }} </button>
             </div>
 
             <div>
@@ -35,7 +35,7 @@
                             <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
                         </div>
                         <div id="cityInfo">
-                            <span id="name"> {{ city.name }}</span>, &nbsp; <span id="country"> {{ city.country }} </span>
+                            <span id="name"> {{ city['nameEng'] }}</span>, &nbsp; <span id="country"> {{ city['countryEng'] }} </span>
                         </div>
                     </div>
                 </div>

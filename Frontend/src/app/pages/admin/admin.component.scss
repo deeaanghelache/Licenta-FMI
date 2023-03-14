@@ -47,27 +47,16 @@ h4{
     cursor: pointer;
 }
 
-// ul{
-//     list-style: none;
-// }
-  
-// a{
-//     background-color: $color-5; 
-//     color: black; 
-//     text-decoration: none; 
-// }
+#board {
+    border: 2px solid lightgrey;
+    border-radius: 25px !important;
+    height: 98vh;
+    margin: 10px;
+    box-shadow: 1px 1px 18px #888888;
+}
 
-// a{
-//     display: block; 
-//     padding: 12px; 
-// }
-  
-// .menu a:hover {
-//     background-color: $color-1; 
-// }
+.navbar{
+    border-top-right-radius: 25px !important; 
+    border-top-left-radius: 25px !important; 
+}
 
-// .logout{
-//     position: absolute;
-//     left: 3vw;
-//     bottom: 2vw;
-// }
