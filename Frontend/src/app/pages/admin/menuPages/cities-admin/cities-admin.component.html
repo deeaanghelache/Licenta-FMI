@@ -8,64 +8,106 @@
         <div class="goBack"><i class="fa fa-arrow-left" (click)="closeAddForm()"></i> <span> &nbsp; &nbsp; Add Cities in the Database</span></div>
 
         <div class="formAddDelete">
-            <form [formGroup]="addForm" (ngSubmit)="addCity()">
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="English Name"
-                    [ngClass]="addForm.controls['nameEng'].errors ? 'is-invalid : ''"
-                    formControlName="nameEng" />
-                </div>
+            <div class="formBox">
+                <form [formGroup]="addForm" (ngSubmit)="addCity()">
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engName"
+                        placeholder="English Name"
+                        [ngClass]="addForm.controls['nameEng'].errors ? 'is-invalid' : ''"
+                        formControlName="nameEng" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="Romanian Name"
-                    [ngClass]="addForm.controls['nameRom'].errors ? 'is-invalid : ''"
-                    formControlName="nameRom" />
-                </div>
+                    <div class="form-group romName">
+                        <input class="form-control"
+                        id="romName"
+                        placeholder="Romanian Name"
+                        [ngClass]="addForm.controls['nameRom'].errors ? 'is-invalid' : ''"
+                        formControlName="nameRom" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="English Country Name"
-                    [ngClass]="addForm.controls['countryEng'].errors ? 'is-invalid : ''"
-                    formControlName="countryEng" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="romCountry"
+                        placeholder="English Country Name"
+                        [ngClass]="addForm.controls['countryEng'].errors ? 'is-invalid' : ''"
+                        formControlName="countryEng" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="Romanian Country Name"
-                    [ngClass]="addForm.controls['countryRom'].errors ? 'is-invalid : ''"
-                    formControlName="countryRom" />
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engCountry"
+                        placeholder="Romanian Country Name"
+                        [ngClass]="addForm.controls['countryRom'].errors ? 'is-invalid' : ''"
+                        formControlName="countryRom" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="Brief History in English"
-                    [ngClass]="addForm.controls['briefHistoryEng'].errors ? 'is-invalid : ''"
-                    formControlName="briefHistoryEng" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control"
+                        placeholder="Brief History in English"
+                        [ngClass]="addForm.controls['briefHistoryEng'].errors ? 'is-invalid' : ''"
+                        formControlName="briefHistoryEng" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="Brief History in Romanian"
-                    [ngClass]="addForm.controls['briefHistoryRom'].errors ? 'is-invalid : ''"
-                    formControlName="briefHistoryRom" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engHistory"
+                        placeholder="Brief History in Romanian"
+                        [ngClass]="addForm.controls['briefHistoryRom'].errors ? 'is-invalid' : ''"
+                        formControlName="briefHistoryRom" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="Currency Name"
-                    [ngClass]="addForm.controls['currencyName'].errors ? 'is-invalid : ''"
-                    formControlName="currencyName" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="romHistory"
+                        placeholder="Currency Name"
+                        [ngClass]="addForm.controls['currencyName'].errors ? 'is-invalid' : ''"
+                        formControlName="currencyName" />
+                    </div>
 
-                <p *ngIf="ok === true"> {{ message }}</p>
+                    <p *ngIf="ok === true"> {{ message }} </p>
 
-                <button 
-                id="addButton"
-                [disabled]="addForm.invalid"
-                type="submit">
-                Add
-                </button>
-            </form>
+                    <button 
+                    id="addButton"
+                    [disabled]="addForm.invalid"
+                    class="btn btn-info"
+                    type="submit">
+                    Add City
+                    </button>
+                </form>
+            </div>
+            <div class="rightSide">
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">English Name</th>
+                        <th scope="col">Romanian Name</th>
+                        <th scope="col">Country's English Name</th>
+                        <th scope="col">Country's Romanian Name</th>
+                        <th scope="col">Currency Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let city of dbCities">
+                            <td class="engName">
+                                {{ city['nameEng'] }}
+                            </td>
+                            <td class="romName">
+                                {{ city['nameRom'] }}
+                            </td>
+                            <td class="engCountry">
+                                {{ city['countryEng'] }}
+                            </td>
+                            <td class="romCountry">
+                                {{ city['countryRom'] }}
+                            </td>
+                            <td class="currency">
+                                {{ city['currencyName'] }}
+                            </td>
+                    </tbody>
+                  </table>
+            </div>
         </div>
     </div>
 

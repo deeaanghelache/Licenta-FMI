@@ -15,6 +15,7 @@ export class CitiesAdminComponent implements OnInit {
   public deleteForm!:FormGroup;
   public ok:boolean = false;
   public message:string = ''; 
+  public dbCities = [];
 
   constructor(private formBuilder:FormBuilder, private cityService:CityService) { }
 
@@ -28,6 +29,14 @@ export class CitiesAdminComponent implements OnInit {
       briefHistoryRom : ['', Validators.required],
       currencyName : ['', Validators.required]
     })
+    this.getAllCities();
+  }
+
+  getAllCities(){
+    this.cityService.getAllCities().subscribe((response:any) => {
+      console.log(response);
+      this.dbCities = response;
+    })
   }
 
   addCity(){
@@ -39,6 +48,8 @@ export class CitiesAdminComponent implements OnInit {
           console.log(response);
           this.ok = true;
           this.message = "City had been added to database!";
+          this.addForm.reset();
+          window.location.reload();
         }
       )
     } else {
