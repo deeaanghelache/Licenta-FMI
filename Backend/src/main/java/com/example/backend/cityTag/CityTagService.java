@@ -19,4 +19,9 @@ public class CityTagService {
     public List<CityTag> getAllCitiesForAGivenTag(Integer tagId){
         return cityTagInterface.queryBy(tagId);
     }
+
+    // POST
+    public CityTag addCityTag(CityTag cityTag) {
+        return cityTagInterface.save(cityTag);
+    }
 }

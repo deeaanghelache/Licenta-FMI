@@ -28,4 +28,20 @@ export class TagService {
     this.privateHttpHeaders
     );
   }
+
+  addTag(tag:any){
+    return this.http.post(
+      this.baseUrl + "tag/addTag",
+      tag,
+      this.privateHttpHeaders
+    )
+  }
+
+  addCityTag(cityTag:any){
+    return this.http.post(
+      this.baseUrl + "cityTag/addCityTag",
+      cityTag,
+      this.privateHttpHeaders
+    )
+  }
 }

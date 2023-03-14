@@ -2,10 +2,7 @@ package com.example.backend.cityTag;
 import org.springframework.http.HttpStatus;
 import com.example.backend.city.City;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,12 @@ public class CityTagController {
         List<City> cities = cityTags.stream().map(CityTag::getCity).toList();
 
         return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    // POST
+    @PostMapping("/addCityTag")
+    public ResponseEntity<CityTag> addCityTag(@RequestBody CityTag cityTag){
+        CityTag newCityTag = cityTagService.addCityTag(cityTag);
+        return new ResponseEntity<>(newCityTag, HttpStatus.CREATED);
     }
 }

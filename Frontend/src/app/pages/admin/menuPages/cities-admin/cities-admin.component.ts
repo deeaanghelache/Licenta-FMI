@@ -12,7 +12,6 @@ export class CitiesAdminComponent implements OnInit {
   public openDelete:boolean = false;
   public buttonOpen:boolean = false;
   public addForm!:FormGroup;
-  public deleteForm!:FormGroup;
   public ok:boolean = false;
   public message:string = ''; 
   public dbCities = [];
@@ -52,7 +51,7 @@ export class CitiesAdminComponent implements OnInit {
           this.ok = true;
           this.message = "City had been added to database!";
           this.addForm.reset();
-          window.location.reload();
+          // window.location.reload();
         }
       )
     } else {

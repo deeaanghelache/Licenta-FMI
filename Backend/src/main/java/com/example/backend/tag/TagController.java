@@ -35,6 +35,14 @@ public class TagController {
 
     // TODO: post si put
 
+    // POST
+    @PostMapping("/addTag")
+    public ResponseEntity<Tag> addTag(@RequestBody Tag tag) {
+        Tag newTag = tagService.addTag(tag);
+        return new ResponseEntity<>(newTag, HttpStatus.CREATED);
+    }
+
+    // DELETE
     @DeleteMapping("/deleteAllTags")
     public ResponseEntity<?> deleteAllTags(){
         tagService.deleteAllTags();
