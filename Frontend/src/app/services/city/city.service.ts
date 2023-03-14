@@ -19,13 +19,13 @@ export class CityService {
   constructor(private http: HttpClient) { }
 
   getAllCities(){
-    return this.http.get(this.baseUrl + '/city/findAllCities',
+    return this.http.get(this.baseUrl + 'city/findAllCities',
     this.privateHttpHeaders
     );
   }
 
   getAllCitiesForAGivenTag(tagId:any){
-    return this.http.get(this.baseUrl + '/cityTag/getAllCitiesForGivenTag/' + tagId,
+    return this.http.get(this.baseUrl + 'cityTag/getAllCitiesForGivenTag/' + tagId,
     this.privateHttpHeaders
     )
   }

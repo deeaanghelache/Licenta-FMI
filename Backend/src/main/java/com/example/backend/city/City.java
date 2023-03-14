@@ -40,6 +40,9 @@ public class City implements Serializable {
     @Column(columnDefinition = "varchar(50)")
     private String currencyName;
 
+    @Column(columnDefinition = "varchar(100)")
+    private String photo;
+
     // Foreign Keys
 
     // With Airport
@@ -65,7 +68,7 @@ public class City implements Serializable {
     public City() {
     }
 
-    public City(String nameEng, String nameRom, String countryEng, String countryRom, String briefHistoryEng, String briefHistoryRom, String currencyName) {
+    public City(String nameEng, String nameRom, String countryEng, String countryRom, String briefHistoryEng, String briefHistoryRom, String currencyName, String photo) {
         this.nameEng = nameEng;
         this.nameRom = nameRom;
         this.countryEng = countryEng;
@@ -73,6 +76,7 @@ public class City implements Serializable {
         this.briefHistoryEng = briefHistoryEng;
         this.briefHistoryRom = briefHistoryRom;
         this.currencyName = currencyName;
+        this.photo = photo;
     }
 
     public Integer getCityId() {
@@ -135,10 +139,18 @@ public class City implements Serializable {
         this.currencyName = currencyName;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "City{" +
-                "CityId=" + cityId +
+                "cityId=" + cityId +
                 ", nameEng='" + nameEng + '\'' +
                 ", nameRom='" + nameRom + '\'' +
                 ", countryEng='" + countryEng + '\'' +
@@ -146,6 +158,12 @@ public class City implements Serializable {
                 ", briefHistoryEng='" + briefHistoryEng + '\'' +
                 ", briefHistoryRom='" + briefHistoryRom + '\'' +
                 ", currencyName='" + currencyName + '\'' +
+                ", photo='" + photo + '\'' +
+                ", airports=" + airports +
+                ", landmarks=" + landmarks +
+                ", landmarkLists=" + landmarkLists +
+                ", cityWishlists=" + cityWishlists +
+                ", cityTags=" + cityTags +
                 '}';
     }
 }

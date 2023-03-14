@@ -65,6 +65,15 @@
                         formControlName="currencyName" />
                     </div>
 
+                    <input 
+                    id="imagePath"
+                    type="file"
+                    accept="image/*"
+                    (change)="addImage($event)"
+                    >
+
+                    <input formControlName="image"  type="text" hidden>
+
                     <p *ngIf="ok === true"> {{ message }} </p>
 
                     <button 
@@ -77,10 +86,10 @@
                 </form>
             </div>
             <div class="rightSide">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col"></th>
+                        <th scope="col">Id</th>
                         <th scope="col">English Name</th>
                         <th scope="col">Romanian Name</th>
                         <th scope="col">Country's English Name</th>
@@ -90,6 +99,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let city of dbCities">
+                            <td class="id">
+                                {{ city['cityId'] }}
+                            </td>
                             <td class="engName">
                                 {{ city['nameEng'] }}
                             </td>

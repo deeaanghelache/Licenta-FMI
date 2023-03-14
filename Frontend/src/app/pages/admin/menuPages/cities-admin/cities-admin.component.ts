@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CityService } from 'src/app/services/city/city.service';
 
@@ -16,8 +16,10 @@ export class CitiesAdminComponent implements OnInit {
   public ok:boolean = false;
   public message:string = ''; 
   public dbCities = [];
+  public image!:File;
+  public imagePath!:string;
 
-  constructor(private formBuilder:FormBuilder, private cityService:CityService) { }
+  constructor(private formBuilder:FormBuilder, private cityService:CityService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.addForm = this.formBuilder.group({
@@ -27,7 +29,8 @@ export class CitiesAdminComponent implements OnInit {
       countryRom : ['', Validators.required],
       briefHistoryEng : ['', Validators.required],
       briefHistoryRom : ['', Validators.required],
-      currencyName : ['', Validators.required]
+      currencyName : ['', Validators.required],
+      image : ['']
     })
     this.getAllCities();
   }
@@ -77,6 +80,18 @@ export class CitiesAdminComponent implements OnInit {
   closeDeleteForm(){
     this.openDelete = false;
     this.buttonOpen = false;
+  }
+
+  addImage(event: any){
+    if (event.target.files.length > 0) {
+      const img = event.target.files[0];
+      var imgName = img.name;
+
+      console.log(imgName);
+      this.addForm.patchValue({
+        'image': imgName
+      });
+    }
   }
 
 }
