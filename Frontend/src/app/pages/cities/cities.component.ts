@@ -29,6 +29,7 @@ export class CitiesComponent implements OnInit {
   // ];
   public tags = [];
   public display: boolean = false;
+  public displayTags: boolean = true;
 
   constructor(private tagService: TagService, private cityService: CityService) { }
 
@@ -71,11 +72,14 @@ export class CitiesComponent implements OnInit {
 
   showCityInfos(city:any){
     this.display = true;
+    this.displayTags = false;
+    console.log(this.displayTags);
     this.currentCity = city;
   }
 
   closeCityInfos(){
     this.display = false;
+    this.displayTags = true;
   }
 
   getTagIdByName(tagName:any){

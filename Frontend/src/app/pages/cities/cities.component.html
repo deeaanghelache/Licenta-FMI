@@ -24,7 +24,7 @@
     <div class="grid">
         <div class="leftSide">
             <!-- ceva cu tags -->
-            <div class="tags">
+            <div class="tags" *ngIf="displayTags === true">
                 <button class="btn btn-info" (click)="allButton()"> All </button>
                 <button *ngFor="let tag of tags" class="btn btn-info" (click)="filterByTag(tag['tagNameEng'])"> {{ tag['tagNameEng'] }} </button>
             </div>
