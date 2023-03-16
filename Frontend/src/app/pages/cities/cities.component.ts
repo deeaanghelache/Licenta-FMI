@@ -59,7 +59,6 @@ export class CitiesComponent implements OnInit {
 
   getAllTags(){
     this.tagService.getAllTags().subscribe((response:any) => {
-      console.log(response);
       this.tags = response;
     })
   }
@@ -67,7 +66,6 @@ export class CitiesComponent implements OnInit {
   getAllCities(){
     this.cityService.getAllCities().subscribe((response:any) => {
       this.cities = response;
-      console.log(response);
     })
   }
 
@@ -83,8 +81,6 @@ export class CitiesComponent implements OnInit {
   getTagIdByName(tagName:any){
     console.log(tagName);
     this.tagService.getTagIdByName(tagName).subscribe((response:any) => {
-      console.log("-------");
-      console.log(response);
       this.currentTagForFilter = response;
     })
   }
@@ -92,14 +88,16 @@ export class CitiesComponent implements OnInit {
   filterByTag(tagName:string){
     for (let index = 0; index < this.tags.length; index++){
       if (this.tags[index]['tagNameEng'] === tagName) {
-        console.log(this.tags[index]['tagId']);
         this.currentTagForFilter = this.tags[index]['tagId'];
       }
     }
 
     this.cityService.getAllCitiesForAGivenTag(this.currentTagForFilter).subscribe((response:any) => {
-      console.log(response); 
       this.cities = response;
     })
+  }
+
+  allButton() {
+    this.getAllCities();
   }
 }
