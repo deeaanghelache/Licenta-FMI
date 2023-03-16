@@ -18,13 +18,15 @@ export class TagService {
   constructor(private http: HttpClient) { }
 
   getAllTags(){
-    return this.http.get(this.baseUrl + 'tag/findAllTags',
+    return this.http.get(
+      this.baseUrl + 'tag/findAllTags',
     this.privateHttpHeaders
     );
   }
 
   getTagIdByName(name:string){
-    return this.http.get(this.baseUrl + 'tag/findTagByName/' + name,
+    return this.http.get(
+      this.baseUrl + 'tag/findTagByName/' + name,
     this.privateHttpHeaders
     );
   }

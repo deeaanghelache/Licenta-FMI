@@ -2,11 +2,13 @@ package com.example.backend.cityTag;
 
 import com.example.backend.city.City;
 import com.example.backend.tag.Tag;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CityTag implements Serializable {
     @EmbeddedId
     private CityTagId cityTagId;
@@ -38,6 +40,18 @@ public class CityTag implements Serializable {
 
     public Tag getTag() {
         return tag;
+    }
+
+    public void setCityTagId(CityTagId cityTagId) {
+        this.cityTagId = cityTagId;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     @Override

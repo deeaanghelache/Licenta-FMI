@@ -17,7 +17,14 @@ public class CityTagService {
 
     // FIND(GET)
     public List<CityTag> getAllCitiesForAGivenTag(Integer tagId){
+        System.out.println("****");
+        System.out.println(tagId);
+        System.out.println(cityTagInterface.queryBy(tagId));
         return cityTagInterface.queryBy(tagId);
+    }
+
+    public List<CityTag> getAllCityTags(){
+        return cityTagInterface.findAll();
     }
 
     // POST

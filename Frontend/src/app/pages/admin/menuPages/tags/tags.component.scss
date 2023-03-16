@@ -104,5 +104,26 @@ i:hover {
     height: inherit;
     width: 33vw;
     padding: 10px;
+    display: grid;
+    grid-template-columns: auto;
 }
 
+.tags {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    overflow-y: scroll;
+}
+
+.cityTags {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    overflow-y: scroll;
+}
+
+.table {
+    width: inherit;
+}

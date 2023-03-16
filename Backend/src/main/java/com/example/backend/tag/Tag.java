@@ -24,7 +24,7 @@ public class Tag implements Serializable {
 
     // With CityTag
     @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
-    private Set<CityTag> cityTags = new HashSet<>();
+    private Set<CityTag> cityTags;
 
     public Tag() {
     }

@@ -6,6 +6,7 @@ import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.landmark.Landmark;
 import com.example.backend.landmarkList.LandmarkList;
 import com.example.backend.preference.Preference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
