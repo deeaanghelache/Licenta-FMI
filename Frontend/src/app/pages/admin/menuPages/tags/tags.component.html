@@ -41,7 +41,7 @@
                 <form [formGroup]="addCityTagForm" (ngSubmit)="addCityTag()">
                     <div class="form-group">
                         <label>City Id</label>
-                        <input class="form-control"
+                        <input class="tag-form-control"
                         id="cityId"
                         type="number"
                         [ngClass]="addForm.controls['cityId'].errors ? 'is-invalid' : ''"
@@ -49,8 +49,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Tag Id</label>
-                        <input class="form-control"
+                        <label>Tag Id </label>
+                        <input class="tag-form-control"
                         id="tagId"
                         type="number"
                         [ngClass]="addForm.controls['tagId'].errors ? 'is-invalid' : ''"
