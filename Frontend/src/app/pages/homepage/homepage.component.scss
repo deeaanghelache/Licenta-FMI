@@ -127,12 +127,103 @@ img{
     border: 2px solid lightgrey;
     border-radius: 25px !important;
     height: 98vh;
-    margin: 10px;
+    margin: 5px;
     margin-top: 10px !important;
     box-shadow: 1px 1px 18px #888888;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
 }
 
 .navbar{
     border-top-right-radius: 25px !important; 
     border-top-left-radius: 25px !important; 
+}
+
+.backgroundImagesGrid {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: grid;
+    width: 100%;
+    height: 60vh;
+    grid-template-columns: auto;
+    box-shadow: 1px 1px 18px #888888;
+    z-index: 1;
+}
+
+.image1 {
+    opacity: 0.7;
+    width: 100%;
+    height: 60vh;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    object-fit: cover;
+    transition: opacity 0.3s linear;
+}
+
+.image2 {
+    opacity: 0.7;
+    width: 100%;
+    height: 60vh;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    object-fit: cover;
+    transition: opacity 0.3s linear;
+}
+
+.image3 {
+    opacity: 0.7;
+    width: 100%;
+    height: 60vh;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    object-fit: cover;
+    transition: opacity 0.3s linear;
+}
+
+.image1:hover, .image2:hover, .image3:hover {
+    opacity: 1;
+}
+
+#motto {
+    font-size: 50px;
+    position: relative;
+    top: -130px;
+    left: 20px;
+    text-align: center;
+    z-index: 2;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#explore {
+    position: relative;
+    top: -100px;
+    margin: 40px;
+}
+
+#title1 {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+#title2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.btn-outline-warning {
+    --bs-btn-font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
