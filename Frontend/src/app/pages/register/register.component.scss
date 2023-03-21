@@ -25,6 +25,7 @@ h1{
     height: 50vw;
     grid-template-columns: auto;
     box-shadow: 1px 1px 18px #888888;
+    border-radius: 25px !important;
 }
 
 .leftSide{
@@ -35,6 +36,7 @@ h1{
     grid-column-end: 2;
     width: 40vh;
     animation: background-color 5s linear infinite;
+    border-radius: 25px !important;
 }
 
 @keyframes background-color {
