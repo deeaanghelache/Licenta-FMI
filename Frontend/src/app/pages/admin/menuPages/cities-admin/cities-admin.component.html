@@ -1,1 +1,134 @@
-<p>cities-admin works!</p>
+<main>
+    <div id="listCities">
+        <button *ngIf="buttonOpen === false" (click)="openAddDataEntry()" class="btn btn-info">Add</button>
+        <button *ngIf="buttonOpen === false" (click)="openDeleteDataEntry()" class="btn btn-info">Delete</button>
+    </div>
+
+    <div class="add" *ngIf="openAdd === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeAddForm()"></i> <span> &nbsp; &nbsp; Add Cities in the Database</span></div>
+
+        <div class="formAddDelete">
+            <div class="formBox">
+                <form [formGroup]="addForm" (ngSubmit)="addCity()">
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engName"
+                        placeholder="English Name"
+                        [ngClass]="addForm.controls['nameEng'].errors ? 'is-invalid' : ''"
+                        formControlName="nameEng" />
+                    </div>
+
+                    <div class="form-group romName">
+                        <input class="form-control"
+                        id="romName"
+                        placeholder="Romanian Name"
+                        [ngClass]="addForm.controls['nameRom'].errors ? 'is-invalid' : ''"
+                        formControlName="nameRom" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="romCountry"
+                        placeholder="English Country Name"
+                        [ngClass]="addForm.controls['countryEng'].errors ? 'is-invalid' : ''"
+                        formControlName="countryEng" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engCountry"
+                        placeholder="Romanian Country Name"
+                        [ngClass]="addForm.controls['countryRom'].errors ? 'is-invalid' : ''"
+                        formControlName="countryRom" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        placeholder="Brief History in English"
+                        [ngClass]="addForm.controls['briefHistoryEng'].errors ? 'is-invalid' : ''"
+                        formControlName="briefHistoryEng" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engHistory"
+                        placeholder="Brief History in Romanian"
+                        [ngClass]="addForm.controls['briefHistoryRom'].errors ? 'is-invalid' : ''"
+                        formControlName="briefHistoryRom" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="romHistory"
+                        placeholder="Currency Name"
+                        [ngClass]="addForm.controls['currencyName'].errors ? 'is-invalid' : ''"
+                        formControlName="currencyName" />
+                    </div>
+
+                    <input 
+                    id="imagePath"
+                    type="file"
+                    accept="image/*"
+                    (change)="addImage($event)"
+                    >
+
+                    <input formControlName="image"  type="text" hidden>
+
+                    <p *ngIf="ok === true"> {{ message }} </p>
+
+                    <button 
+                    id="addButton"
+                    [disabled]="addForm.invalid"
+                    class="btn btn-info"
+                    type="submit">
+                    Add City
+                    </button>
+                </form>
+            </div>
+            <div class="rightSide">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">English Name</th>
+                        <th scope="col">Romanian Name</th>
+                        <th scope="col">Country's English Name</th>
+                        <th scope="col">Country's Romanian Name</th>
+                        <th scope="col">Currency Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let city of dbCities">
+                            <td class="id">
+                                {{ city['cityId'] }}
+                            </td>
+                            <td class="engName">
+                                {{ city['nameEng'] }}
+                            </td>
+                            <td class="romName">
+                                {{ city['nameRom'] }}
+                            </td>
+                            <td class="engCountry">
+                                {{ city['countryEng'] }}
+                            </td>
+                            <td class="romCountry">
+                                {{ city['countryRom'] }}
+                            </td>
+                            <td class="currency">
+                                {{ city['currencyName'] }}
+                            </td>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="delete" *ngIf="openDelete === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeDeleteForm()"></i></div>
+        <div class="formAddDelete">
+            <form>
+                    
+            </form>
+        </div>
+    </div>
+</main>

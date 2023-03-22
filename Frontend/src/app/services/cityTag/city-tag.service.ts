@@ -5,8 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-
-export class CityService {
+export class CityTagService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
       responseType: 'text',
@@ -15,27 +14,12 @@ export class CityService {
   };
   private baseUrl: string = environment.backendUrl;
 
-
   constructor(private http: HttpClient) { }
 
-  getAllCities(){
-    return this.http.get(this.baseUrl + 'city/findAllCities',
-    this.privateHttpHeaders
-    );
-  }
-
-  getAllCitiesForAGivenTag(tagId:any){
-    console.log(tagId);
-    return this.http.get(this.baseUrl + 'cityTag/getAllCitiesForGivenTag/' + tagId,
-    this.privateHttpHeaders
-    )
-  }
-
-  addCity(city:any){
-    return this.http.post(
-      this.baseUrl + "city/addCity",
-      city, 
+  getAllCityTags(){
+    return this.http.get(
+      this.baseUrl + "cityTag/findAllCityTags",
       this.privateHttpHeaders
-    )
+    );
   }
 }

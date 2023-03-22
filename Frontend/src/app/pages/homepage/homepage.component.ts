@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CityService } from 'src/app/services/city/city.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,12 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
   public admin:boolean = false;
   public logged:boolean = false;
+  public cities = []
 
-  constructor() { }
+  constructor(private cityService:CityService) { }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
     this.checkIfAdmin();
+    this.getAllCities();
   }
 
   checkIfLoggedIn(){
@@ -32,5 +35,11 @@ export class HomepageComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+  }
+
+  getAllCities(){
+    this.cityService.getAllCities().subscribe((response:any) => {
+      this.cities = response;
+    })
   }
 }

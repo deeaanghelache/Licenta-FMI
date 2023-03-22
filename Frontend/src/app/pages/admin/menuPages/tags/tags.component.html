@@ -1,1 +1,124 @@
-<p>tags works!</p>
+<main>
+    <div id="listTags">
+        <button *ngIf="buttonOpen === false" (click)="openAddDataEntry()" class="btn btn-info">Add</button>
+        <button *ngIf="buttonOpen === false" (click)="openDeleteDataEntry()" class="btn btn-info">Delete</button>
+    </div>
+
+    <div class="add" *ngIf="openAdd === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeAddForm()"></i> <span> &nbsp; &nbsp; Add Tags in the Database</span></div>
+
+        <div class="formAddDelete">
+            <div class="formBox">
+                <form [formGroup]="addForm" (ngSubmit)="addTag()">
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engName"
+                        placeholder="Tag English Name"
+                        [ngClass]="addForm.controls['tagNameEng'].errors ? 'is-invalid' : ''"
+                        formControlName="tagNameEng" />
+                    </div>
+
+                    <div class="form-group romName">
+                        <input class="form-control"
+                        id="romName"
+                        placeholder="Tag Romanian Name"
+                        [ngClass]="addForm.controls['tagNameRom'].errors ? 'is-invalid' : ''"
+                        formControlName="tagNameRom" />
+                    </div>
+
+                    <p *ngIf="ok === true"> {{ messageTag }} </p>
+
+                    <button 
+                    id="addButton"
+                    [disabled]="addForm.invalid"
+                    class="btn btn-info"
+                    type="submit">
+                    Add Tag
+                    </button>
+                </form>
+            </div>
+            <div class="middleSide">
+                <!-- <form [formGroup]="addCityTagForm" (ngSubmit)="addCityTag()">
+                    <div class="form-group">
+                        <label>City Id</label>
+                        <input class="tag-form-control"
+                        id="cityId"
+                        [ngClass]="addCityTagForm.controls['cityId'].errors ? 'is-invalid' : ''"
+                        formControlName="cityId" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tag Id </label>
+                        <input class="tag-form-control"
+                        id="tagId"
+                        [ngClass]="addCityTagForm.controls['tagId'].errors ? 'is-invalid' : ''"
+                        formControlName="tagId" />
+                    </div>
+
+                    <p *ngIf="ok === true"> {{ messageCityTag }} </p>
+
+                    <button 
+                    id="addButton"
+                    [disabled]="addCityTagForm.invalid"
+                    class="btn btn-info"
+                    type="submit">
+                    Add City Tag
+                    </button>
+                </form> -->
+            </div>
+            <div class="rightSide">
+                <div class="tags">
+                    <h2> Tags </h2>
+                    <table class="table tagTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">English Name</th>
+                            <th scope="col">Romanian Name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tag of dbTags">
+                                <td class="id">
+                                    {{ tag['tagId'] }}
+                                </td>
+                                <td class="engName">
+                                    {{ tag['tagNameEng'] }}
+                                </td>
+                                <td class="id">
+                                    {{ tag['tagNameRom'] }}
+                                </td>
+                        </tbody>
+                      </table>
+                </div>
+                <!-- <div class="cityTags">
+                    <h2> City Tags </h2>
+                    <table class="table cityTagTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Tag Id</th>
+                            <th scope="col">City Id</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cityTag of dbCityTags">
+                                <td class="tagId">
+                                    {{ cityTag['cityTagId'] }}
+                                </td>
+                                <td class="cityId">
+                                    {{ cityTag['cityTagId'] }}
+                                </td>
+                        </tbody>
+                      </table>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="delete" *ngIf="openDelete === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeDeleteForm()"></i></div>
+        <div class="formAddDelete">
+        </div>
+    </div>
+</main>
+

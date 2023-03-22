@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 
-export class CityService {
+export class TagService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
       responseType: 'text',
@@ -15,26 +15,34 @@ export class CityService {
   };
   private baseUrl: string = environment.backendUrl;
 
-
   constructor(private http: HttpClient) { }
 
-  getAllCities(){
-    return this.http.get(this.baseUrl + 'city/findAllCities',
+  getAllTags(){
+    return this.http.get(
+      this.baseUrl + 'tag/findAllTags',
     this.privateHttpHeaders
     );
   }
 
-  getAllCitiesForAGivenTag(tagId:any){
-    console.log(tagId);
-    return this.http.get(this.baseUrl + 'cityTag/getAllCitiesForGivenTag/' + tagId,
+  getTagIdByName(name:string){
+    return this.http.get(
+      this.baseUrl + 'tag/findTagByName/' + name,
     this.privateHttpHeaders
+    );
+  }
+
+  addTag(tag:any){
+    return this.http.post(
+      this.baseUrl + "tag/addTag",
+      tag,
+      this.privateHttpHeaders
     )
   }
 
-  addCity(city:any){
+  addCityTag(cityTag:any){
     return this.http.post(
-      this.baseUrl + "city/addCity",
-      city, 
+      this.baseUrl + "cityTag/addCityTag",
+      cityTag,
       this.privateHttpHeaders
     )
   }
