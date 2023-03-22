@@ -227,3 +227,29 @@ a {
     text-decoration: none;
     color: black;
 }
+
+#cities {
+    margin-top: 20px;
+    margin-left: -10px;
+    width: 94vw;
+    height: 33vh;
+    display:flex;
+    overflow-x: auto;   
+}
+
+.cityImage {
+    margin: 10px;
+    flex: 0 0 auto;
+    object-fit: cover;
+}
+
+.imgTagCities {
+    width: 20vw;
+    height: 25vh;
+    border: 2px solid lightgrey;
+    border-radius: 25px !important;
+}
+
+.cityName {
+    font-weight: bold;
+}

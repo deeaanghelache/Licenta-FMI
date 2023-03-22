@@ -122,3 +122,8 @@ $color-5: #25C5FA;
     z-index: 0;
 } 
 
+.btn-outline-warning {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+}
+
