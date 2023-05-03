@@ -3,12 +3,6 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-$color-1: #FF36D6;
-$color-2: #9F2FDE;
-$color-3: #5D3FF5;
-$color-4: #2F62DE;
-$color-5: #25C5FA;
-
 .dark-theme{
     --text-color: white;
     --background-color: black; 
@@ -46,3 +40,7 @@ body{
     z-index: 10;
 }
 
+.btn-outline-warning {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+}

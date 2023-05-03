@@ -1,8 +1,8 @@
 // Login SCSS
 
 // Site's colors
-$color-1: #FF36D6;
-$color-2: #9F2FDE;
+$color-1: #cfb895;
+$color-2: #ffc533;
 $color-3: #5D3FF5;
 $color-4: #2F62DE;
 $color-5: #25C5FA;
@@ -34,27 +34,13 @@ h1{
 }
 
 .leftSide{
-    background-color: $color-2;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: 2;
     width: 40vh;
-    animation: background-color 5s linear infinite;
     border-radius: 25px !important;
 }
-
-@keyframes background-color {
-    0% {
-      background-color: $color-1;
-    }
-    50% {
-        background-color: $color-3;
-    }
-    100% {
-        background-color: $color-5;
-    }
-  }
 
 .rightSide{
     margin: $standardMargin;
@@ -72,7 +58,7 @@ input {
     border-right: solid white;
     border-left: solid white;
     border-image: 
-    linear-gradient(to right, $color-1 0%, $color-4 100%) 0 0 100% 0;
+    linear-gradient(to right, $color-2 0%, $color-1 100%) 0 0 100% 0;
     width: 100%;
     height: 4vh;
     margin: 10px;
@@ -86,20 +72,16 @@ input {
     width: 100%;
     height: 5vh;
     border-radius: 0;
-    background-image: linear-gradient(to right, $color-1 0%, $color-3 100%);
-    border: 1px solid white;
-    color: white;
-    font-size: large;
     margin: 15px;
-    transition: background-image 0.5s ease 0s;
 }
 
-#loginButton:hover{
-    background-image: linear-gradient(to right, $color-5 0%, $color-4 100%);
+.btn-outline-warning, .btn-outline-warning:invalid {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
 }
 
-#goToLogin{
-    color: var(--text-color);
+.btn {
+    color: black !important;
 }
 
 #goToRegister{
@@ -119,4 +101,8 @@ input {
     position: relative;
     top: 0;
     left: 0vw;
+}
+
+#extra {
+    padding: 20px;
 }
