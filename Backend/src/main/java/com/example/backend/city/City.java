@@ -4,13 +4,11 @@ import com.example.backend.airport.Airport;
 import com.example.backend.cityTag.CityTag;
 import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.landmark.Landmark;
-import com.example.backend.landmarkList.LandmarkList;
-import com.example.backend.preference.Preference;
+import com.example.backend.cityList.CityList;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -57,7 +55,7 @@ public class City implements Serializable {
 
     // With LandmarkList
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private Set<LandmarkList> landmarkLists;
+    private Set<CityList> cityLists;
 
     // With CityWishList
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
@@ -163,7 +161,7 @@ public class City implements Serializable {
                 ", photo='" + photo + '\'' +
                 ", airports=" + airports +
                 ", landmarks=" + landmarks +
-                ", landmarkLists=" + landmarkLists +
+                ", landmarkLists=" + cityLists +
                 ", cityWishlists=" + cityWishlists +
                 ", cityTags=" + cityTags +
                 '}';

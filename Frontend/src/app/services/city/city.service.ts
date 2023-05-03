@@ -38,4 +38,11 @@ export class CityService {
       this.privateHttpHeaders
     )
   }
+
+  getFavouriteCities(userId:any){
+    return this.http.get(
+      this.baseUrl + "cityList/getAllCitiesForGivenUser/" + userId,
+      this.privateHttpHeaders
+    )
+  }
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CityService } from 'src/app/services/city/city.service';
+import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { TagService } from 'src/app/services/tag/tag.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-cities',
@@ -13,31 +15,28 @@ export class CitiesComponent implements OnInit {
   public cities = [];
   public currentCity: any;
   public currentTagForFilter: number = 0;
-  // public cities = [
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris111", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},    
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},
-  //   { name: "Paris", image: "", currency: "euro", country: "France"},    
-  //   { name: "Paris", image: "", currency: "euro", country: "France"}
-  // ];
   public tags = [];
   public display: boolean = false;
   public displayTags: boolean = true;
+  public currentEmail:string = '';
+  public currentId:number = 0;
+  public currentUser!:any;
+  public currentFavs:any = [];
 
-  constructor(private tagService: TagService, private cityService: CityService) { }
+  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, 
+    private changeDetectorRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
+    this.getEmail();
+    this.getUserByEmail(this.currentEmail);
     this.checkIfAdmin();
     this.getAllTags();
     this.getAllCities();
+  }
+
+  getEmail(){
+    this.currentEmail = sessionStorage.getItem("loggedUserEmail") as string;
   }
 
   checkIfLoggedIn(){
@@ -95,7 +94,7 @@ export class CitiesComponent implements OnInit {
         this.currentTagForFilter = this.tags[index]['tagId'];
       }
     }
-
+  
     this.cityService.getAllCitiesForAGivenTag(this.currentTagForFilter).subscribe((response:any) => {
       this.cities = response;
     })
@@ -103,5 +102,36 @@ export class CitiesComponent implements OnInit {
 
   allButton() {
     this.getAllCities();
+  }
+
+  getUserByEmail(email:string){
+    this.userService.getUserByEmail(email).subscribe((response:any) => {
+      this.currentId = response.userId;
+      this.currentUser = response;
+      this.getFavourite(this.currentId);
+    })
+  }
+
+  addFavourite(city:any) {
+    console.log(city.cityId);
+    this.cityListService.addCityListForGivenUser(city.cityId, this.currentId).subscribe((response:any) => {
+      window.location.reload();
+    })
+  }
+
+  getFavourite(userId:any) {
+    this.cityService.getFavouriteCities(userId).subscribe((response:any) => {
+      this.currentFavs = response;
+      console.log(this.currentFavs);
+    })
+  }
+
+  isFavourite(city:any) {
+    for (let current of this.currentFavs){
+      if (current.cityId === city.cityId) {
+        return true;
+      }
+    }
+    return false;
   }
 }

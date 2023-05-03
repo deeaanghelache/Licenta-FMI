@@ -1,14 +1,12 @@
 package com.example.backend.user;
 
 import com.example.backend.cityWishlist.CityWishlist;
-import com.example.backend.landmarkList.LandmarkList;
+import com.example.backend.cityList.CityList;
 import com.example.backend.preference.Preference;
 import com.example.backend.userRole.UserRole;
-import com.example.backend.role.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -51,7 +49,7 @@ public class User implements Serializable {
 
     // With LandmarkWishlist
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<LandmarkList> landmarkLists;
+    private Set<CityList> cityLists;
 
     // With CityWishList
     @OneToMany(mappedBy = "user")

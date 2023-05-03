@@ -21,6 +21,7 @@ import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
 import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
 import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
 import { CityInfoComponent } from './pages/cities/city-info/city-info.component';
+import { ButtonDirective } from './directives/button.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CityInfoComponent } from './pages/cities/city-info/city-info.component'
     TagsComponent,
     LandmarksComponent,
     CitiesAdminComponent,
-    CityInfoComponent
+    CityInfoComponent,
+    ButtonDirective
   ],
   imports: [
     BrowserModule,

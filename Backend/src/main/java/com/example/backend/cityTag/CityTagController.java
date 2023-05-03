@@ -24,7 +24,6 @@ public class CityTagController {
     }
 
     // GET
-
     @GetMapping("/findAllCityTags")
     public ResponseEntity<List<CityTag>> getAllCityTags(){
         List<CityTag> cityTags = cityTagService.getAllCityTags();

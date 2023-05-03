@@ -1,7 +1,7 @@
 package com.example.backend.listOfLandmarks;
 
 import com.example.backend.landmark.Landmark;
-import com.example.backend.landmarkList.LandmarkList;
+import com.example.backend.cityList.CityList;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -24,9 +24,9 @@ public class ListOfLandmarks implements Serializable {
 
     // With Landmark List
     @ManyToOne
-    @MapsId("landmarkListId")
-    @JoinColumn(name = "landmark_list_id", referencedColumnName = "landmarkListId")
-    private LandmarkList landmarkList;
+    @MapsId("cityListId")
+    @JoinColumn(name = "city_list_id", referencedColumnName = "cityListId")
+    private CityList cityList;
 
     public ListOfLandmarks() {
     }
