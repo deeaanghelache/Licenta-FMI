@@ -17,10 +17,10 @@
         <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
         <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
         <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
-        <li class="mainMenu" *ngIf = "logged === true" (click)="logout()" class="nav-link" id="logout">Logout</li>
       </ul>
     </div>
-    <div class="dropdown">
+    <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
+    <div class="dropdown"> &nbsp;
       <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Language
             </button>

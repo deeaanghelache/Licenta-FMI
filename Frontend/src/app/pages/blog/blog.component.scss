@@ -1,0 +1,23 @@
+#board {
+    border: 2px solid lightgrey;
+    border-radius: 25px !important;
+    height: 98vh;
+    margin: 5px;
+    margin-top: 10px !important;
+    box-shadow: 1px 1px 18px #888888;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.navbar{
+    border-top-right-radius: 25px !important; 
+    border-top-left-radius: 25px !important; 
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+}
+
