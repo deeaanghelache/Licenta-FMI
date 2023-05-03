@@ -42,4 +42,8 @@ export class HomepageComponent implements OnInit {
       this.cities = response;
     })
   }
+
+  goToTop(){
+    window.scrollTo(0, 0);
+  }
 }
