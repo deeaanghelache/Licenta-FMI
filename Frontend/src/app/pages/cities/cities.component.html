@@ -15,10 +15,10 @@
                 <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
                 <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
                 <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
-                <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
-                <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
               </ul>
             </div>
+            <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/login">Log in</button> 
+            <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/register">Join</button>
             <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
             <div class="dropdown">
               <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,6 +29,7 @@
                 <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
                 <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
               </ul>
+              &nbsp;
             </div>
         </nav>
     </header>
