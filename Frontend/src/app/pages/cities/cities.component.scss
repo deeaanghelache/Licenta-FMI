@@ -147,3 +147,39 @@ $color-5: #25C5FA;
 .fas {
     color: red;
 }
+
+.operations {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#searchCityBar {
+    flex: 80%;
+    display: flex;
+}
+
+#inputSearch {
+    flex: 90%;
+}
+
+#buttonSearch {
+    flex: 10%;
+    position: relative;
+    top: 0;
+    right: 53px;
+}
+
+.tags-dropdown {
+    flex: 10%;
+    position: relative;
+    left: -50px;
+    top: 0;
+}
+
+.sort {
+    flex: 10%;
+    position: relative;
+    left: -50px;
+    top: 0;
+}

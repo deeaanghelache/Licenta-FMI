@@ -45,4 +45,11 @@ export class CityService {
       this.privateHttpHeaders
     )
   }
+
+  searchCitiesByNameContainsWord(searchName:any){
+    return this.http.get(
+      this.baseUrl + "city/getCityByNameContainsWord/" + searchName,
+      this.privateHttpHeaders
+    )
+  }
 }

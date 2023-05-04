@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CityService } from 'src/app/services/city/city.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { TagService } from 'src/app/services/tag/tag.service';
 import { UserService } from 'src/app/services/user/user.service';
+import * as leafletModule from 'leaflet';
 
 @Component({
   selector: 'app-cities',
@@ -22,10 +23,17 @@ export class CitiesComponent implements OnInit {
   public currentId:number = 0;
   public currentUser!:any;
   public currentFavs:any = [];
+  public map!:leafletModule.Map;
 
   constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService) { }
 
   ngOnInit(): void {
+    var map = leafletModule.map('map').setView([44.439663, 26.096306], 15);
+
+    leafletModule.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
     this.checkIfLoggedIn();
     this.getEmail();
     this.getUserByEmail(this.currentEmail);
@@ -132,5 +140,40 @@ export class CitiesComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  searchCity(searchName:any) {
+    if (searchName != ""){
+      this.cityService.searchCitiesByNameContainsWord(searchName).subscribe ((response:any) => {
+        console.log(response);
+        this.cities = response;
+      })
+    } else {
+      this.getAllCities();
+    }
+  }
+
+  sortByNameAscending(){
+    this.cities = this.cities.sort((city1, city2) => {
+      if (city1['nameEng'] < city2['nameEng']) {
+        return -1; 
+      } else if (city1['nameEng'] > city2['nameEng']) {
+        return 1; 
+      } else {
+        return 0; 
+      }
+    });
+  }
+
+  sortByNameDescending(){
+    this.cities = this.cities.sort((city1, city2) => {
+      if (city1['nameEng'] > city2['nameEng']) {
+        return -1; 
+      } else if (city1['nameEng'] < city2['nameEng']) {
+        return 1; 
+      } else {
+        return 0; 
+      }
+    });
   }
 }

@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,19 @@ public class CityController {
     @GetMapping("/findAllCities")
     public ResponseEntity<List<City>> getAllCities(){
         List<City> cities = cityService.getAllCities();
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @GetMapping("getCityByNameContainsWord/{word}")
+    public ResponseEntity<List<City>> getCitiesByNameContainsWord(@PathVariable("word") String word){
+        List<City> cities = new ArrayList<>();
+        List<City> dbCities = cityService.getAllCities();
+
+        for (var city : dbCities){
+            if (city.getNameEng().toLowerCase().contains(word)){
+                cities.add(city);
+            }
+        }
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 

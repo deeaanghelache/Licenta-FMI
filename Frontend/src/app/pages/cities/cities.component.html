@@ -37,12 +37,34 @@
 <main>
     <div class="grid">
         <div class="leftSide">
-            <!-- ceva cu tags -->
-            <div class="tags" *ngIf="displayTags === true">
-                <button class="btn btn-warning rounded-pill tagButton" (click)="allButton()" appButton> All </button>
-                <button *ngFor="let tag of tags" class="btn btn-warning rounded-pill tagButton" (click)="filterByTag(tag['tagNameEng'])" appButton> {{ tag['tagNameEng'] }} </button>
-            </div>
+            <div class="operations" *ngIf="displayTags === true">
+                <div id="searchCityBar">
+                    <div id="inputSearch"><input #searchCityName class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></div>
+                    <div id="buttonSearch"><button class="btn btn-outline-dark" type="submit" (click)="searchCity(searchCityName.value)"><i class="fa-solid fa-magnifying-glass"></i></button></div>
+                </div>
 
+                <div class="tags-dropdown">
+                    <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="dropdown-item" (click)="allButton()">All</li>
+                        <li *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag['tagNameEng'] }}</li>
+                    </ul>
+                    <!-- <button class="btn btn-warning rounded-pill tagButton" (click)="allButton()" appButton> All </button>
+                    <button *ngFor="let tag of tags" class="btn btn-warning rounded-pill tagButton" (click)="filterByTag(tag['tagNameEng'])" appButton> {{ tag['tagNameEng'] }} </button> -->
+                </div>
+
+                <div class="sort">
+                    <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort by
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="dropdown-item" (click)="sortByNameAscending()">Name ascending</li>
+                        <li class="dropdown-item" (click)="sortByNameDescending()">Name descending</li>
+                    </ul>
+                </div>
+            </div>
             <div>
                 <div class="cityGrid" *ngIf="display === false">
                     <div *ngFor="let city of cities" class="city">
@@ -65,9 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="rightSide">
-            <p>AICI HARTA?</p>
-        </div>
+        <div class="rightSide" id="map"></div>
     </div>
 </main>
 </div>   
