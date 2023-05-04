@@ -22,4 +22,11 @@ export class CityListService {
       this.privateHttpHeaders
     )
   }
+
+  deleteCityList(cityId:any, userId:any){
+    return this.http.delete(
+      this.baseUrl + "cityList/deleteCityList/" + cityId + "/" + userId,
+      this.privateHttpHeaders
+    )
+  }
 }

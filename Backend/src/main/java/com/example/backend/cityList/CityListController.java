@@ -36,9 +36,29 @@ public class CityListController {
     public ResponseEntity<CityList> addCityList(@PathVariable("cityId") Integer cityId, @PathVariable("userId") Long userId){
         City city = cityService.getCityById(cityId);
         User user = userService.getUserByUserId(userId);
-        CityList cityList = new CityList(0.0d, user, city);
-        CityList newCityList = cityListService.addCityList(cityList);
+        List<CityList> cityListsForGivenUser = cityListService.getAllCityListsForAGivenUser(Math.toIntExact(userId));
 
-        return new ResponseEntity<>(newCityList, HttpStatus.CREATED);
+        if (cityListsForGivenUser.size() != 0){
+            for (var current: cityListsForGivenUser){
+                if (current.getCity() != city) {
+                    CityList cityList = new CityList(0.0d, user, city);
+                    CityList newCityList = cityListService.addCityList(cityList);
+
+                    return new ResponseEntity<>(newCityList, HttpStatus.CREATED);
+                }
+            }
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } else {
+            CityList cityList = new CityList(0.0d, user, city);
+            CityList newCityList = cityListService.addCityList(cityList);
+
+            return new ResponseEntity<>(newCityList, HttpStatus.CREATED);
+        }
+    }
+
+    @DeleteMapping("/deleteCityList/{cityId}/{userId}")
+    public ResponseEntity<?> deleteCityList(@PathVariable("cityId") Integer cityId, @PathVariable("userId") Long userId){
+        cityListService.deleteCityList(cityId, Math.toIntExact(userId));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

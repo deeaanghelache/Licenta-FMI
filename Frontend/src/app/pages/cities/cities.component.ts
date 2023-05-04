@@ -23,8 +23,7 @@ export class CitiesComponent implements OnInit {
   public currentUser!:any;
   public currentFavs:any = [];
 
-  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, 
-    private changeDetectorRef:ChangeDetectorRef) { }
+  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService) { }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();

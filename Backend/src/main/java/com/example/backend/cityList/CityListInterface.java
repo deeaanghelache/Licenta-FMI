@@ -1,7 +1,9 @@
 package com.example.backend.cityList;
 
 import com.example.backend.userRole.UserRole;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -16,7 +18,12 @@ public interface CityListInterface extends JpaRepository<CityList, Integer> {
             "WHERE city_list.user_id = :userId", nativeQuery = true)
     List<CityList> queryBy(@Param("userId") Integer userId);
 
-    void deleteLandmarkListByCityListId(Integer cityListId);
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE " +
+            "FROM city_list " +
+            "WHERE city_id = :cityId AND user_id = :userId", nativeQuery = true)
+    void queryBy(@Param("cityId") Integer cityId, @Param("userId") Integer userId);
 
-
+    void deleteCityListByCityListId(Integer cityListId);
 }

@@ -25,4 +25,13 @@ public class CityListService {
     public CityList addCityList(CityList cityList) {
         return cityListInterface.save(cityList);
     }
+
+    // DELETE
+    public void deleteCityList(Integer cityId, Integer userId){
+        cityListInterface.queryBy(cityId, userId);
+    }
+
+    public void deleteAllCityLists() {
+        cityListInterface.deleteAll();
+    }
 }
