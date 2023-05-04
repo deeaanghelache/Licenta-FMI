@@ -35,8 +35,6 @@ export class CitiesComponent implements OnInit {
     }).addTo(map);
 
     this.checkIfLoggedIn();
-    this.getEmail();
-    this.getUserByEmail(this.currentEmail);
     this.checkIfAdmin();
     this.getAllTags();
     this.getAllCities();
@@ -44,11 +42,13 @@ export class CitiesComponent implements OnInit {
 
   getEmail(){
     this.currentEmail = sessionStorage.getItem("loggedUserEmail") as string;
+    this.getUserByEmail(this.currentEmail);
   }
 
   checkIfLoggedIn(){
     if ("loggedUserEmail" in sessionStorage){
       this.logged = true;
+      this.getEmail();
     }
   }
 
