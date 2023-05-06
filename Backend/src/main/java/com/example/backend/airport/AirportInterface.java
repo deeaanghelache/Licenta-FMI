@@ -12,7 +12,7 @@ public interface AirportInterface extends JpaRepository<Airport, Integer> {
     Optional<Airport> findAirportByNameEng(String englishAirportName);
     Optional<Airport> findAirportByNameRom(String romanianAirportName);
 
-    @Query(value = "SELECT airport.airport_id, airport.nameEng, airport.nameRom, airport.distance_to_city, airport.city_id " +
+    @Query(value = "SELECT airport.airport_id, airport.name_eng, airport.name_rom, airport.distance_to_city, airport.city_id " +
             "FROM airport JOIN city ON (airport.city_id = city.city_id) " +
             "WHERE airport.city_id = :cityId", nativeQuery = true)
     List<Airport> queryBy(@Param("cityId") Integer cityId);

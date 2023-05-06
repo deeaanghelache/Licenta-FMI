@@ -4,7 +4,7 @@
             <img id="image" src="../../../../assets/photos/pexels-alex-azabache-3757144.jpg" width="280px" height="280px">
         </div> 
         <div id="addToFavs">
-            <button class="btn btn-outline-warning rounded-pill">Add to favourites <i class="fa-regular fa-heart"></i></button>
+            <button id="buttonFav" class="btn btn-outline-light rounded-pill">Add to favourites <i class="fa-regular fa-heart"></i></button>
         </div>
     </div>
     <div id="rightSide">
@@ -14,16 +14,28 @@
                 <li *ngFor="let tag of tags">{{ tag['tagNameEng'] }}. &nbsp;</li>
             </ul>
         </div>
+        
         <div id="history">
             <h4> Brief History </h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
         </div>
-        <div id="airports">
-            <h4> Airports </h4>
-        </div>
-    
+
         <div id="landmarks">
             <h4> Landmarks </h4>
+        </div>
+
+        <div id="airports">
+            <h4> Airports </h4>
+            <div id="airportsList">
+                <ul>
+                    <li *ngFor="let airport of airports">
+                        {{ airport['nameEng'] }}
+                        <span id="distanceToCity"> 
+                            &nbsp; &nbsp; {{ airport['distanceToCity'] }}&nbsp;km &nbsp; &nbsp;
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

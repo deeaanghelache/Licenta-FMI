@@ -58,3 +58,31 @@ $color-5: #25C5FA;
     text-align: justify;
 }
 
+#buttonFav {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+    --bs-btn-border-color: red;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: red;
+    --bs-btn-hover-border-color: red;
+}
+
+#airportsList {
+    position: relative;
+    top: 0;
+    left: -32px;
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#distanceToCity {
+    height: 25px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 25px;
+    text-align: center;
+}
+

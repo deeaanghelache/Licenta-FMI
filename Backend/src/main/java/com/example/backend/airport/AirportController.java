@@ -27,7 +27,7 @@ public class AirportController {
         return new ResponseEntity<>(airport, HttpStatus.OK);
     }
 
-    @GetMapping("/findByCityId/{id}")
+    @GetMapping("/getAllAirportsForGivenCity/{id}")
     public ResponseEntity<List<Airport>> getAirportsByCityId(@PathVariable("id") Integer cityId){
         List<Airport> airportsByCity = airportService.findAirportByCityId(cityId);
         return new ResponseEntity<>(airportsByCity, HttpStatus.OK);

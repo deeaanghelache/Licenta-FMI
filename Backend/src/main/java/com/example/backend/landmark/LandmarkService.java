@@ -29,6 +29,10 @@ public class LandmarkService {
         return landmarkInterface.findLandmarkByName(landmarkName).orElseThrow(() -> new LandmarkNameNotFoundException("Couldn't find any landmark with the name: " + landmarkName));
     }
 
+    public List<Landmark> getAllLandmarksForGivenCity(Integer cityId){
+        return landmarkInterface.queryBy(cityId);
+    }
+
     // POST
     public Landmark addLandmark(Landmark landmark){
         return landmarkInterface.save(landmark);

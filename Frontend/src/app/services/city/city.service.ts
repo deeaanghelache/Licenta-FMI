@@ -15,7 +15,6 @@ export class CityService {
   };
   private baseUrl: string = environment.backendUrl;
 
-
   constructor(private http: HttpClient) { }
 
   getAllCities(){
