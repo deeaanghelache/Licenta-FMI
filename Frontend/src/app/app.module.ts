@@ -13,7 +13,7 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BlogComponent } from './pages/blog/blog.component';
+import { JournalComponent } from './pages/journal/journal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersComponent } from './pages/admin/menuPages/users/users.component';
 import { AirportsComponent } from './pages/admin/menuPages/airports/airports.component';
@@ -34,7 +34,7 @@ import { ButtonDirective } from './directives/button.directive';
     AdminComponent,
     Page405Component,
     ProfileComponent,
-    BlogComponent,
+    JournalComponent,
     UsersComponent,
     AirportsComponent,
     TagsComponent,

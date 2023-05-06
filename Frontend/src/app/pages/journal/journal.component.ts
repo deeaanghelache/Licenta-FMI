@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss']
+  selector: 'app-journal',
+  templateUrl: './journal.component.html',
+  styleUrls: ['./journal.component.scss']
 })
-export class BlogComponent implements OnInit {
+export class JournalComponent implements OnInit {
   public logged:boolean = false;
   public admin:boolean = false;
 

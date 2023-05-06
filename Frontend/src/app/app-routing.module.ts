@@ -7,7 +7,7 @@ import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/citie
 import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
 import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
 import { UsersComponent } from './pages/admin/menuPages/users/users.component';
-import { BlogComponent } from './pages/blog/blog.component';
+import { JournalComponent } from './pages/journal/journal.component';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -75,8 +75,8 @@ const routes: Routes = [
     component: Page405Component
   },
   {
-    path: 'blog',
-    component: BlogComponent
+    path: 'journal',
+    component: JournalComponent
   },
   {
     path: 'profile',

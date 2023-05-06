@@ -11,7 +11,7 @@
               <ul class="navbar-nav">
                 <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
                 <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
-                <li class="mainMenu" id="button4"><a class="nav-link" routerLink="/blog">Blog</a></li>
+                <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
                 <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
                 <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
                 <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
