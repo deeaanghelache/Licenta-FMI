@@ -49,10 +49,8 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li class="dropdown-item" (click)="allButton()">All</li>
-                        <li *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag['tagNameEng'] }}</li>
+                        <li class="dropdown-item" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag['tagNameEng'] }}</li>
                     </ul>
-                    <!-- <button class="btn btn-warning rounded-pill tagButton" (click)="allButton()" appButton> All </button>
-                    <button *ngFor="let tag of tags" class="btn btn-warning rounded-pill tagButton" (click)="filterByTag(tag['tagNameEng'])" appButton> {{ tag['tagNameEng'] }} </button> -->
                 </div>
 
                 <div class="sort">
@@ -82,8 +80,8 @@
                     </div>
                 </div>
                 <div class="infos" *ngIf="display === true">
-                    <div><i id="goBack" class="fa fa-arrow-left" (click)="closeCityInfos()"></i></div>
-                    <app-city-info [city]="currentCity"></app-city-info>
+                    <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closeCityInfos()">Go back to cities</button></div>
+                    <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged"></app-city-info>
                 </div>
             </div>
         </div>

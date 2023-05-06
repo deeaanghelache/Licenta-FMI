@@ -17,10 +17,11 @@ public class CityTagService {
 
     // FIND(GET)
     public List<CityTag> getAllCitiesForAGivenTag(Integer tagId){
-        System.out.println("****");
-        System.out.println(tagId);
-        System.out.println(cityTagInterface.queryBy(tagId));
         return cityTagInterface.queryBy(tagId);
+    }
+
+    public  List<CityTag> getAllTagsForGivenCity(Long cityId) {
+        return cityTagInterface.queryBy(cityId);
     }
 
     public List<CityTag> getAllCityTags(){

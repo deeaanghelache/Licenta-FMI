@@ -24,15 +24,18 @@ export class CitiesComponent implements OnInit {
   public currentUser!:any;
   public currentFavs:any = [];
   public map!:leafletModule.Map;
+  private defaultMapLat = 44.439663;
+  private defaultMapLong = 26.096306;
+  private defaultMapZoom = 15;
 
   constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService) { }
 
   ngOnInit(): void {
-    var map = leafletModule.map('map').setView([44.439663, 26.096306], 15);
+    this.map = leafletModule.map('map').setView([this.defaultMapLat, this.defaultMapLong], this.defaultMapZoom);
 
     leafletModule.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    }).addTo(this.map);
 
     this.checkIfLoggedIn();
     this.checkIfAdmin();
@@ -79,13 +82,18 @@ export class CitiesComponent implements OnInit {
   showCityInfos(city:any){
     this.display = true;
     this.displayTags = false;
-    console.log(this.displayTags);
     this.currentCity = city;
+    let lat = city['latitude'];
+    let long = city['longitude'];
+    // let lat = 40;
+    // let long = 20;
+    this.map.setView([lat, long], 12);
   }
 
   closeCityInfos(){
     this.display = false;
     this.displayTags = true;
+    this.map.setView([this.defaultMapLat, this.defaultMapLong], this.defaultMapZoom);
   }
 
   getTagIdByName(tagName:any){

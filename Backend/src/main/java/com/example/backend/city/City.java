@@ -43,6 +43,12 @@ public class City implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String photo;
 
+    @Column(columnDefinition="Decimal(10,6)")
+    private Double latitude;
+
+    @Column(columnDefinition="Decimal(10,6)")
+    private Double longitude;
+
     // Foreign Keys
 
     // With Airport
@@ -68,7 +74,8 @@ public class City implements Serializable {
     public City() {
     }
 
-    public City(String nameEng, String nameRom, String countryEng, String countryRom, String briefHistoryEng, String briefHistoryRom, String currencyName, String photo) {
+    public City(Integer cityId, String nameEng, String nameRom, String countryEng, String countryRom, String briefHistoryEng, String briefHistoryRom, String currencyName, String photo, Double latitude, Double longitude) {
+        this.cityId = cityId;
         this.nameEng = nameEng;
         this.nameRom = nameRom;
         this.countryEng = countryEng;
@@ -77,6 +84,8 @@ public class City implements Serializable {
         this.briefHistoryRom = briefHistoryRom;
         this.currencyName = currencyName;
         this.photo = photo;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Integer getCityId() {
@@ -147,6 +156,22 @@ public class City implements Serializable {
         this.photo = photo;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
     @Override
     public String toString() {
         return "City{" +
@@ -159,9 +184,11 @@ public class City implements Serializable {
                 ", briefHistoryRom='" + briefHistoryRom + '\'' +
                 ", currencyName='" + currencyName + '\'' +
                 ", photo='" + photo + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 ", airports=" + airports +
                 ", landmarks=" + landmarks +
-                ", landmarkLists=" + cityLists +
+                ", cityLists=" + cityLists +
                 ", cityWishlists=" + cityWishlists +
                 ", cityTags=" + cityTags +
                 '}';

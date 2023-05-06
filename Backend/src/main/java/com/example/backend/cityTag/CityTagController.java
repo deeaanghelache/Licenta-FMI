@@ -37,4 +37,12 @@ public class CityTagController {
 
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
+
+    @GetMapping("/getAllTagsForGivenCity/{cityId}")
+    public ResponseEntity<List<Tag>> getAllTagsForGivenCity(@PathVariable("cityId") Integer cityId) {
+        List<CityTag> cityTags = cityTagService.getAllTagsForGivenCity(Long.valueOf(cityId));
+        List<Tag> tags = cityTags.stream().map(CityTag::getTag).toList();
+
+        return new ResponseEntity<>(tags, HttpStatus.OK);
+    }
 }

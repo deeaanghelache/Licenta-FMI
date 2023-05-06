@@ -22,7 +22,6 @@ import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.
 import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
 import { CityInfoComponent } from './pages/cities/city-info/city-info.component';
 import { ButtonDirective } from './directives/button.directive';
-import { SearchCityBarComponent } from './pages/cities/search-city-bar/search-city-bar.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { SearchCityBarComponent } from './pages/cities/search-city-bar/search-ci
     CitiesAdminComponent,
     CityInfoComponent,
     ButtonDirective,
-    SearchCityBarComponent
   ],
   imports: [
     BrowserModule,
