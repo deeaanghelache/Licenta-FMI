@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AirportService } from 'src/app/services/airport/airport.service';
 import { CityTagService } from 'src/app/services/cityTag/city-tag.service';
+import { LandmarkService } from 'src/app/services/landmark/landmark.service';
 
 @Component({
   selector: 'app-city-info',
@@ -16,11 +17,12 @@ export class CityInfoComponent implements OnInit {
   @Input() favourites: any;
   @Input() loggedUser: any;
 
-  constructor(private cityTagService:CityTagService, private airportService:AirportService) { }
+  constructor(private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService) { }
 
   ngOnInit(): void {
     this.getTagsForCurrentCity();
     this.getAirportsForCurrentCity();
+    this.getLandmarksForCurrentCity();
   }
 
   getTagsForCurrentCity(){
@@ -31,8 +33,13 @@ export class CityInfoComponent implements OnInit {
 
   getAirportsForCurrentCity(){
     this.airportService.getAllAirportsForGivenCity(this.city['cityId']).subscribe((response:any) => {
-      console.log(response);
       this.airports = response;
+    })
+  }
+
+  getLandmarksForCurrentCity(){
+    this.landmarkService.getAllLandmarksForGivenCity(this.city['cityId']).subscribe((response:any) => {
+      this.landmarks = response;
     })
   }
 }

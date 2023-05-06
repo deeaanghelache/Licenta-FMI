@@ -14,7 +14,7 @@
                 <li *ngFor="let tag of tags">{{ tag['tagNameEng'] }}. &nbsp;</li>
             </ul>
         </div>
-        
+
         <div id="history">
             <h4> Brief History </h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
@@ -22,6 +22,13 @@
 
         <div id="landmarks">
             <h4> Landmarks </h4>
+            <div id="landmarkList">
+                <ul>
+                    <li *ngFor="let landmark of landmarks">
+                        {{ landmark['name'] }}
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div id="airports">

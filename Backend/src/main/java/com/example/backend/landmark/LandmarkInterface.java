@@ -14,7 +14,7 @@ public interface LandmarkInterface extends JpaRepository<Landmark, Integer> {
     Optional<Landmark> findLandmarkByLandmarkId(Integer landmarkId);
 
     // get all landmarks for a given city
-    @Query(value = "SELECT landmark.landmark_id, landmark.name, landmark.descriptionEng, landmark.descriptionRom, landmark.typeEng, landmark.typeRom " +
+    @Query(value = "SELECT landmark.landmark_id, landmark.name, landmark.description_eng, landmark.description_rom, landmark.type_eng, landmark.type_rom, landmark.city_id " +
             "FROM landmark JOIN city on (landmark.city_id = city.city_id) " +
             "WHERE landmark.city_id = :cityId", nativeQuery = true)
     List<Landmark> queryBy(@Param("cityId") Integer cityId);
