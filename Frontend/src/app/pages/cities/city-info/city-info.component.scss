@@ -4,6 +4,8 @@ $color-2: #ffc533;
 $color-3: #5D3FF5;
 $color-4: #2F62DE;
 $color-5: #25C5FA;
+$red: #FAA0A0;
+$green: #AFE1AF;
 
 #cityInfo {
     display: flex;
@@ -30,8 +32,15 @@ $color-5: #25C5FA;
 #addToFavs {
     position: relative;
     top: 40px;
-    left: 40px;
+    left: 45px;
 }
+
+#removeFromFavs {
+    position: relative;
+    top: 40px;
+    left: 25px;
+}
+
 
 #nameCityText {
     position: relative;
@@ -58,13 +67,22 @@ $color-5: #25C5FA;
     text-align: justify;
 }
 
-#buttonFav {
+.buttonAddFav {
     --bs-btn-font-weight: bold;
     --bs-btn-color: black;
-    --bs-btn-border-color: red;
+    --bs-btn-border-color: #{$green};
     --bs-btn-hover-color: black;
-    --bs-btn-hover-bg: red;
-    --bs-btn-hover-border-color: red;
+    --bs-btn-hover-bg: #{$green};
+    --bs-btn-hover-border-color: #{$green};
+}
+
+.buttonRemoveFav {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+    --bs-btn-border-color: #{$red};
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: #{$red};
+    --bs-btn-hover-border-color: #{$red};
 }
 
 #airportsList {

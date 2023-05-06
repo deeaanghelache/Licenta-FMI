@@ -79,14 +79,18 @@ export class CitiesComponent implements OnInit {
     })
   }
 
+  show(city:any){
+    this.getFavourite(this.currentId);
+    console.log(this.currentFavs);
+    this.showCityInfos(city);
+  }
+
   showCityInfos(city:any){
     this.display = true;
     this.displayTags = false;
     this.currentCity = city;
     let lat = city['latitude'];
     let long = city['longitude'];
-    // let lat = 40;
-    // let long = 20;
     this.map.setView([lat, long], 12);
   }
 
@@ -94,6 +98,7 @@ export class CitiesComponent implements OnInit {
     this.display = false;
     this.displayTags = true;
     this.map.setView([this.defaultMapLat, this.defaultMapLong], this.defaultMapZoom);
+    this.getFavourite(this.currentId);
   }
 
   getTagIdByName(tagName:any){
@@ -128,7 +133,6 @@ export class CitiesComponent implements OnInit {
   }
 
   addFavourite(city:any) {
-    console.log(city.cityId);
     this.cityListService.addCityListForGivenUser(city.cityId, this.currentId).subscribe((response:any) => {
       window.location.reload();
     })

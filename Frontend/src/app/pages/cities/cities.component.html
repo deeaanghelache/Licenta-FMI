@@ -66,7 +66,7 @@
             <div>
                 <div class="cityGrid" *ngIf="display === false">
                     <div *ngFor="let city of cities" class="city">
-                        <div id="cityImg" (click)="showCityInfos(city)">
+                        <div id="cityImg" (click)="show(city)">
                             <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
                         </div>
                         <div id="cityInfo" (click)="showCityInfos(city)">
@@ -79,9 +79,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="infos" *ngIf="display === true">
+                <div id="infoCity" class="infos" *ngIf="display === true">
                     <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closeCityInfos()">Go back to cities</button></div>
-                    <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged"></app-city-info>
+                    <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged" [currentUserId]="currentId"></app-city-info>
                 </div>
             </div>
         </div>

@@ -3,8 +3,11 @@
         <div id="imageDiv">
             <img id="image" src="../../../../assets/photos/pexels-alex-azabache-3757144.jpg" width="280px" height="280px">
         </div> 
-        <div id="addToFavs">
-            <button id="buttonFav" class="btn btn-outline-light rounded-pill">Add to favourites <i class="fa-regular fa-heart"></i></button>
+        <div id="addToFavs" *ngIf="loggedUser === true && isFavourite() === false">
+            <button class="btn btn-outline-light rounded-pill buttonAddFav" (click)="addFavourite()">Add to favourites <i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div id="removeFromFavs" *ngIf="loggedUser === true && isFavourite() === true">
+            <button class="btn btn-outline-light rounded-pill buttonRemoveFav" (click)="removeFavourite()">Remove from favourites <i class="fa-solid fa-heart-crack"></i></button>
         </div>
     </div>
     <div id="rightSide">
