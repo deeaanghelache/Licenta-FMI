@@ -1,7 +1,7 @@
 package com.example.backend.user;
 
-import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.cityList.CityList;
+import com.example.backend.journalPost.JournalPost;
 import com.example.backend.preference.Preference;
 import com.example.backend.userRole.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -47,13 +47,13 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Preference> preferences;
 
-    // With LandmarkWishlist
+    // With CityList
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<CityList> cityLists;
 
-    // With CityWishList
+    // With JournalPost
     @OneToMany(mappedBy = "user")
-    private Set<CityWishlist> cityWishlists;
+    private Set<JournalPost> journalPosts;
 
     public User() {
     }
