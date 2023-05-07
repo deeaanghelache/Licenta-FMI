@@ -52,7 +52,7 @@
       <div id="journalContent">
         <div id="posts">
           <div *ngIf="display === false">
-            <div id="postGrid" *ngFor="let post of posts" (click)="showPost()">
+            <div id="postGrid" *ngFor="let post of posts" (click)="showPost(post)">
               <div id="leftSide">
                 <img src="{{ post['photo'] }}" style="width:100%; height:100%">
               </div>
@@ -65,10 +65,11 @@
           </div>
           <div id="wholePost" *ngIf="display === true">
             <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closePost()">Go back to all posts</button></div>
-            <app-journal-post></app-journal-post>
+            <app-journal-post [post]="currentPost"></app-journal-post>
           </div>
         </div>
-        <div id="gallery">
+
+        <div id="gallery" *ngIf="display === false">
           <h4> My memories </h4>
           <div id="galleryGrid">
             <div class="image" *ngFor="let image of images">
@@ -78,7 +79,7 @@
         </div>
       </div>
 
-      <div id="addPost">
+      <div id="addPost" *ngIf="display === false">
         <h1>Let's digitally capture our travels</h1>
           <div id="addPostForm">
             <form [formGroup]="journalPostForm" (ngSubmit)="addPost()">
@@ -121,14 +122,13 @@
             </form>
           </div>
       </div>
-      <footer>
-        <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
-          Copyright © 2023 Andreea Anghelache | All rights reserved
-        </div>
-      </footer>
     </main>
     
-
+    <footer>
+      <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
+        Copyright © 2023 Andreea Anghelache | All rights reserved
+      </div>
+    </footer>
 </div>
     
     

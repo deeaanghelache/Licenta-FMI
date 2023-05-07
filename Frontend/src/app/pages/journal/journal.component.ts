@@ -16,6 +16,7 @@ export class JournalComponent implements OnInit {
   public currentId: number = 0;
   public currentEmail: string = "";
   public display:boolean = false;
+  public currentPost!:any;
   public images = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -124,8 +125,9 @@ export class JournalComponent implements OnInit {
     this.image3 = this.mainPhotos[randomImagesIndexes[2]];
   }
 
-  showPost(){
+  showPost(post:any){
     this.display = true;
+    this.currentPost = post;
   }
 
   closePost(){
@@ -133,7 +135,7 @@ export class JournalComponent implements OnInit {
   }
 
   addPost(){
-    
+
   }
 
   logout(){

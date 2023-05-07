@@ -1,0 +1,23 @@
+// Site's colors
+$color-1: #cfb895;
+$color-2: #ffc533;
+$color-3: #CC5500;
+$color-4: #FFD580;
+$color-5: #25C5FA;
+
+#post {
+    width: 700px;
+    background-color: $color-4;
+    opacity: 0.7;
+    box-shadow: 1px 1px 15px gray;
+    padding: 50px;
+    position: relative;
+    top: 50px;
+    left: 22vw;
+    text-align: justify;
+}
+
+img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
