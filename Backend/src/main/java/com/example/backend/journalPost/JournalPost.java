@@ -13,10 +13,13 @@ public class JournalPost implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long journalPostId;
 
+    @Column(columnDefinition = "varchar(100)")
+    private String name;
+
     @Column(columnDefinition = "varchar(5000)")
     private String post;
 
-    @Column(columnDefinition = "varchar(100")
+    @Column(columnDefinition = "varchar(100)")
     private String photo;
 
     @Temporal(TemporalType.DATE)
@@ -32,8 +35,9 @@ public class JournalPost implements Serializable {
     public JournalPost() {
     }
 
-    public JournalPost(Long journalPostId, String post, String photo, LocalDate dateWritten) {
+    public JournalPost(Long journalPostId, String name, String post, String photo, LocalDate dateWritten) {
         this.journalPostId = journalPostId;
+        this.name = name;
         this.post = post;
         this.photo = photo;
         this.dateWritten = dateWritten;
@@ -79,10 +83,19 @@ public class JournalPost implements Serializable {
         this.user = user;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "JournalPost{" +
                 "journalPostId=" + journalPostId +
+                ", name='" + name + '\'' +
                 ", post='" + post + '\'' +
                 ", photo='" + photo + '\'' +
                 ", dateWritten=" + dateWritten +

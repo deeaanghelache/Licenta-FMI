@@ -22,6 +22,7 @@ import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.
 import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
 import { CityInfoComponent } from './pages/cities/city-info/city-info.component';
 import { ButtonDirective } from './directives/button.directive';
+import { JournalPostComponent } from './pages/journal/journal-post/journal-post.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ButtonDirective } from './directives/button.directive';
     CitiesAdminComponent,
     CityInfoComponent,
     ButtonDirective,
+    JournalPostComponent,
   ],
   imports: [
     BrowserModule,

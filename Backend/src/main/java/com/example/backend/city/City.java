@@ -2,7 +2,7 @@ package com.example.backend.city;
 
 import com.example.backend.airport.Airport;
 import com.example.backend.cityTag.CityTag;
-import com.example.backend.cityWishlist.CityWishlist;
+//import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.landmark.Landmark;
 import com.example.backend.cityList.CityList;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -64,8 +64,8 @@ public class City implements Serializable {
     private Set<CityList> cityLists;
 
     // With CityWishList
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private Set<CityWishlist> cityWishlists;
+//    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+//    private Set<CityWishlist> cityWishlists;
 
     // With CityTag
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
@@ -189,7 +189,7 @@ public class City implements Serializable {
                 ", airports=" + airports +
                 ", landmarks=" + landmarks +
                 ", cityLists=" + cityLists +
-                ", cityWishlists=" + cityWishlists +
+//                ", cityWishlists=" + cityWishlists +
                 ", cityTags=" + cityTags +
                 '}';
     }

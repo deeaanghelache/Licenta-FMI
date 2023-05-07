@@ -1,3 +1,10 @@
+// Site's colors
+$color-1: #cfb895;
+$color-2: #ffc533;
+$color-3: #CC5500;
+$color-4: #FFD580;
+$color-5: #25C5FA;
+
 #board {
     border: 2px solid lightgrey;
     border-radius: 25px !important;
@@ -14,10 +21,134 @@
     border-top-left-radius: 25px !important; 
 }
 
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
+#mainImages {
+    display: flex;
+    margin: 15px;
 }
 
+#image1 {
+    flex: 33.3%;
+}
+
+#image2 {
+    flex: 33.3%;
+}
+
+#image3 {
+    flex: 33.3%;
+}
+
+#motto>p{
+    font-size: 43px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#journalContent {
+    display: flex;
+}
+
+#posts {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    width: 600px;
+    flex: 55%;
+    text-align: center;
+}
+
+#gallery {
+    flex: 45%;
+    background-color: $color-4;
+    margin: 20px;
+    margin-top: 45px !important;
+}
+
+#gallery h4 {
+    text-align: center;
+    margin: 20px;
+    font-weight: 300;
+}
+
+#galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin: 20px;
+}
+
+.image {
+    width: 180px;
+    height: 180px;
+}
+
+#postGrid {
+    display: flex;
+    box-shadow: 1px 1px 10px gray;
+    margin: 30px;
+    height: 400px;
+    width: 700px;
+    cursor: pointer;
+    transition: color 0.5s linear;
+}
+
+#leftSide {
+    flex: 50%;
+}
+
+#rightSide {
+    flex: 50%;
+    padding: 30px;
+    text-align: justify;
+}
+
+#postGrid:hover {
+    color: $color-3;
+}
+
+#rightSide p {
+    margin-top: 30px;
+}
+
+#addPost {
+    margin-top: 20px;
+    padding: 50px;
+    text-align: center;
+    background-color: $color-1;
+}
+
+#postDetails div {
+    margin: 10px;
+}
+
+#addPostForm {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    background-color: transparent;
+    border-bottom: 2px solid black !important;
+    color: black;
+    border-radius: 0% !important;
+}
+
+.photoInput {
+    background-color: transparent;
+    border: none;
+    margin-top: 20px;
+    width: 515px;
+}
+
+label {
+    float: left;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+#addButton {
+    margin-top: 20px;
+}

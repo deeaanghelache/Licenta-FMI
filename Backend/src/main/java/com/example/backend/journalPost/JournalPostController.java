@@ -23,4 +23,11 @@ public class JournalPostController {
         List<JournalPost> journalPosts = journalPostService.getAllJournalPostsForGivenUser(userId);
         return new ResponseEntity<>(journalPosts, HttpStatus.OK);
     }
+
+    @GetMapping("/getAllPhotosForAGivenUser/{userId}")
+    private ResponseEntity<List<String>> getAllPhotosForAGivenUser(@PathVariable("userId") Integer userId){
+        List<JournalPost> journalPosts = journalPostService.getAllJournalPostsForGivenUser(userId);
+        List<String> photos = journalPosts.stream().map(JournalPost::getPhoto).toList();
+        return new ResponseEntity<>(photos, HttpStatus.OK);
+    }
 }

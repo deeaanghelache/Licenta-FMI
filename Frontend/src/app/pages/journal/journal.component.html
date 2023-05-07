@@ -32,12 +32,103 @@
         </div>
       </nav>
     </header>
-    
-    <footer>
-      <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
-        Copyright © 2023 Andreea Anghelache | All rights reserved
+
+    <main>
+      <div id="mainImages" *ngIf="display === false">
+        <div id="image1">
+          <img src="{{ image1 }}" style="width:450px;height:685px;" >
+        </div>
+        <div id="image2">
+          <img src="{{ image2 }}" style="width:450px;height:635px;" >
+          <div id="motto">
+            <p>Travel. Write. Repeat.</p>
+          </div>
+        </div>
+        <div id="image3">
+          <img src="{{ image3 }}" style="width:450px;height:685px;" >
+        </div>
       </div>
-    </footer>
+
+      <div id="journalContent">
+        <div id="posts">
+          <div *ngIf="display === false">
+            <div id="postGrid" *ngFor="let post of posts" (click)="showPost()">
+              <div id="leftSide">
+                <img src="{{ post['photo'] }}" style="width:100%; height:100%">
+              </div>
+              <div id="rightSide">
+                <p> {{ post['dateWritten'] }} </p>
+                <h3> {{ post['name'] }} </h3>
+                <p> {{ post['post'] | slice:0:150 }}{{ post['post'].length > 50 ? '...' : ''}}</p>
+              </div>
+            </div>
+          </div>
+          <div id="wholePost" *ngIf="display === true">
+            <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closePost()">Go back to all posts</button></div>
+            <app-journal-post></app-journal-post>
+          </div>
+        </div>
+        <div id="gallery">
+          <h4> My memories </h4>
+          <div id="galleryGrid">
+            <div class="image" *ngFor="let image of images">
+              <img src="{{ image }}" style="width: 100%; height: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="addPost">
+        <h1>Let's digitally capture our travels</h1>
+          <div id="addPostForm">
+            <form [formGroup]="journalPostForm" (ngSubmit)="addPost()">
+              <div class="form-group">
+                  <label for="title">Title</label>
+                  <input class="form-control input" 
+                  id="title"
+                  placeholder="Title"
+                  [ngClass]="journalPostForm.controls['name'].errors ? 'is-invalid' : ''"
+                  formControlName="name" />
+              </div>
+
+              <div class="form-group">
+                <label for="post">Post</label>
+                <textarea id="post"
+                class="form-control input" 
+                placeholder="Post"
+                rows="5"
+                [ngClass]="journalPostForm.controls['post'].errors ? 'is-invalid' : ''"
+                formControlName="post"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="photo">Photo</label>
+                <input class="form-control photoLabel" 
+                id="photo"
+                placeholder="Photo"
+                type="file"
+                [ngClass]="journalPostForm.controls['photo'].errors ? 'is-invalid' : ''"
+                formControlName="photo" />
+              </div>
+
+              <button 
+              id="addButton" 
+              class="btn btn-dark rounded-pill"
+              [disabled]="journalPostForm.invalid" 
+              type="submit">
+              Submit
+              </button>
+            </form>
+          </div>
+      </div>
+      <footer>
+        <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
+          Copyright © 2023 Andreea Anghelache | All rights reserved
+        </div>
+      </footer>
+    </main>
+    
+
 </div>
     
     

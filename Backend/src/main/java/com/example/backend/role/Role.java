@@ -1,6 +1,5 @@
 package com.example.backend.role;
 
-import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.userRole.UserRole;
 import jakarta.persistence.*;
 
