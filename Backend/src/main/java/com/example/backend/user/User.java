@@ -35,8 +35,6 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String photo;
 
-    @Column(columnDefinition = "varchar(100)")
-
     // Foreign Keys
 
     // With UserRole

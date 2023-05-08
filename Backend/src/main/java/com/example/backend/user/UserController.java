@@ -1,8 +1,10 @@
 package com.example.backend.user;
 
 import com.example.backend.userRole.UserRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final UserRoleService userRoleService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserController(UserService userService, UserRoleService userRoleService) {
         this.userService = userService;
@@ -70,9 +74,11 @@ public class UserController {
         }
 
         var password = newUser.getPassword();
+        System.out.println("Initial password: " + password);
+        var hashedPassword = bCryptPasswordEncoder.encode(password);
+        System.out.println("Hashed password: " + hashedPassword);
 
-        // TODO: hash password
-
+        newUser.setPassword(hashedPassword);
         User user = userService.addUser(newUser);
 
         userRoleService.addUserRoleForUsers(user.getUserId());
@@ -85,16 +91,11 @@ public class UserController {
 
         for (var user : users){
             if (user.getEmail().equals(userTryingToLogIn.getEmail())){
-                String password1 = user.getPassword();
-                String password2 = userTryingToLogIn.getPassword();
-
-                if (password1.equals(password2)){
+                if (bCryptPasswordEncoder.matches(userTryingToLogIn.getPassword(), user.getPassword())){
                     return new ResponseEntity<>(user, HttpStatus.OK);
                 }
-                // TODO: verificare pe hashed passwords
             }
         }
-
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
