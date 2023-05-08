@@ -32,13 +32,13 @@
     </header>
     
     <main>
-        <div id="heart">
+        <div id="heart" *ngIf="roadtrip === false">
             <i class="far fa-heart"></i>
         </div>
-        <div id="title">
+        <div id="title" *ngIf="roadtrip === false">
             <h1>My Wishlist</h1>
         </div>
-        <div id="cityTable">
+        <div id="cityTable" *ngIf="roadtrip === false">
             <table class="table">
                 <thead>
                   <tr>
@@ -61,7 +61,7 @@
                       {{ city['countryEng'] }}
                     </td>
                     <td>
-                      <button class="btn btn-outline-warning rounded-pill">Generate a roadtrip</button> 
+                      <button class="btn btn-outline-warning rounded-pill" (click)="openRoadtrip(city)">Generate a roadtrip</button> 
                     </td>
                     <td>
                       <button class="btn btn-outline-warning rounded-pill">Plan your trip</button> 

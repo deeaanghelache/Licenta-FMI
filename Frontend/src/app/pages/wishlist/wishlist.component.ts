@@ -14,6 +14,9 @@ export class WishlistComponent implements OnInit {
   public currentId: number = 0;
   public currentEmail = '';
   public cityLists = [];
+  public chosenCity:any;
+  public roadtrip = false;
+  public planLandmarks = false;
 
   constructor(private cityService:CityService, private userService:UserService, private cityListService:CityListService) { }
 
@@ -70,6 +73,15 @@ export class WishlistComponent implements OnInit {
       console.log("Distance Matrix");
       console.log(response);
     })
+  }
+
+  openRoadtrip(city:any){
+    this.roadtrip = true;
+    this.chosenCity = city;
+  }
+
+  closeRoadtrip(){
+    this.roadtrip = false;
   }
 
   logout(){

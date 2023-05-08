@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { JournalComponent } from './pages/journal/journal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,6 +22,7 @@ import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/citie
 import { CityInfoComponent } from './pages/cities/city-info/city-info.component';
 import { ButtonDirective } from './directives/button.directive';
 import { JournalPostComponent } from './pages/journal/journal-post/journal-post.component';
+import { Page401Component } from './pages/page401/page401.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { JournalPostComponent } from './pages/journal/journal-post/journal-post.
     CitiesComponent,
     WishlistComponent,
     AdminComponent,
-    Page405Component,
+    Page401Component,
     ProfileComponent,
     JournalComponent,
     UsersComponent,
