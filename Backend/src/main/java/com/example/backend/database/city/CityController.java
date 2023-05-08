@@ -22,6 +22,12 @@ public class CityController {
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
+    @GetMapping("/getDistanceMatrix")
+    public ResponseEntity<String[][]> getDistanceMatrix(){
+        var distanceMatrix = cityService.getDistanceMatrix();
+        return new ResponseEntity<>(distanceMatrix, HttpStatus.OK);
+    }
+
     @GetMapping("getCityByNameContainsWord/{word}")
     public ResponseEntity<List<City>> getCitiesByNameContainsWord(@PathVariable("word") String word){
         List<City> cities = new ArrayList<>();

@@ -65,6 +65,13 @@ export class WishlistComponent implements OnInit {
     });
   }
 
+  getDistanceMatrix(){
+    this.cityService.getDistanceMatrix().subscribe((response:any) => {
+      console.log("Distance Matrix");
+      console.log(response);
+    })
+  }
+
   logout(){
     sessionStorage.clear();
     this.admin = false;

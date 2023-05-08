@@ -91,7 +91,7 @@ export class CitiesComponent implements OnInit {
     this.currentCity = city;
     let lat = city['latitude'];
     let long = city['longitude'];
-    this.map.setView([lat, long], 12);
+    this.map.setView([lat, long], 13);
   }
 
   closeCityInfos(){

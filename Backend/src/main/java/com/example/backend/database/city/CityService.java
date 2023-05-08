@@ -4,18 +4,65 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Transactional
 public class CityService {
+    public static final double earthRadiusKm = 6371;
     private CityInterface cityInterface;
 
     @Autowired
     public CityService(CityInterface cityInterface) {
         this.cityInterface = cityInterface;
     }
+
+    public static double haversine(double firstCityLatitude, double firstCityLongitude, double secondCityLatitude, double secondCityLongitude) {
+        double distanceLatitude = Math.toRadians(secondCityLatitude - firstCityLatitude);
+        double distanceLongitude = Math.toRadians(secondCityLongitude - firstCityLongitude);
+
+        firstCityLatitude = Math.toRadians(firstCityLatitude);
+        secondCityLatitude = Math.toRadians(secondCityLatitude);
+
+        double formula = Math.sin(distanceLatitude / 2) * Math.sin(distanceLatitude / 2) +
+                Math.sin(distanceLongitude / 2) * Math.sin(distanceLongitude / 2) * Math.cos(firstCityLatitude) * Math.cos(secondCityLatitude);
+        double finalFormula = 2 * Math.asin(Math.sqrt(formula));
+        return earthRadiusKm * finalFormula;
+    }
+
+    public String[][] getDistanceMatrix(){
+        List<City> cities = getAllCities();
+        List<String> citiesNames = cities.stream().map(City::getNameEng).toList();
+
+        int numberOfRows = citiesNames.size() + 1;
+        int numberOfColumns = citiesNames.size() + 1;
+
+        String[][] distanceMatrix = new String[numberOfRows][numberOfColumns];
+
+        // the first row and column should have the names of the cities
+        for (int i = 1; i < numberOfRows; i++) {
+            var index = i - 1;
+            distanceMatrix[0][i] = citiesNames.get(index);
+            distanceMatrix[i][0] = citiesNames.get(index);
+        }
+
+        for (int i = 1; i < numberOfRows; i++){
+            for (int j = 1; j < numberOfColumns; j++){
+                var index = j - 1;
+                if (!Objects.equals(cities.get(index).getNameEng(), distanceMatrix[i][0])) {
+                    var firstCity = cities.get(index);
+                    var secondCity = getCityByNameEng(distanceMatrix[i][0]);
+                    var distanceBetweenTheCities = haversine(firstCity.getLatitude(), firstCity.getLongitude(), secondCity.getLatitude(), secondCity.getLongitude());
+                    distanceMatrix[i][j] = String.valueOf(distanceBetweenTheCities);
+                } else {
+                    distanceMatrix[i][j] = String.valueOf(0);
+                }
+            }
+        }
+        return distanceMatrix;
+    }
+
+    
 
     // FIND (GET)
     public List<City> getAllCities(){

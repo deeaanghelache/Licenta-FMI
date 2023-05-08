@@ -51,4 +51,11 @@ export class CityService {
       this.privateHttpHeaders
     )
   }
+
+  getDistanceMatrix(){
+    return this.http.get(
+      this.baseUrl + "city/getDistanceMatrix",
+      this.privateHttpHeaders
+    )
+  }
 }
