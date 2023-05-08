@@ -64,7 +64,7 @@
             </div>
           </div>
           <div id="wholePost" *ngIf="display === true">
-            <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closePost()">Go back to all posts</button></div>
+            <div id="goBack"><button class="btn btn-outline-warning rounded-pill closeButton" (click)="closePost()">Go back to all posts</button></div>
             <app-journal-post [post]="currentPost"></app-journal-post>
           </div>
         </div>
