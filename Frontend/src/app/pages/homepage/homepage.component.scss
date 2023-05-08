@@ -1,11 +1,12 @@
 // Homepage SCSS 
 
 // Site's colors
-$color-1: #cfb895;
+$color-1: #E0D8B0;
 $color-2: #ffc533;
-$color-3: #5D3FF5;
-$color-4: #2F62DE;
-$color-5: #25C5FA;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+$color-6: #ccaf8f;
 
 #logout{
     cursor: pointer;
@@ -171,7 +172,7 @@ img{
 }
 
 .exploreGrid {
-    border: 2px solid orange;
+    border: 2px solid $color-2;
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
@@ -181,7 +182,7 @@ img{
 }
 
 .planGrid {
-    border: 2px solid orange;
+    border: 2px solid $color-2;
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
@@ -201,7 +202,7 @@ img{
 }
 
 .exploreGrid:hover, .planGrid:hover, .favGrid:hover {
-    background-color: orange;
+    background-color: $color-2;
     box-shadow: 1px 1px 18px #888888;
 }
 
