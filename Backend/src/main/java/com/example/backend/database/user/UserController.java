@@ -99,6 +99,14 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    // PUT
+    @PutMapping("/changePassword/{userId}/{newPassword}")
+    public ResponseEntity<?> changePassword(@PathVariable("userId") Integer userId, @PathVariable("newPassword") String newPassword){
+        var newPasswordHashed = bCryptPasswordEncoder.encode(newPassword);
+        userService.changeUserPassword(Long.valueOf(userId), newPasswordHashed);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     // DELETE
     @DeleteMapping("/deleteAllUsers")
     public ResponseEntity<?> deleteAllUsers(){
@@ -122,7 +130,7 @@ public class UserController {
     public ResponseEntity<?> deleteUserByEmail(@PathVariable("email") String email){
         userService.deleteUserByUserEmail(email);
 
-        // TODO: cand stergi, sa se stearga si role
+        // TODO: cand stergi, sa se stearga toate dependintele
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

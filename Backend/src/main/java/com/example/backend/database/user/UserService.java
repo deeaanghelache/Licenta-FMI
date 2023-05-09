@@ -53,14 +53,13 @@ public class UserService {
 
     // POST
     public User addUser(User user){
-        // TODO: criptare parola
-
-
         return userInterface.save(user);
     }
 
     // PUT (UPDATE)
-    // TODO: put
+    public void changeUserPassword(Long userId, String newPassword){
+        userInterface.queryBy(userId, newPassword);
+    }
 
     // DELETE
     public void deleteAllUsers(){

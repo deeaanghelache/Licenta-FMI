@@ -84,7 +84,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [LoggedUserGuardGuard],
+    // canActivate: [LoggedUserGuardGuard],
   }
 ];
 

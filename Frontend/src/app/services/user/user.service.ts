@@ -43,4 +43,11 @@ export class UserService {
       this.privateHttpHeaders
     )
   }
+
+  changePassword(userId:any, newPassword:any){
+    return this.http.put(
+      this.baseUrl + "user/changePassword/" + userId + "/" + newPassword,
+      this.privateHttpHeaders
+    )
+  }
 }

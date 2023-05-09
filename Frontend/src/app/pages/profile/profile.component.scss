@@ -114,7 +114,7 @@ hr {
     width: 250px;
 }
 
-#gallery {
+#emptyMiddle {
     position: relative;
     left: 360px;
     top: -280px;
@@ -138,4 +138,30 @@ hr {
 #galleryImage img {
     width: 250px;
     height: 250px;
+}
+
+.fa-xmark {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#passwordForm {
+    position: relative;
+    left: 170px;
+    top: -20px;
+    width: 700px;
+    text-align: center;
+}
+
+h2 {
+    margin: 10px;
+    margin-bottom: 50px !important;
+}
+
+.form-group {
+    margin: 10px;
+}
+
+#changePasswordButton {
+    margin-top: 20px;
 }

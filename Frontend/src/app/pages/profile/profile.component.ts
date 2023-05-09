@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -16,6 +17,11 @@ export class ProfileComponent implements OnInit {
   public currentEmail:string = '';
   public currentUsername: string = '';
   public currentPhoto:string = '';
+  public displayGallery:boolean = true;
+  public message: string = '';
+  public displayChangePasswordForm: boolean = false;
+  public displayChangeUsernameForm: boolean = false;
+  public changePasswordForm!:FormGroup;
   public images = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -29,7 +35,7 @@ export class ProfileComponent implements OnInit {
     "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
   ];
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private formBuilder:FormBuilder) { }
 
   getUsername(){
     this.currentUsername = sessionStorage.getItem("username") as string;
@@ -45,6 +51,18 @@ export class ProfileComponent implements OnInit {
     this.checkIfLoggedIn();
     this.checkIfAdmin();
     this.getUserByEmail(this.currentEmail);
+    this.changePasswordForm = this.formBuilder.group(
+      {
+        password : ['', Validators.required],
+        confirmPassword : ['', Validators.required] 
+      }, { validators: [this.passwordAndConfirmPasswordChecker]}
+    )
+  }
+  
+  passwordAndConfirmPasswordChecker : ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
+    let password = group.get('password')?.value;
+    let confirmPassword = group.get('confirmPassword')?.value
+    return password === confirmPassword ? null : { passwordsMismatched: true }
   }
 
   checkIfLoggedIn(){
@@ -71,6 +89,37 @@ export class ProfileComponent implements OnInit {
 
   goToJournal(){
     this.router.navigateByUrl("/journal");
+  }
+
+  openChangePasswordForm(){
+    this.displayChangePasswordForm = true;
+    this.displayGallery = false;
+    this.displayChangeUsernameForm = false;
+  }
+
+  openChangeUsernameForm(){
+    this.displayChangeUsernameForm = true;
+    this.displayGallery = false;
+    this.displayChangePasswordForm = false;
+  }
+
+  closeChangePasswordForm(){
+    this.displayGallery = true;
+    this.displayChangePasswordForm = false;
+    this.displayChangeUsernameForm = false;
+  }
+
+  closeChangeUsernameForm(){
+    this.displayGallery = true;
+    this.displayChangeUsernameForm = false;
+    this.displayChangePasswordForm = false;
+  }
+
+  changePassword(){
+    this.userService.changePassword(this.currentId, this.changePasswordForm.get('password')?.value).subscribe((response:any) => {
+      this.changePasswordForm.reset;
+      this.message = "Your password has been successfully changed!"
+    })
   }
 
   logout(){

@@ -13,7 +13,7 @@
           <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
           <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
           <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
-          <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+          <li class="mainMenu" id="button6" *ngIf = "logged === true"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
           <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
           <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
           <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
@@ -48,19 +48,59 @@
         </div>
         <div class="backendRequests">
           <div class="changePasswordButton">
-            <button class="btn btn-outline-dark rounded-pill"> Change password </button>
+            <button class="btn btn-outline-dark rounded-pill" (click)="openChangePasswordForm()"> Change password </button>
           </div>
           <div class="changeUsernameButton">
-            <button class="btn btn-outline-dark rounded-pill"> Change username </button>
+            <button class="btn btn-outline-dark rounded-pill" (click)="openChangeUsernameForm()"> Change username </button>
           </div>
         </div>
-        <div id="gallery">
-          <h3> My last adventures </h3>
-          <button class="btn btn-outline-warning rounded-pill" (click)="goToJournal()">Go to journal</button>
-          <div id="photos">
-            <div id="galleryImage" *ngFor="let image of images">
-              <img src="{{ image }}">
+        <div id="emptyMiddle">
+          <div id="gallery" *ngIf="displayGallery === true">
+            <h3> My last adventures </h3>
+            <button class="btn btn-outline-warning rounded-pill" (click)="goToJournal()">Go to journal</button>
+            <div id="photos">
+              <div id="galleryImage" *ngFor="let image of images">
+                <img src="{{ image }}">
+              </div>
             </div>
+          </div>
+          <div id="displayChangePasswordForm" *ngIf="displayChangePasswordForm === true">
+            <i class="fa-solid fa-xmark" (click)="closeChangePasswordForm()"></i>
+            <div id="passwordForm">
+              <h2>Change your password</h2>
+              <div id="form">
+                <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="New password"
+                        type="password"
+                        [ngClass]="changePasswordForm.controls['password'].errors ? 'is-invalid' : ''"
+                        formControlName="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Confirm your new password"
+                        type="password"
+                        [ngClass]="changePasswordForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
+                        formControlName="confirmPassword"/>
+                    </div>
+
+                    <p id="message"> {{ message }} </p>
+
+                    <button 
+                    class="btn btn-outline-warning rounded-pill"
+                    id="changePasswordButton" 
+                    [disabled]="changePasswordForm.invalid" 
+                    type="submit">
+                        Change password
+                    </button>
+                </form>
+            </div>
+            </div>
+          </div>
+          <div id="displayChangeUsernameForm" *ngIf="displayChangeUsernameForm === true">
+            <i class="fa-solid fa-xmark" (click)="closeChangeUsernameForm()"></i>
           </div>
         </div>
       </div>
