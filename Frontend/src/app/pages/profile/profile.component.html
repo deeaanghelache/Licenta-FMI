@@ -101,6 +101,29 @@
           </div>
           <div id="displayChangeUsernameForm" *ngIf="displayChangeUsernameForm === true">
             <i class="fa-solid fa-xmark" (click)="closeChangeUsernameForm()"></i>
+            <div id="usernameForm">
+              <h2>Change your Username</h2>
+              <div id="form">
+                <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="New username"
+                        [ngClass]="changeUsernameForm.controls['newUsername'].errors ? 'is-invalid' : ''"
+                        formControlName="newUsername" />
+                    </div>
+
+                    <p id="message"> {{ message }} </p>
+
+                    <button 
+                    class="btn btn-outline-warning rounded-pill"
+                    id="changeUsernameButton" 
+                    [disabled]="changeUsernameForm.invalid" 
+                    type="submit">
+                        Change username
+                    </button>
+                </form>
+            </div>
+            </div>
           </div>
         </div>
       </div>

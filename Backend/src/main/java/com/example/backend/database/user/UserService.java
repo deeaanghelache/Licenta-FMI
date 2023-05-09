@@ -61,6 +61,10 @@ public class UserService {
         userInterface.queryBy(userId, newPassword);
     }
 
+    public void changeUsername(Integer userId, String newUsername){
+        userInterface.queryBy(userId, newUsername);
+    }
+
     // DELETE
     public void deleteAllUsers(){
         userInterface.deleteAll();

@@ -107,6 +107,12 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("/changeUsername/{userId}/{newUsername}")
+    public ResponseEntity<?> changeUsername(@PathVariable("userId") Integer userId, @PathVariable("newUsername") String newUsername){
+        userService.changeUsername(userId, newUsername);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     // DELETE
     @DeleteMapping("/deleteAllUsers")
     public ResponseEntity<?> deleteAllUsers(){

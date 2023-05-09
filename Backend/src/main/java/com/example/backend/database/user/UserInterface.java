@@ -20,7 +20,13 @@ public interface UserInterface extends JpaRepository<User, Integer> {
             "SET user.password = :newPassword " +
             "WHERE user.user_id = :userId", nativeQuery = true)
     void queryBy(@Param("userId") Long userId, @Param("newPassword") String newPassword);
-    
+
+    @Modifying
+    @Query(value = "UPDATE user " +
+            "SET user.username = :newUsername " +
+            "WHERE user.user_id = :userId", nativeQuery = true)
+    void queryBy(@Param("userId") Integer userId, @Param("newUsername") String newUsername);
+
     void deleteUserByUserId(Integer userId);
     void deleteUserByUsername(String username);
     void deleteUserByEmail(String email);

@@ -145,7 +145,7 @@ hr {
     cursor: pointer;
 }
 
-#passwordForm {
+#passwordForm, #usernameForm {
     position: relative;
     left: 170px;
     top: -20px;
@@ -162,6 +162,12 @@ h2 {
     margin: 10px;
 }
 
-#changePasswordButton {
+#changePasswordButton, #changeUsernameButton {
     margin-top: 20px;
+}
+
+#message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
 }

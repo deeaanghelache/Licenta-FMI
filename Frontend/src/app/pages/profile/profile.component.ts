@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   public displayChangePasswordForm: boolean = false;
   public displayChangeUsernameForm: boolean = false;
   public changePasswordForm!:FormGroup;
+  public changeUsernameForm!:FormGroup;
   public images = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -56,7 +57,12 @@ export class ProfileComponent implements OnInit {
         password : ['', Validators.required],
         confirmPassword : ['', Validators.required] 
       }, { validators: [this.passwordAndConfirmPasswordChecker]}
-    )
+    );
+    this.changeUsernameForm = this.formBuilder.group(
+      {
+        newUsername : ['', Validators.required]
+      }
+    );
   }
   
   passwordAndConfirmPasswordChecker : ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
@@ -113,12 +119,20 @@ export class ProfileComponent implements OnInit {
     this.displayGallery = true;
     this.displayChangeUsernameForm = false;
     this.displayChangePasswordForm = false;
+    window.location.reload();
   }
 
   changePassword(){
     this.userService.changePassword(this.currentId, this.changePasswordForm.get('password')?.value).subscribe((response:any) => {
       this.changePasswordForm.reset;
       this.message = "Your password has been successfully changed!"
+    })
+  }
+  
+  changeUsername(){
+    this.userService.changeUsername(this.currentId, this.changeUsernameForm.get('newUsername')?.value).subscribe((response:any) => {
+      this.changeUsernameForm.reset;
+      this.message = "Your username has been successfully changed!"
     })
   }
 

@@ -50,4 +50,11 @@ export class UserService {
       this.privateHttpHeaders
     )
   }
+
+  changeUsername(userId:any, newUsername:any){
+    return this.http.put(
+      this.baseUrl + "user/changeUsername/" + userId + "/" + newUsername,
+      this.privateHttpHeaders
+    )
+  }
 }
