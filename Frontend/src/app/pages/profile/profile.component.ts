@@ -69,6 +69,10 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  goToJournal(){
+    this.router.navigateByUrl("/journal");
+  }
+
   logout(){
     sessionStorage.clear();
     this.admin = false;
