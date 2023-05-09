@@ -13,16 +13,16 @@ $color-5: #DEA057;
     z-index: -1;
 }
 
-#background{
-    position: relative;
+#board {
+    overflow-y: hidden;
 }
 
 .body{
     position: absolute;
-    top: 50vh;
+    top: 30vh;
     left: 0;
     width: 99vw;
-    height: 48.5vh;
+    height: 100vh;
     background-color: var(--input-color);
     z-index: 1;
     margin: 5px;
@@ -31,8 +31,8 @@ $color-5: #DEA057;
 
 .profilePhoto{
     position: absolute;
-    top: 35vh;
-    left: 20px;
+    top: 10vh;
+    left: 40px;
     width: 250px;
     height: 250px;
     border: 2px solid white;
@@ -77,4 +77,65 @@ $color-5: #DEA057;
 .navbar{
     border-top-right-radius: 25px !important; 
     border-top-left-radius: 25px !important; 
+}
+
+hr {
+    width: 1030px;
+}
+
+.backendRequests {
+    background-color: $color-1;
+    box-shadow: 1px 1px 10px gray;
+    width: 300px;
+    height: 420px;
+    position: relative;
+    z-index: 2;
+    top: 110px;
+    left: 20px;
+}
+
+.changePasswordButton {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+.changeUsernameButton {
+    position: relative;
+    top: 30px;
+    left: 20px;
+}
+
+.changePasswordButton button {
+    width: 250px;
+}
+
+.changeUsernameButton button {
+    width: 250px;
+}
+
+#gallery {
+    position: relative;
+    left: 360px;
+    top: -280px;
+}
+
+#photos {
+    margin-top: 20px;
+    margin-left: -10px;
+    width: 73vw;
+    height: 36vh;
+    display:flex; 
+    overflow-x: auto;
+}
+
+#galleryImage {
+    margin: 10px;
+    flex: 0 0 auto;
+    object-fit: cover;
+}
+
+#galleryImage img {
+    width: 250px;
+    height: 250px;
 }

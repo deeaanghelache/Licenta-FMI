@@ -99,6 +99,7 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    // DELETE
     @DeleteMapping("/deleteAllUsers")
     public ResponseEntity<?> deleteAllUsers(){
         userService.deleteAllUsers();

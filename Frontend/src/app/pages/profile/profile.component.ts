@@ -16,6 +16,18 @@ export class ProfileComponent implements OnInit {
   public currentEmail:string = '';
   public currentUsername: string = '';
   public currentPhoto:string = '';
+  public images = [
+    "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+    "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
+    "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+    "../../../assets/photos/pexels-nicolas-2925146.jpg",
+    "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
+    "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+    "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
+    "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+    "../../../assets/photos/pexels-nicolas-2925146.jpg",
+    "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
+  ];
 
   constructor(private router: Router, private userService: UserService) { }
 
