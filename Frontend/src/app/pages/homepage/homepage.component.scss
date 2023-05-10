@@ -176,9 +176,9 @@ img{
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
-    margin-left: 60px;
-    margin-right: 10px;
-    transition: background-color 0.3s linear
+    margin-right: 60px;
+    margin-left: 10px;
+    transition: background-color 0.2s linear
 }
 
 .planGrid {
@@ -192,13 +192,13 @@ img{
 }
 
 .favGrid {
-    border: 2px solid orange;
+    border: 2px solid $color-2;
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
-    margin-right: 60px;
-    margin-left: 10px;
-    transition: background-color 0.2s linear
+    margin-left: 60px;
+    margin-right: 10px;
+    transition: background-color 0.3s linear;
 }
 
 .exploreGrid:hover, .planGrid:hover, .favGrid:hover {
@@ -226,7 +226,13 @@ img{
     flex: 65%;
     margin-left: 10px;
     margin-right: 10px;
-    padding: 15px;
+    padding: 40px;
+    text-align: justify;
+}
+
+#presentation h2 {
+    text-align: center;
+    padding: 30px;
 }
 
 .navigation>ul>li {
@@ -258,4 +264,17 @@ address>a{
 
 a {
     text-decoration: none;
+}
+
+.card h5 {
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 40px !important;
+}
+
+.card-text {
+    padding: 30px;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    text-align: justify;
 }
