@@ -23,6 +23,7 @@ import { CityInfoComponent } from './pages/cities/city-info/city-info.component'
 import { ButtonDirective } from './directives/button.directive';
 import { JournalPostComponent } from './pages/journal/journal-post/journal-post.component';
 import { Page401Component } from './pages/page401/page401.component';
+import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-landmarks.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { Page401Component } from './pages/page401/page401.component';
     CityInfoComponent,
     ButtonDirective,
     JournalPostComponent,
+    PlanLandmarksComponent,
   ],
   imports: [
     BrowserModule,

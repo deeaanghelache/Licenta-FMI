@@ -15,7 +15,7 @@ export class WishlistComponent implements OnInit {
   public currentEmail = '';
   public cityLists = [];
   public chosenCity:any;
-  public roadtrip = false;
+  public displayLandmarkPlanning: boolean = false;
   public planLandmarks = false;
 
   constructor(private cityService:CityService, private userService:UserService, private cityListService:CityListService) { }
@@ -75,13 +75,13 @@ export class WishlistComponent implements OnInit {
     })
   }
 
-  openRoadtrip(city:any){
-    this.roadtrip = true;
+  openPlanningLandmarks(city:any){
+    this.displayLandmarkPlanning = true;
     this.chosenCity = city;
   }
 
-  closeRoadtrip(){
-    this.roadtrip = false;
+  closePlanningLandmarks(){
+    this.displayLandmarkPlanning = false;
   }
 
   logout(){

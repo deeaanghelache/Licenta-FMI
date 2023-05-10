@@ -32,13 +32,13 @@
     </header>
     
     <main>
-        <div id="heart" *ngIf="roadtrip === false">
+        <div id="heart" *ngIf="displayLandmarkPlanning === false">
             <i class="far fa-heart"></i>
         </div>
-        <div id="title" *ngIf="roadtrip === false">
+        <div id="title" *ngIf="displayLandmarkPlanning === false">
             <h1>My Wishlist</h1>
         </div>
-        <div id="cityTable" *ngIf="roadtrip === false">
+        <div id="cityTable" *ngIf="displayLandmarkPlanning === false">
             <table class="table">
                 <thead>
                   <tr>
@@ -61,14 +61,17 @@
                       {{ city['countryEng'] }}
                     </td>
                     <td>
-                      <button class="btn btn-outline-warning rounded-pill" (click)="openRoadtrip(city)">Generate a roadtrip</button> 
+                      <button class="btn btn-outline-warning rounded-pill">Generate a roadtrip</button> 
                     </td>
                     <td>
-                      <button class="btn btn-outline-warning rounded-pill">Plan your trip</button> 
+                      <button class="btn btn-outline-warning rounded-pill" (click)="openPlanningLandmarks(city)">Plan your trip</button> 
                     </td>
                   </tr>
                 </tbody>
               </table>
+        </div>
+        <div id="planningLandmarks" *ngIf="displayLandmarkPlanning === true">
+          <app-plan-landmarks [chosenCity]="chosenCity"></app-plan-landmarks>
         </div>
     </main>
 
