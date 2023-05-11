@@ -7,14 +7,16 @@ import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/citie
 import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
 import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
 import { UsersComponent } from './pages/admin/menuPages/users/users.component';
-import { BlogComponent } from './pages/blog/blog.component';
+import { JournalComponent } from './pages/journal/journal.component';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginComponent } from './pages/login/login.component';
-import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { LoggedUserGuardGuard } from './guards/loggedUserGuard/logged-user-guard.guard';
+import { Page401Component } from './pages/page401/page401.component';
+import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-landmarks.component';
 
 const routes: Routes = [
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
   },
   {
     path: 'wishlist',
-    component: WishlistComponent
+    component: WishlistComponent,
+    canActivate: [LoggedUserGuardGuard],
   },
   {
     path: 'cities',
@@ -71,16 +74,18 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'page405',
-    component: Page405Component
+    path: 'page401',
+    component: Page401Component
   },
   {
-    path: 'blog',
-    component: BlogComponent
+    path: 'journal',
+    component: JournalComponent,
+    canActivate: [LoggedUserGuardGuard],
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [LoggedUserGuardGuard],
   }
 ];
 

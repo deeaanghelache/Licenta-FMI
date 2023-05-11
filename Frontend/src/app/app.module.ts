@@ -11,9 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { Page405Component } from './pages/page405/page405.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BlogComponent } from './pages/blog/blog.component';
+import { JournalComponent } from './pages/journal/journal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersComponent } from './pages/admin/menuPages/users/users.component';
 import { AirportsComponent } from './pages/admin/menuPages/airports/airports.component';
@@ -21,6 +20,11 @@ import { TagsComponent } from './pages/admin/menuPages/tags/tags.component';
 import { LandmarksComponent } from './pages/admin/menuPages/landmarks/landmarks.component';
 import { CitiesAdminComponent } from './pages/admin/menuPages/cities-admin/cities-admin.component';
 import { CityInfoComponent } from './pages/cities/city-info/city-info.component';
+import { ButtonDirective } from './directives/button.directive';
+import { JournalPostComponent } from './pages/journal/journal-post/journal-post.component';
+import { Page401Component } from './pages/page401/page401.component';
+import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-landmarks.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -31,15 +35,18 @@ import { CityInfoComponent } from './pages/cities/city-info/city-info.component'
     CitiesComponent,
     WishlistComponent,
     AdminComponent,
-    Page405Component,
+    Page401Component,
     ProfileComponent,
-    BlogComponent,
+    JournalComponent,
     UsersComponent,
     AirportsComponent,
     TagsComponent,
     LandmarksComponent,
     CitiesAdminComponent,
-    CityInfoComponent
+    CityInfoComponent,
+    ButtonDirective,
+    JournalPostComponent,
+    PlanLandmarksComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +55,7 @@ import { CityInfoComponent } from './pages/cities/city-info/city-info.component'
     HttpClientModule,
     SharedInfoModule,
     NgbModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

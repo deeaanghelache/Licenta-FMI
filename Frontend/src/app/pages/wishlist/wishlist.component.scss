@@ -1,0 +1,82 @@
+// Wishlist scss
+
+// Site's colors
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+
+#board {
+    border: 2px solid lightgrey;
+    border-radius: 25px !important;
+    height: 98vh;
+    margin: 5px;
+    margin-top: 10px !important;
+    box-shadow: 1px 1px 18px #888888;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.navbar{
+    border-top-right-radius: 25px !important; 
+    border-top-left-radius: 25px !important; 
+}
+
+#title {
+    position: relative;
+    top: 10px;
+    left: 43vw;
+}
+
+#heart {
+    position: relative;
+    top: 20px;
+    left: 48vw;
+    font-size: 50px;
+}
+
+#cityTable {
+    margin: 40px;
+}
+
+tr {
+    text-align: center;
+}
+
+.fa-trash {
+    font-size: 20px;
+    position: relative;
+    top: 7px;
+    left: 10px;
+    transition: color 0.3s linear;
+    cursor: pointer;
+}
+
+.fa-trash:hover {
+    color: grey;
+}
+
+#cityName {
+    width: 450px;
+}
+
+#countryName {
+    width: 450px;
+}
+
+#name {
+    position: relative;
+    top: 7px;
+    left: 0;
+}
+
+#country {
+    position: relative;
+    top: 7px;
+    left: 0;
+}
+
+#goBack {
+    margin: 20px;
+}

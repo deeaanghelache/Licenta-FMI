@@ -2,22 +2,32 @@
 <header>
 <!-- From bootstrap -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#"> &nbsp; &nbsp; Travel</a>
+    <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> -->
+    <img src="../../../assets/photos/logo.png" style="width:130px;height:auto;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
-        <li class="mainMenu" id="button2"><a class="nav-link" href="/aboutUs">About Us</a></li>
         <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
-        <li class="mainMenu" id="button4"><a class="nav-link" routerLink="/blog">Blog</a></li>
+        <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
         <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
         <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
         <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
-        <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
-        <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
-        <li class="mainMenu" *ngIf = "logged === true" (click)="logout()" class="nav-link" id="logout">Logout</li>
+      </ul>
+    </div>
+    <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/login">Log in</button> &nbsp;
+    <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/register">Join</button>
+    <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
+    <div class="dropdown"> &nbsp;
+      <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Language
+            </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
+        <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
+        <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
       </ul>
     </div>
   </nav>
@@ -44,31 +54,85 @@
 
       <div id="cities">
         <div class="cityImage" *ngFor="let city of cities">
-          <img class="imgTagCities" src="../../../assets/photos/tiber-river-g7c6d8b51f_1920.jpg">
-          <h3 class="cityName"> &nbsp; Rome </h3>
+          <img class="imgTagCities" src="../../../assets/photos/{city['photo']}">
+          <h3 class="cityName"> &nbsp; {{ city['nameEng'] }} </h3>
         </div>
       </div>
     </div>
 
-    <div id="favouritesImage">
-      <img src="../../../assets/photos/background-g19903bb1c_1920.jpg">
-      <div id="heart1"><i class="fa fa-heart"></i></div>
-      <div id="heart2"><i class="fa fa-heart"></i></div>
-      <div id="heart3"><i class="fa fa-heart"></i></div>
-      <div id="heart4"><i class="fa fa-heart"></i></div>
-      <div id="heart5"><i class="fa fa-heart"></i></div>
-      <h1 id="fav">PICK YOUR <br> FAVOURITE <br> CITIES</h1>
+    <div id="presentationGrid">
+      <div id="presentation">
+          <h2> Find out more about us </h2>
+          <p>Welcome to our innovative travel planning app, where you can turn your wanderlust into reality and capture every moment of your journey. With our seamless user experience, you can easily register and login to your account, choose your favorite cities, and plan your future trips like a pro.</p>
+          <p>Our app offers a wealth of information about your favorite cities, from famous landmarks to wonderful historical stories. With our trip planning feature, you can schedule your days and set landmarks to visit, ensuring that you won't miss a thing.</p>     
+          <p>But that's not all! Our app also lets you create your own travel journal, where you can write about your thoughts and upload photos from your trip, capturing the essence of your experience.</p>
+          <p>Whether you're a seasoned traveler or new to the game, our app is the perfect tool to make your next adventure unforgettable. So why wait? Sign up today and start planning your dream trip!</p>
+      </div>
+      <div id="presentationGif">
+        <img src="../../../assets/gifs/homepage.gif">
+      </div>
     </div>
 
-    <!-- <div><button id="findOut" class="btn btn-outline-warning rounded-pill">JOIN</button></div> -->
+    <div id="infoGrid">
+      <div class="card favGrid">
+        <h5 class="card-title">Pick your favourite cities</h5>
+        <p class="card-text">Select and save your preferred destinations with ease.</p>
+        <p class="card-text">Our intuitive platform allows you to effortlessly pick and store your favorite cities, so you can plan your next adventure with ease.</p>
+      </div>
+      <div class="card planGrid">
+          <h5 class="card-title">Plan your trips</h5>
+          <p class="card-text">Create and organize your dream itinerary using our trip planning feature.</p>
+          <p class="card-text">With just a few clicks, you can map out your route by set landmarks to visit, ensuring a stress-free and unforgettable travel experience.</p>
+      </div>
+      <div class="card exploreGrid">
+        <h5 class="card-title">Capture your journey with our travel diary feature</h5>
+        <p class="card-text">Preserve your travel memories and cherish them for years to come with our travel diary feature.</p>
+        <p class="card-text">Write your thoughts, upload photos, and document your journey in one convenient location, so you can look back on your adventures whenever you like.</p>
+    </div>
+    </div>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-
+    <div id="up">
+      <button id="upButton" class="btn btn-warning rounded-pill" (click)="goToTop()">
+        <i class="fa fa-arrow-up"></i>
+      </button>
+    </div>
 </main>
+
+<!-- Footer from: https://mdbootstrap.com/docs/standard/navigation/footer/ -->
+<footer class="text-white text-center text-lg-start" style="background-color: #ccaf8f">
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <img src="../../../assets/photos/logo_footer.png" style="width:250px;height:auto;">
+        <p>
+          WanderJoy is an innovative travel app, where you can fulfill your wanderlust and capture every moment of your journey. Register, choose your favorite cities, and plan your trips like a pro.
+        </p>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0 navigation">
+        <h5 class="text-uppercase">Navigation</h5>
+        <ul>
+          <li><a class="navigationLink" routerLink="/homepage">Home</a></li>
+          <li><a class="navigationLink" routerLink="/cities">Cities</a></li>
+          <li><a class="navigationLink" routerLink="/register">Join</a></li>
+          <li><a class="navigationLink" routerLink="/login">Log in</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0 contact">
+        <h5 class="text-uppercase mb-0">Contact</h5>
+        <address>
+          <i class="fa fa-envelope"></i>
+          <a href="mailto:email"> &nbsp;wander.joy@gmail.com</a>
+        </address>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center p-3" style="background-color: black;">
+    Copyright © 2023 Andreea Anghelache | All rights reserved
+  </div>
+</footer>
 </div>
 
 

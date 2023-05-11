@@ -1,9 +1,9 @@
 // Site's colors
-$color-1: #FF36D6;
-$color-2: #9F2FDE;
-$color-3: #5D3FF5;
-$color-4: #2F62DE;
-$color-5: #25C5FA;
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
 
 #board {
     border: 2px solid lightgrey;
@@ -62,7 +62,6 @@ $color-5: #25C5FA;
     overflow-y:scroll;
 }
 
-
 .rightSide{
     grid-row-start: 1;
     grid-row-end: 2;
@@ -86,12 +85,12 @@ $color-5: #25C5FA;
 
 #name {
     font-style: italic;
-    font-family: 'Brush Script MT', cursive;
+    // font-family: 'Brush Script MT', cursive;
     font-size: 30px;
 }
 
 #country {
-    font-family: 'Brush Script MT', cursive;
+    // font-family: 'Brush Script MT', cursive;
     color: grey;
     font-size: 25px;
 }
@@ -105,17 +104,9 @@ $color-5: #25C5FA;
 }
 
 #goBack {
-    font-size: 30px;
-    transition: color 0.3s linear;
-    cursor: pointer;
-    z-index: 3;
     position: relative;
     top: 0;
-    left: 0;
-}
-
-#goBack:hover {
-    color: $color-3;
+    left: -10px;
 }
 
 .cityImg {
@@ -127,3 +118,60 @@ $color-5: #25C5FA;
     --bs-btn-color: black;
 }
 
+.favouriteCity {
+    position: relative;
+    bottom: 35px;
+    right: -140px;
+    z-index: 5;
+}
+
+.favButton {
+    border-color: white;
+    background-color: white;
+    font-size: 23px;
+}
+
+.favButton:hover {
+    border-color: white;
+    background-color: white;
+}
+
+.fas {
+    color: red;
+}
+
+.operations {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#searchCityBar {
+    flex: 80%;
+    display: flex;
+}
+
+#inputSearch {
+    flex: 90%;
+}
+
+#buttonSearch {
+    flex: 10%;
+    position: relative;
+    top: 0;
+    right: 53px;
+}
+
+.tags-dropdown {
+    flex: 10%;
+    position: relative;
+    left: -50px;
+    top: 0;
+}
+
+.sort {
+    flex: 10%;
+    position: relative;
+    left: -50px;
+    top: 0;
+}

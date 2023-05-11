@@ -22,4 +22,11 @@ export class CityTagService {
       this.privateHttpHeaders
     );
   }
+
+  getTagsForCurrentCity(cityId:any){
+    return this.http.get(
+      this.baseUrl + "cityTag/getAllTagsForGivenCity/" + cityId,
+      this.privateHttpHeaders
+    )
+  }
 }

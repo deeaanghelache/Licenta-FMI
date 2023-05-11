@@ -1,41 +1,132 @@
-<header>
-    <!-- From bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Travel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
-            <li class="mainMenu" id="button2"><a class="nav-link" href="/aboutUs">About Us</a></li>
-            <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
-            <li class="mainMenu" id="button4"><a class="nav-link" routerLink="/blog">Blog</a></li>
-            <li class="mainMenu" id="button5"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
-            <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
-            <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
-            <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
-            <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
-            <li class="mainMenu" *ngIf = "logged === true" (click)="logout()" class="nav-link" id="logout">Logout</li>
-          </ul>
-        </div>
-    </nav>
-</header>
-
-<main>
-    <div class="backgroundPhoto">
-        <img id="background" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="1500px" heigth="auto">
-        <div class="credits">
-            Photo by Luca Bravo
-        </div>
-    </div>
-    <div class="profilePhoto">
-        <img id="profile" src="../../../assets/photos/blank-profile-picture-g3f5704040_1280.png" width="248px" heigth="auto">
-    </div>
-    <div class="body">
-      <div class="name">
-        <p class="nameParagraph"> {{currentFirstName}} {{ currentLastName }} </p>
-        <p class="email"><i class="fa fa-envelope"></i> {{currentEmail}} &nbsp; &nbsp; <i class="fa fa-user"></i> {{currentUsername}} </p>
+<div id="board">
+  <header>
+  <!-- From bootstrap -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+      <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> -->
+      <img src="../../../assets/photos/logo.png" style="width:130px;height:auto;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
+          <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
+          <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
+          <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
+          <li class="mainMenu" id="button6" *ngIf = "logged === true"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+          <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
+          <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/login">Log in</a></li>
+          <li class="mainMenu" *ngIf = "logged === false"><a id="link" class="nav-link" routerLink="/register">Join</a></li>
+        </ul>
       </div>
-    </div>
-</main>
+      <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
+      <div class="dropdown"> &nbsp;
+        <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Language
+              </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
+          <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
+          <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+      <div class="backgroundPhoto">
+          <img id="background" src="../../../assets/photos/pexels-pixabay-220182-profile1.jpg" width="auto" heigth="auto">
+      </div>
+      <div class="profilePhoto">
+          <img id="profile" src="../../../assets/photos/blank-profile-picture-g3f5704040_1280.png" width="248px" heigth="auto">
+      </div>
+      <div class="body">
+        <div class="name">
+          <p class="nameParagraph"> {{currentFirstName}} {{ currentLastName }} </p>
+          <p class="email"><i class="fa fa-envelope"></i> {{currentEmail}} &nbsp; &nbsp; <i class="fa fa-user"></i> {{currentUsername}} </p>
+          <hr>
+        </div>
+        <div class="backendRequests">
+          <div class="changePasswordButton">
+            <button class="btn btn-outline-dark rounded-pill" (click)="openChangePasswordForm()"> Change password </button>
+          </div>
+          <div class="changeUsernameButton">
+            <button class="btn btn-outline-dark rounded-pill" (click)="openChangeUsernameForm()"> Change username </button>
+          </div>
+        </div>
+        <div id="emptyMiddle">
+          <div id="gallery" *ngIf="displayGallery === true">
+            <h3> My last adventures </h3>
+            <button class="btn btn-outline-warning rounded-pill" (click)="goToJournal()">Go to journal</button>
+            <div id="photos">
+              <div id="galleryImage" *ngFor="let image of images">
+                <img src="{{ image }}">
+              </div>
+            </div>
+          </div>
+          <div id="displayChangePasswordForm" *ngIf="displayChangePasswordForm === true">
+            <i class="fa-solid fa-xmark" (click)="closeChangePasswordForm()"></i>
+            <div id="passwordForm">
+              <h2>Change your password</h2>
+              <div id="form">
+                <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="New password"
+                        type="password"
+                        [ngClass]="changePasswordForm.controls['password'].errors ? 'is-invalid' : ''"
+                        formControlName="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Confirm your new password"
+                        type="password"
+                        [ngClass]="changePasswordForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
+                        formControlName="confirmPassword"/>
+                    </div>
+
+                    <p id="message"> {{ message }} </p>
+
+                    <button 
+                    class="btn btn-outline-warning rounded-pill"
+                    id="changePasswordButton" 
+                    [disabled]="changePasswordForm.invalid" 
+                    type="submit">
+                        Change password
+                    </button>
+                </form>
+            </div>
+            </div>
+          </div>
+          <div id="displayChangeUsernameForm" *ngIf="displayChangeUsernameForm === true">
+            <i class="fa-solid fa-xmark" (click)="closeChangeUsernameForm()"></i>
+            <div id="usernameForm">
+              <h2>Change your Username</h2>
+              <div id="form">
+                <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="New username"
+                        [ngClass]="changeUsernameForm.controls['newUsername'].errors ? 'is-invalid' : ''"
+                        formControlName="newUsername" />
+                    </div>
+
+                    <p id="message"> {{ message }} </p>
+
+                    <button 
+                    class="btn btn-outline-warning rounded-pill"
+                    id="changeUsernameButton" 
+                    [disabled]="changeUsernameForm.invalid" 
+                    type="submit">
+                        Change username
+                    </button>
+                </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+</div>
+  

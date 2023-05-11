@@ -15,7 +15,6 @@ export class CityService {
   };
   private baseUrl: string = environment.backendUrl;
 
-
   constructor(private http: HttpClient) { }
 
   getAllCities(){
@@ -35,6 +34,27 @@ export class CityService {
     return this.http.post(
       this.baseUrl + "city/addCity",
       city, 
+      this.privateHttpHeaders
+    )
+  }
+
+  getFavouriteCities(userId:any){
+    return this.http.get(
+      this.baseUrl + "cityList/getAllCitiesForGivenUser/" + userId,
+      this.privateHttpHeaders
+    )
+  }
+
+  searchCitiesByNameContainsWord(searchName:any){
+    return this.http.get(
+      this.baseUrl + "city/getCityByNameContainsWord/" + searchName,
+      this.privateHttpHeaders
+    )
+  }
+
+  getDistanceMatrix(){
+    return this.http.get(
+      this.baseUrl + "city/getDistanceMatrix",
       this.privateHttpHeaders
     )
   }

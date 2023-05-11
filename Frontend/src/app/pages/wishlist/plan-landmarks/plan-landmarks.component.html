@@ -1,0 +1,37 @@
+<div id="landmarkPageContainer">
+<!-- Model from: https://material.angular.io/cdk/drag-drop/overview -->
+  <div id="cityLandmarks">
+    <h2>{{ chosenCity['nameEng'] }}'s landmarks</h2>
+
+    <div
+      cdkDropList
+      #cityLandmarkList="cdkDropList"
+      [cdkDropListData]="currentLandmarksNames"
+      [cdkDropListConnectedTo]="[myLandmarkList]"
+      class="landmarkList"
+      (cdkDropListDropped)="drop($event)">
+      <div class="landmarkBox" *ngFor="let landmark of currentLandmarksNames" (click)="getLandmarkByName(landmark)" cdkDrag>{{ landmark }}</div>
+    </div>
+  </div>
+
+  <div id="landmarkInfo" *ngIf="displayLandmarkInfo === true">
+    <i class="fa-solid fa-xmark" (click)="closeLandmarkInfo()"></i>
+    <h2> {{ currentLandmark['name'] }} </h2>
+    <h5> {{ currentLandmark['typeEng'] }} </h5>
+    <p id="description"> {{ currentLandmark['descriptionEng'] }} </p>
+  </div>
+
+  <div id="myLandmarkPlan">
+    <h2>My landmark plan for {{ chosenCity['nameEng'] }} </h2>
+
+    <div
+      cdkDropList
+      #myLandmarkList="cdkDropList"
+      [cdkDropListData]="currentUserLandmarksNames"
+      [cdkDropListConnectedTo]="[cityLandmarkList]"
+      class="landmarkList"
+      (cdkDropListDropped)="drop($event)">
+      <div class="landmarkBox" *ngFor="let item of currentUserLandmarksNames" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+</div>

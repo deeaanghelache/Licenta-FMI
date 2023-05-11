@@ -1,0 +1,16 @@
+<div id="getPdfButton">
+    <button class="btn btn-outline-warning rounded-pill pdfButton" (click)="generateJournalPostPdf()"><i class="fa-regular fa-file-pdf"></i> Get journal post pdf </button>
+</div>
+<div id="postGrid">
+    <div id="post">
+        <p> {{ post['dateWritten'] }} </p>
+        <h3> {{ post['name'] }} </h3>
+
+        <img src="{{ post['photo'] }}" style="width: 600px; height: auto;">
+
+        <p> {{ post['post'] }} </p>
+    </div>
+</div>
+<br>
+<br>
+<br>

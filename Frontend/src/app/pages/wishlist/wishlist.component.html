@@ -1,0 +1,87 @@
+<div id="board">
+    <header>
+    <!-- From bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+        <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> -->
+        <img src="../../../assets/photos/logo.png" style="width:130px;height:auto;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
+            <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
+            <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
+            <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
+            <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+            <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
+          </ul>
+        </div>
+        <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
+        <div class="dropdown"> &nbsp;
+          <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Language
+                </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
+            <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
+            <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <main>
+        <div id="heart" *ngIf="displayLandmarkPlanning === false">
+            <i class="far fa-heart"></i>
+        </div>
+        <div id="title" *ngIf="displayLandmarkPlanning === false">
+            <h1>My Wishlist</h1>
+        </div>
+        <div id="cityTable" *ngIf="displayLandmarkPlanning === false">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th id="trash" scope="col"></th>
+                    <th id="cityName" scope="col">City</th>
+                    <th id="countryName" scope="col">Country</th>
+                    <th id="distance" scope="col"></th>
+                    <th id="plan" scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let city of cityLists">
+                    <td>
+                      <i class="fas fa-trash" (click)="deleteFunction(city['cityId'])"></i>
+                    </td>
+                    <td id="name">
+                      {{ city['nameEng'] }}
+                    </td>
+                    <td id="country">
+                      {{ city['countryEng'] }}
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-warning rounded-pill">Generate a roadtrip</button> 
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-warning rounded-pill" (click)="openPlanningLandmarks(city)">Plan your trip</button> 
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div id="planningLandmarks" *ngIf="displayLandmarkPlanning === true">
+          <button id="goBack" class="btn btn-outline-warning rounded-pill" (click)="closePlanningLandmarks()">Go back to wishlist</button>
+          <app-plan-landmarks [chosenCity]="chosenCity"></app-plan-landmarks>
+        </div>
+    </main>
+
+    <!-- <footer>
+      <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
+        Copyright © 2023 Andreea Anghelache | All rights reserved
+      </div>
+    </footer> -->
+</div>
+    
+    
+    

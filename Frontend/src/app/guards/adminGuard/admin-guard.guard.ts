@@ -18,7 +18,7 @@ export class AdminGuardGuard implements CanActivate {
     }
     else {
       // if not, "hide" the admin page from him
-      this.router.navigate(['/page405']);
+      this.router.navigate(['/page401']);
       return false;
     }
   }

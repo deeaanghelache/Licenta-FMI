@@ -1,53 +1,111 @@
 // Site's colors
-$color-1: #FF36D6;
-$color-2: #9F2FDE;
-$color-3: #5D3FF5;
-$color-4: #2F62DE;
-$color-5: #25C5FA;
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+$red: #FAA0A0;
+$green: #AFE1AF;
+
+#cityInfo {
+    display: flex;
+}
+
+#leftSide {
+    flex: 50%;
+}
+
+#rightSide {
+    flex: 50%;
+}
 
 #image {
-    z-index: 2;
-    position: relative;
-    top: -50px;
-    left: -20px;
+    box-shadow: 1px 1px 10px black;
 }
 
-#nameCity {
+#imageDiv {
     position: relative;
-    top: -12vh;
-    left: 8vw;
-    width: 30vw;
-    height: 10vh;
-    z-index: 3;
-    box-shadow: 1px 1px 18px #888888;
-    border-radius: 25px !important;
-    background-color: $color-2;
-    opacity: 0.9;
-}
-
-#nameCityText {
-    font-size: 50px;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-#buttons {
-    position: relative;
-    top: -50px;
+    top: 20px;
     left: 0;
 }
 
-.divs {
-    margin: 10px;
-    margin-top: 0;
-    padding: 10px;
+#addToFavs {
+    position: relative;
+    top: 40px;
+    left: 45px;
 }
 
-.commonTags {
-    border: 1px solid lightgrey;
-    background-color: lightgrey;
-    margin-right: 10px;
-    border-radius: 15px;
+#removeFromFavs {
+    position: relative;
+    top: 40px;
+    left: 25px;
+}
+
+
+#nameCityText {
+    position: relative;
+    top: 15px;
+    left: 0;
+}
+
+#cityTagsList li{
     display: inline-block;
-    height: 30px;
+}
+
+#cityTags {
+    position: relative;
+    top: 10px;
+    left: -32px;
+    font-size: 25px;
+    font-weight: 300;
+}
+
+#history, #airports, #landmarks {
+    position: relative;
+    top: 20px;
+    left: 0;
+    text-align: justify;
+}
+
+.buttonAddFav {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+    --bs-btn-border-color: #{$green};
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: #{$green};
+    --bs-btn-hover-border-color: #{$green};
+}
+
+.buttonRemoveFav {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+    --bs-btn-border-color: #{$red};
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: #{$red};
+    --bs-btn-hover-border-color: #{$red};
+}
+
+#airportsList {
+    position: relative;
+    top: 0;
+    left: -32px;
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#distanceToCity {
+    height: 25px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 25px;
+    text-align: center;
+}
+
+#landmarkList {
+    position: relative;
+    top: 0;
+    left: -32px;
 }

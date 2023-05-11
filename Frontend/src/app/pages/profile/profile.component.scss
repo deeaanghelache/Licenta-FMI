@@ -1,3 +1,10 @@
+// Site's colors
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+
 #logout{
     cursor: pointer;
 }
@@ -6,24 +13,26 @@
     z-index: -1;
 }
 
-#background{
-    position: relative;
+#board {
+    overflow-y: hidden;
 }
 
 .body{
     position: absolute;
-    top: 50vh;
+    top: 30vh;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 99vw;
+    height: 100vh;
     background-color: var(--input-color);
     z-index: 1;
+    margin: 5px;
+    border-radius: 25px;
 }
 
 .profilePhoto{
     position: absolute;
-    top: 35vh;
-    left: 20px;
+    top: 10vh;
+    left: 40px;
     width: 250px;
     height: 250px;
     border: 2px solid white;
@@ -54,7 +63,111 @@
     font-weight: bolder;
 }
 
-// .email{
-//     word-spacing: 100px;
-// }
+#board {
+    border: 2px solid lightgrey;
+    border-radius: 25px !important;
+    height: 98vh;
+    margin: 5px;
+    margin-top: 10px !important;
+    box-shadow: 1px 1px 18px #888888;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
 
+.navbar{
+    border-top-right-radius: 25px !important; 
+    border-top-left-radius: 25px !important; 
+}
+
+hr {
+    width: 1030px;
+}
+
+.backendRequests {
+    background-color: $color-1;
+    box-shadow: 1px 1px 10px gray;
+    width: 300px;
+    height: 420px;
+    position: relative;
+    z-index: 2;
+    top: 110px;
+    left: 20px;
+}
+
+.changePasswordButton {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+.changeUsernameButton {
+    position: relative;
+    top: 30px;
+    left: 20px;
+}
+
+.changePasswordButton button {
+    width: 250px;
+}
+
+.changeUsernameButton button {
+    width: 250px;
+}
+
+#emptyMiddle {
+    position: relative;
+    left: 360px;
+    top: -280px;
+}
+
+#photos {
+    margin-top: 20px;
+    margin-left: -10px;
+    width: 73vw;
+    height: 36vh;
+    display:flex; 
+    overflow-x: auto;
+}
+
+#galleryImage {
+    margin: 10px;
+    flex: 0 0 auto;
+    object-fit: cover;
+}
+
+#galleryImage img {
+    width: 250px;
+    height: 250px;
+}
+
+.fa-xmark {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#passwordForm, #usernameForm {
+    position: relative;
+    left: 170px;
+    top: -20px;
+    width: 700px;
+    text-align: center;
+}
+
+h2 {
+    margin: 10px;
+    margin-bottom: 50px !important;
+}
+
+.form-group {
+    margin: 10px;
+}
+
+#changePasswordButton, #changeUsernameButton {
+    margin-top: 20px;
+}
+
+#message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}

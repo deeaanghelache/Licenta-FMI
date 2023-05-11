@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   public currentUsername:string = "";
   public ok:boolean = false;
   public tryAgain: String = "";
+  public currentUserId:string = "";
 
   constructor(private router:Router, private formBuilder:FormBuilder, private userAuthentication: UserAuthenticationService) { }
 
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("username", this.currentUsername);
     sessionStorage.setItem("admin", this.userRole);  // value: user or admin
     sessionStorage.setItem("logged", "true");
+    sessionStorage.setItem("userId", this.currentUserId);
   }
 
   loginUserFunction(){
@@ -52,8 +54,8 @@ export class LoginComponent implements OnInit {
             else{
               this.userRole = "admin";
             } 
-            
             this.currentUsername = response.username;
+            this.currentUserId = response.userId;
             this.userCurrentSessionUpdate();
             this.goHome();
           })

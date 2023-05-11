@@ -3,12 +3,6 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-$color-1: #FF36D6;
-$color-2: #9F2FDE;
-$color-3: #5D3FF5;
-$color-4: #2F62DE;
-$color-5: #25C5FA;
-
 .dark-theme{
     --text-color: white;
     --background-color: black; 
@@ -30,7 +24,8 @@ body{
 }
 
 .themeButton{
-    color: var(--text-color);
+    // color: var(--text-color);
+    color: black;
     // background-color: var(--background-color);
     height: 50px;
     width: 50px;
@@ -43,6 +38,14 @@ body{
     position: fixed;
     bottom: 10px;
     right: 10px;
-    z-index: 10;
+    z-index: 100;
 }
 
+.btn-outline-warning {
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+}
+
+.btn-outline-dark, .btn-outline-secondary {
+    --bs-btn-font-weight: bold;
+}

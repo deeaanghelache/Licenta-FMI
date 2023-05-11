@@ -1,65 +1,12 @@
 // Homepage SCSS 
 
 // Site's colors
-$color-1: #FF36D6;
-$color-2: #9F2FDE;
-$color-3: #5D3FF5;
-$color-4: #2F62DE;
-$color-5: #25C5FA;
-
-// Main menu
-// ul{
-//     list-style: none;
-//     float: right;
-//     margin: 10px;
-// }
-
-// ul>li>a{
-//     text-decoration: none;
-//     color: var(--text-color);
-//     display: block;
-//     text-align: center;
-//     padding: 10px;
-// }
-
-// nav{
-//     height: 7vh;
-//     width: 100%;  
-//     top: 0;
-//     right:0;
-//     float: left;
-//     background: var(--input-color);
-//     z-index: 10;
-//     position: fixed;
-// }
-
-// ul>li{
-//     display: inline;
-//     float: left;
-//     transition: background 0.5s linear;
-// }
-
-// #button1:hover, #button2:hover, #button3:hover, #button4:hover, #button5:hover, #button6:hover, #button7:hover{
-//     background-color: #25C5FA;
-// }
-
-// #loginButton, #registerButton{
-//     color: black;
-//     text-decoration: none;
-//     height: 5vh;
-//     width: 6vw;
-//     margin: 2px;
-// }
-
-// #logoutButton{
-//     height: 5vh;
-//     width: 6vw;
-// }
-
-// #link{
-//     color: black;
-//     text-decoration: none;
-// }
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+$color-6: #ccaf8f;
 
 #logout{
     cursor: pointer;
@@ -80,47 +27,6 @@ img{
     right: 16px;
     font-size: 15px;
     color: white;
-}
-
-// Triangle
-#triangle1{
-    width: 0; 
-    height: 0; 
-    border-top: 550px solid transparent;
-    border-bottom: 550px solid transparent;
-    border-left: 550px solid $color-3;
-    z-index: 1;
-    position: absolute;
-    top: 20vh;
-    left: 0vw;
-}
-
-.triangleText{
-    color: black;
-    position: absolute;
-    top: -25vh;
-    left: -35vw;
-    width: 20vw;
-    height: 20vh;
-}
-
-// Rectangular
-#rectangular{
-    width: 100%; 
-    height: 30vh;
-    position: absolute;
-    bottom: 0vh;
-    left: 0vw;
-    z-index: 0;
-    background-color: white;
-}
-
-.rectangularText{
-    position: absolute;
-    top: 7vh;
-    right: 5vw;
-    width: 50vw;
-    height: 20vh;
 }
 
 #board {
@@ -219,11 +125,7 @@ img{
     font-weight: bold;
 }
 
-.btn-outline-warning {
-    --bs-btn-font-weight: bold;
-}
-
-a {
+#findOut > a {
     text-decoration: none;
     color: black;
 }
@@ -252,106 +154,127 @@ a {
 
 .cityName {
     font-weight: bold;
+} 
+
+.card {
+    width: 20rem;
 }
 
-#favouritesImage {
+#infoGrid {
     position: relative;
+    top: -50px;
     left: 0;
+    right: 0;
+    display: flex;
+    height: 70vh;
+    padding: 45px;
+    // background-image: url("../../../assets/photos/map-homepage.jpg");
+}
+
+.exploreGrid {
+    border: 2px solid $color-2;
+    flex: 33.33%;
+    border-radius: 25px;
+    padding: 15px;
+    margin-right: 60px;
+    margin-left: 10px;
+    transition: background-color 0.2s linear
+}
+
+.planGrid {
+    border: 2px solid $color-2;
+    flex: 33.33%;
+    border-radius: 25px;
+    padding: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: background-color 0.2s linear
+}
+
+.favGrid {
+    border: 2px solid $color-2;
+    flex: 33.33%;
+    border-radius: 25px;
+    padding: 15px;
+    margin-left: 60px;
+    margin-right: 10px;
+    transition: background-color 0.3s linear;
+}
+
+.exploreGrid:hover, .planGrid:hover, .favGrid:hover {
+    background-color: $color-2;
+    box-shadow: 1px 1px 18px #888888;
+}
+
+#presentationGrid {
+    position: relative;
     top: -80px;
-    height: 90vh;
-    object-fit: cover;
-    z-index: 3;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-color: $color-1;
+    height: 70vh;
+    margin: 40px;
+    box-shadow: 1px 1px 18px #888888;
 }
 
-#heart1 {
-    position: relative;
-    top: -20vh;
-    left: 20vw;
-    font-size: 30px;
-    z-index: 4;
-    animation-name: heart;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
+#presentationGif {
+    flex: 35%;
 }
 
-@keyframes heart {
-    0%   {
-        color:crimson; 
-        opacity: 0;
-    }
-    25%  {
-        color:crimson;         
-        opacity: 0;
-    }
-    50%  {
-        color:crimson;         
-        opacity: 1;
-    }
-    75%  {
-        color:crimson;         
-        opacity: 1;
-    }
-    100% {
-        color:crimson; 
-        opacity: 1;
-    }
-  }
-
-#heart2 {
-    position: relative;
-    top: -39vh;
-    left: 28vw;
-    font-size: 30px;
-    z-index: 4;
-    animation-name: heart;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-delay: 7s;
+#presentation {
+    flex: 65%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 40px;
+    text-align: justify;
 }
 
-#heart3 {
-    position: relative;
-    top: -40vh;
-    left: 58vw;
-    font-size: 30px;
-    z-index: 4;
-    animation-name: heart;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-delay: 12s;
+#presentation h2 {
+    text-align: center;
+    padding: 30px;
 }
 
-#heart4 {
-    position: relative;
-    top: -40vh;
-    left: 42vw;
-    font-size: 30px;
-    z-index: 4;
-    animation-name: heart;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-delay: 19s;
+.navigation>ul>li {
+    list-style-type: none;
 }
 
-#heart5 {
-    position: relative;
-    top: -67vh;
-    left: 24vw;
-    font-size: 30px;
-    z-index: 4;
-    animation-name: heart;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-delay: 23s;
-}
-
-#fav {
-    position: relative;
-    top: -115vh;
-    right: 20px;
-    z-index: 4;
-    text-align: right;
-    font-size: 90px;
-    font-weight: bold;
+.navigation>ul>li>a {
     color: white;
+}
+
+address>a{
+    color: white;
+}
+
+#upButton {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 18px #888888;
+    font-size: larger;
+}
+
+#up{
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+    z-index: 10;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card h5 {
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 40px !important;
+}
+
+.card-text {
+    padding: 30px;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    text-align: justify;
 }

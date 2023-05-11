@@ -7,92 +7,95 @@
 
     <div class="registerGrid">
         <div class="leftSide">
-
+            <img src="../../../assets/gifs/register.gif" style="width:25.7vw;border-radius:25px;">
         </div>
         <div class="rightSide">
             <h1>{{ registerTitle }}</h1>
 
-            <form [formGroup]="registerForm" (ngSubmit)="registerUserFunction()">
-                <div class="form-group">
-                    <input class="form-control"
-                    placeholder="First Name" 
-                    [ngClass]="registerForm.controls['firstName'].errors ? 'is-invalid' : ''"
-                    formControlName="firstName" />
-                </div>
+            <div id="form">
+                <form [formGroup]="registerForm" (ngSubmit)="registerUserFunction()">
+                    <div class="form-group">
+                        <input class="form-control"
+                        placeholder="First Name" 
+                        [ngClass]="registerForm.controls['firstName'].errors ? 'is-invalid' : ''"
+                        formControlName="firstName" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control" 
-                    placeholder="Last Name"
-                    [ngClass]="registerForm.controls['lastName'].errors ? 'is-invalid' : ''"
-                    formControlName="lastName" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Last Name"
+                        [ngClass]="registerForm.controls['lastName'].errors ? 'is-invalid' : ''"
+                        formControlName="lastName" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control" 
-                    placeholder="Email Address"
-                    [ngClass]="registerForm.controls['email'].errors ? 'is-invalid' : ''"
-                    formControlName="email" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Email Address"
+                        [ngClass]="registerForm.controls['email'].errors ? 'is-invalid' : ''"
+                        formControlName="email" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control" 
-                    placeholder="Username"
-                    [ngClass]="registerForm.controls['username'].errors ? 'is-invalid' : ''"
-                    formControlName="username" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Username"
+                        [ngClass]="registerForm.controls['username'].errors ? 'is-invalid' : ''"
+                        formControlName="username" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control" 
-                    placeholder="Password"
-                    type="password"
-                    [ngClass]="registerForm.controls['password'].errors ? 'is-invalid' : ''"
-                    formControlName="password" />
-                </div>
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Password"
+                        type="password"
+                        [ngClass]="registerForm.controls['password'].errors ? 'is-invalid' : ''"
+                        formControlName="password" />
+                    </div>
 
-                <div class="form-group">
-                    <input class="form-control" 
-                    placeholder="Confirm your password"
-                    type="password"
-                    [ngClass]="registerForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
-                    formControlName="confirmPassword"/>
-                </div>
-<!-- 
-                <br>
+                    <div class="form-group">
+                        <input class="form-control" 
+                        placeholder="Confirm your password"
+                        type="password"
+                        [ngClass]="registerForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
+                        formControlName="confirmPassword"/>
+                    </div>
+    <!-- 
+                    <br>
 
-                <div class="form-group" id="photoUpload">
-                    <input class="form-control"
-                        id="userPhoto"
-                        type="file"
-                        [ngClass]="registerForm.controls['photo'].errors ? 'is-invalid' : ''"
-                        formControlName="photo" 
-                        style="display: none;"/>
-                    <label for="userPhoto" id="photoUploadLabel">
-                        Upload a photo if you want to
-                    </label>
-                </div>
+                    <div class="form-group" id="photoUpload">
+                        <input class="form-control"
+                            id="userPhoto"
+                            type="file"
+                            [ngClass]="registerForm.controls['photo'].errors ? 'is-invalid' : ''"
+                            formControlName="photo" 
+                            style="display: none;"/>
+                        <label for="userPhoto" id="photoUploadLabel">
+                            Upload a photo if you want to
+                        </label>
+                    </div>
 
-                <br> -->
+                    <br> -->
 
-                <p id="userAlreadyExists"> {{ userAlreadyExists }} </p>
-                <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
+                    <p id="userAlreadyExists"> {{ userAlreadyExists }} </p>
+                    <p id="dataNotOk" *ngIf="ok === false"> {{ tryAgain }} </p>
 
-                <button 
-                id="registerButton" 
-                [disabled]="registerForm.invalid" 
-                type="submit">
-                    Sign Up
-                </button>
+                    <button 
+                    class="btn btn-outline-warning rounded-pill"
+                    id="registerButton" 
+                    [disabled]="registerForm.invalid" 
+                    type="submit">
+                        Sign Up
+                    </button>
 
-                <div id="extra">
-                    <p>
-                        Already have an account?
-                        <a href="/login" id="goToLogin">
-                            Log In
-                        </a>
-                    </p>
-                </div>
-                <br>
-            </form>
+                    <div id="extra">
+                        <p>
+                            Already have an account?
+                            <a href="/login" id="goToLogin">
+                                Log In
+                            </a>
+                        </p>
+                    </div>
+                    <br>
+                </form>
+            </div>
         </div>
     </div>
 </main>

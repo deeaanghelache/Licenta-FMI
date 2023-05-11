@@ -1,0 +1,42 @@
+// Site's colors
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+
+#post {
+    width: 700px;
+    background-color: $color-4;
+    opacity: 0.7;
+    box-shadow: 1px 1px 15px gray;
+    padding: 50px;
+    text-align: justify;
+}
+
+img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#postGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#getPdfButton {
+    position: absolute;
+    left: 0;
+    top: 50px;
+}
+
+.pdfButton {
+    --bs-btn-border-width: 2px;
+    --bs-btn-font-weight: bold;
+    --bs-btn-color: black;
+    --bs-btn-border-color: #{$color-3};
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: #{$color-3};
+    --bs-btn-hover-border-color: #{$color-3};
+}
