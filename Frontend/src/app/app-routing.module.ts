@@ -16,6 +16,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { LoggedUserGuardGuard } from './guards/loggedUserGuard/logged-user-guard.guard';
 import { Page401Component } from './pages/page401/page401.component';
+import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-landmarks.component';
 
 const routes: Routes = [
   {

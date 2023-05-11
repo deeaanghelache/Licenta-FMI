@@ -23,6 +23,13 @@ export class CityListService {
     )
   }
 
+  getCityListByUserAndCity(userId:any, cityId:any){
+    return this.http.get(
+      this.baseUrl + "cityList/getCityListForGivenUserAndCity/" + userId + "/" + cityId,
+      this.privateHttpHeaders
+    )
+  }
+
   deleteCityList(cityId:any, userId:any){
     return this.http.delete(
       this.baseUrl + "cityList/deleteCityList/" + cityId + "/" + userId,

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class LandmarkService {
+export class ListOfLandmarksService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
       responseType: 'text',
@@ -16,23 +16,9 @@ export class LandmarkService {
 
   constructor(private http: HttpClient) { }
 
-  getAllLandmarksForGivenCity(cityId:any){
+  getAllLandmarksForGivenCityList(cityListId:any){
     return this.http.get(
-      this.baseUrl + "landmark/getAllLandmarksForGivenCity/" + cityId,
-      this.privateHttpHeaders
-    )
-  }
-
-  getAllLandmarksNamesForGivenCity(cityId:any){
-    return this.http.get(
-      this.baseUrl + "landmark/getAllLandmarksNamesForGivenCity/" + cityId,
-      this.privateHttpHeaders
-    )
-  }
-
-  getLandmarkByName(name:any){
-    return this.http.get(
-      this.baseUrl + "landmark/getLandmarkByName/" + name,
+      this.baseUrl + "listOfLandmarks/getAllLandmarksForGivenCityList/" + cityListId,
       this.privateHttpHeaders
     )
   }

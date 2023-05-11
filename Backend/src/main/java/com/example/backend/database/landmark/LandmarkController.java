@@ -24,4 +24,17 @@ public class LandmarkController {
         List<Landmark> landmarks = landmarkService.getAllLandmarksForGivenCity(cityId);
         return new ResponseEntity<>(landmarks, HttpStatus.OK);
     }
+
+    @GetMapping("/getAllLandmarksNamesForGivenCity/{cityId}")
+    public ResponseEntity<List<String>> getAllLandmarksNamesForGivenCity(@PathVariable("cityId") Integer cityId){
+        List<Landmark> landmarks = landmarkService.getAllLandmarksForGivenCity(cityId);
+        List<String> landmarksNames = landmarks.stream().map(Landmark::getName).toList();
+        return new ResponseEntity<>(landmarksNames, HttpStatus.OK);
+    }
+
+    @GetMapping("/getLandmarkByName/{name}")
+    public ResponseEntity<Landmark> getLandmarkByName(@PathVariable("name") String name){
+        Landmark landmark = landmarkService.getLandmarkByLandmarkName(name);
+        return new ResponseEntity<>(landmark, HttpStatus.OK);
+    }
 }

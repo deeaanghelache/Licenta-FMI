@@ -23,13 +23,6 @@ $color-5: #DEA057;
     border-top-left-radius: 25px !important; 
 }
 
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-}
-
 #title {
     position: relative;
     top: 10px;
@@ -82,4 +75,8 @@ tr {
     position: relative;
     top: 7px;
     left: 0;
+}
+
+#goBack {
+    margin: 20px;
 }

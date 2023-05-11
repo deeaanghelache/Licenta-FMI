@@ -25,11 +25,16 @@ public class CityListController {
 
     @GetMapping("/getAllCitiesForGivenUser/{userId}")
     public ResponseEntity<List<City>> getAllCitiesForGivenUser(@PathVariable("userId") Integer userId) {
-        System.out.println(userId);
         List<CityList> cityLists = cityListService.getAllCityListsForAGivenUser(userId);
         List<City> cities = cityLists.stream().map(CityList::getCity).toList();
 
         return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @GetMapping("/getCityListForGivenUserAndCity/{userId}/{cityId}")
+    public ResponseEntity<List<CityList>> getCityListForGivenUserAndCity(@PathVariable("userId") Integer userId, @PathVariable("cityId") Integer cityId){
+        List<CityList> cityLists = cityListService.getCityListByUserAndCity(userId, cityId);
+        return new ResponseEntity<>(cityLists, HttpStatus.OK);
     }
 
     @PostMapping("/addCityList/{cityId}/{userId}")

@@ -62,8 +62,6 @@ public class CityService {
         return distanceMatrix;
     }
 
-    
-
     // FIND (GET)
     public List<City> getAllCities(){
         return cityInterface.findAll();

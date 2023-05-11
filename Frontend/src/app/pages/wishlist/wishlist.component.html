@@ -71,15 +71,16 @@
               </table>
         </div>
         <div id="planningLandmarks" *ngIf="displayLandmarkPlanning === true">
+          <button id="goBack" class="btn btn-outline-warning rounded-pill" (click)="closePlanningLandmarks()">Go back to wishlist</button>
           <app-plan-landmarks [chosenCity]="chosenCity"></app-plan-landmarks>
         </div>
     </main>
 
-    <footer>
+    <!-- <footer>
       <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
         Copyright © 2023 Andreea Anghelache | All rights reserved
       </div>
-    </footer>
+    </footer> -->
 </div>
     
     

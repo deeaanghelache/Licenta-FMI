@@ -24,6 +24,7 @@ import { ButtonDirective } from './directives/button.directive';
 import { JournalPostComponent } from './pages/journal/journal-post/journal-post.component';
 import { Page401Component } from './pages/page401/page401.component';
 import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-landmarks.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-lan
     ReactiveFormsModule, 
     HttpClientModule,
     SharedInfoModule,
-    NgbModule
+    NgbModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

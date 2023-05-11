@@ -20,6 +20,10 @@ public class CityListService {
         return cityListInterface.queryBy(userId);
     }
 
+    public List<CityList> getCityListByUserAndCity(Integer userId, Integer cityId) {
+        return cityListInterface.getCityListByUserAndCity(userId, cityId);
+    }
+
     // POST
     public CityList addCityList(CityList cityList) {
         return cityListInterface.save(cityList);

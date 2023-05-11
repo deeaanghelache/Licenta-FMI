@@ -47,6 +47,26 @@ public class ListOfLandmarks implements Serializable {
         this.priority = priority;
     }
 
+    public void setListOfLandmarksId(ListOfLandmarksId listOfLandmarksId) {
+        this.listOfLandmarksId = listOfLandmarksId;
+    }
+
+    public Landmark getLandmark() {
+        return landmark;
+    }
+
+    public void setLandmark(Landmark landmark) {
+        this.landmark = landmark;
+    }
+
+    public CityList getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(CityList cityList) {
+        this.cityList = cityList;
+    }
+
     @Override
     public String toString() {
         return "ListOfLandmarks{" +
