@@ -22,4 +22,11 @@ export class ListOfLandmarksService {
       this.privateHttpHeaders
     )
   }
+
+  addListOfLandmarks(cityListId:any, landmarkId: any, priority:any){
+    return this.http.post(
+      this.baseUrl + "listOfLandmarks/addListOfLandmarks/" + cityListId + "/" + landmarkId + "/" + priority,
+      this.privateHttpHeaders
+    )
+  }
 }

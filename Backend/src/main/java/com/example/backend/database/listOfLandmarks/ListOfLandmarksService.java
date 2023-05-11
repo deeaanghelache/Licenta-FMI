@@ -16,7 +16,13 @@ public class ListOfLandmarksService {
         this.listOfLandmarksInterface = listOfLandmarksInterface;
     }
 
+    // GET
     List<ListOfLandmarks> getAllLandmarksForGivenCityList(Integer cityListId){
         return listOfLandmarksInterface.getAllLandmarksForGivenCityList(cityListId);
+    }
+
+    // POST
+    public ListOfLandmarks addListOfLandmarks(ListOfLandmarks listOfLandmarks){
+        return listOfLandmarksInterface.save(listOfLandmarks);
     }
 }

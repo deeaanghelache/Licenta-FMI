@@ -8,8 +8,10 @@ import java.io.Serializable;
 
 @Entity
 public class ListOfLandmarks implements Serializable {
-    @EmbeddedId
-    private ListOfLandmarksId listOfLandmarksId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, updatable = false)
+    private Integer listOfLandmarksId;
 
     @Column(columnDefinition = "integer")
     private Integer priority;
@@ -31,11 +33,17 @@ public class ListOfLandmarks implements Serializable {
     public ListOfLandmarks() {
     }
 
+    public ListOfLandmarks(Integer priority, Landmark landmark, CityList cityList) {
+        this.priority = priority;
+        this.landmark = landmark;
+        this.cityList = cityList;
+    }
+
     public ListOfLandmarks(Integer priority) {
         this.priority = priority;
     }
 
-    public ListOfLandmarksId getListOfLandmarksId() {
+    public Integer getListOfLandmarksId() {
         return listOfLandmarksId;
     }
 
@@ -47,7 +55,7 @@ public class ListOfLandmarks implements Serializable {
         this.priority = priority;
     }
 
-    public void setListOfLandmarksId(ListOfLandmarksId listOfLandmarksId) {
+    public void setListOfLandmarksId(Integer listOfLandmarksId) {
         this.listOfLandmarksId = listOfLandmarksId;
     }
 

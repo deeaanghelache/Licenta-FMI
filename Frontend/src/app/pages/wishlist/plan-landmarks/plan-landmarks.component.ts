@@ -20,6 +20,8 @@ export class PlanLandmarksComponent implements OnInit {
   public currentEmail: string = '';
   public currentCityList: any;
   public currentCityListId: any;
+  public landmarkToAdd: any;
+  public landmarkToDelete: any;
 
   @Input() chosenCity: any;
 
@@ -101,8 +103,15 @@ export class PlanLandmarksComponent implements OnInit {
     this.currentUserLandmarksNames = newList;
   }
 
+  addListOfLandmarks(cityListId:any, landmarkId: any, priority:any){
+    this.listOfLandmarksService.addListOfLandmarks(cityListId, landmarkId, priority).subscribe((response:any) => {
+      console.log(response);
+    })
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
+      // moving elements inside the same container
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
@@ -111,8 +120,32 @@ export class PlanLandmarksComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
+      const containerBoxName = event.container.id;
+      console.log(containerBoxName);
+      const landmarkName = event.container.data[event.currentIndex];
+      const priority = event.currentIndex + 1;
+      
+      // cdk-drop-list-0 is the city landmark container
+      if (containerBoxName === 'cdk-drop-list-0'){
+          // should delete list of landmarks for current moved landmark
+          // this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
+          //   console.log(response);
+          //   this.landmarkToDelete = response;
+          //   this.addListOfLandmarks(this.currentCityListId, this.landmarkToDelete['landmarkId'], priority);
+          // })
+      } else {
+        // cdk-drop-list-1 is my landmark planning container
+        if (containerBoxName == 'cdk-drop-list-1'){
+          // should add list of landmarks for current moved landmark
+          console.log("aaa");
+          this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
+            console.log(response);
+            this.landmarkToAdd = response;
+            this.addListOfLandmarks(this.currentCityListId, this.landmarkToAdd['landmarkId'], priority);
+          })
+        }
+      }
     }
   }
-
 }
 

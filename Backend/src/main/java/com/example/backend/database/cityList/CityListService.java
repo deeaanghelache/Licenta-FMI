@@ -24,6 +24,10 @@ public class CityListService {
         return cityListInterface.getCityListByUserAndCity(userId, cityId);
     }
 
+    public CityList getCityListById(Integer cityListId){
+        return cityListInterface.findCityListByCityListId(cityListId).orElseThrow(() -> new CityListIdNotFoundException("Couldn't find any cityList with the id: " + cityListId));
+    }
+
     // POST
     public CityList addCityList(CityList cityList) {
         return cityListInterface.save(cityList);
