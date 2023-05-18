@@ -93,6 +93,10 @@ img{
     transition: opacity 0.3s linear;
 }
 
+.image4 {
+    display: none;
+}
+
 .image1:hover, .image2:hover, .image3:hover {
     opacity: 1;
 }
@@ -277,4 +281,306 @@ a {
     padding-bottom: 0 !important;
     padding-top: 0 !important;
     text-align: justify;
+}
+
+// responsive screens
+// iPad Air + landscape
+@media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {
+}
+
+// iPad Air + portrait
+@media (min-width: 768px) and (max-width: 820px) and (orientation: portrait) {
+    .backgroundImagesGrid {
+        height: 800px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    
+    .image1 {
+        opacity: 0.7;
+        width: 410px;
+        height: 400px;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        object-fit: cover;
+        transition: opacity 0.3s linear;
+    }
+    
+    .image2 {
+        opacity: 0.7;
+        width: 400px;
+        height: 400px;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        object-fit: cover;
+        transition: opacity 0.3s linear;
+    }
+    
+    .image3 {
+        opacity: 0.7;
+        width: 410px;
+        height: 400px;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        object-fit: cover;
+        transition: opacity 0.3s linear;
+    }
+    
+    .image4 {
+        display: block;
+        opacity: 0.7;
+        width: 400px;
+        height: 400px;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        object-fit: cover;
+        transition: opacity 0.3s linear;
+    }
+
+    .image4:hover {
+        opacity: 1;
+    }
+
+    #motto {
+        font-size: 50px;
+        position: relative;
+        top: -500px;
+        left: 20px;
+    }
+
+    #explore {
+        position: relative;
+        top: -150px;
+    }
+
+    #infoGrid {
+        display: block;
+    }
+
+    .favGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: -70px;
+        left: -60px;
+    }
+
+    .planGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+
+    .exploreGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 70px;
+        left: 0px;
+    }
+
+    .imgTagCities {
+        width: 400px;
+        height: 300px;
+    }
+}
+
+// iPhone 12 Pro + landscape 
+@media (min-width: 844px)  and (max-width: 844px) and (orientation: landscape) {
+    .backgroundImagesGrid {
+        height: 300px;
+        display: flex;
+    }
+
+    .image1 {
+        flex: 50%;
+        height: 300px;
+    }
+
+    .image2 {
+        flex: 50%;
+        height: 300px;
+    }
+
+    .image3, .image4 {
+        display: none;
+    }
+
+    #motto {
+        position: relative;
+        top: -150;
+        font-size: 35px;
+    }
+
+    .imgTagCities {
+        width: 150px;
+        height: 90px;
+    }
+
+    .cities {
+        height: 350px;
+    }
+
+    #presentationGrid {
+        position: relative;
+        top: -80px;
+        left: 0;
+        display: block;
+        font-size: 12px;
+        margin: 15px;
+        word-wrap: break-word;
+        height: 400px;
+    }
+
+    #presentationGif {
+        display: none;
+    }
+
+    #infoGrid {
+        display: block;
+    }
+
+    .favGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: -30px;
+        left: 0px;
+        margin: 0 !important;
+    }
+
+    .planGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin: 0 !important;
+    }
+
+    .exploreGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 30px;
+        left: 0px;
+        margin: 0 !important;
+    }
+
+    footer {
+        margin-top: 500px;
+    }
+}
+
+// iPhone 12 Pro + portrait
+@media (min-width: 390px)  and (max-width: 390px) and (orientation: portrait) {
+    .backgroundImagesGrid {
+        height: 300px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    
+    .image1 {
+        opacity: 0.7;
+        width: 400px;
+        height: 400px;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        object-fit: cover;
+        transition: opacity 0.3s linear;
+    }
+    
+    .image2, .image3, .image4 {
+        display: none;
+    }
+
+    #motto {
+        position: relative;
+        top: -150px;
+        left: 0px;
+        font-size: 28px;
+    }
+
+    #explore {
+        position: relative;
+        top: 0px;
+    }
+
+    #title2 {
+        font-size: 28px;
+    }
+
+    .imgTagCities {
+        width: 250px;
+        height: 200px;
+    }
+
+    #presentationGif {
+        display: none;
+    }
+
+    #presentationGrid {
+        position: relative;
+        top: 30px;
+        left: 0;
+        display: block;
+        font-size: 12px;
+        margin: 15px;
+        word-wrap: break-word;
+        height: 650px;
+    }
+
+    #presentation {
+        margin: 0;
+        height: 70vh;
+    }
+
+    #infoGrid {
+        display: block;
+    }
+
+    .favGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 50px;
+        left: 0px;
+        margin: 0 !important;
+    }
+
+    .planGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 80px;
+        left: 0px;
+        margin: 0 !important;
+    }
+
+    .exploreGrid {
+        width: 100%;
+        padding-bottom: 40px;
+        position: relative;
+        top: 110px;
+        left: 0px;
+        margin: 0 !important;
+    }
+
+    footer {
+        margin-top: 800px;
+    }
 }

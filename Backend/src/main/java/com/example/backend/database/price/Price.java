@@ -24,7 +24,6 @@ public class Price implements Serializable {
     private String getFreeTicketsRequirementsRom;
 
     // Foreign keys
-
     // With Landmark
     @OneToOne
     @MapsId
