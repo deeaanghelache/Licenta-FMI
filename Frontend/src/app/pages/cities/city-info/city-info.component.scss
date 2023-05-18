@@ -113,19 +113,39 @@ ul {
 // responsive screens
 // iPad Air + landscape
 @media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {
+    img {
+        width: 250px;
+        height: 250px;
+    }
 }
 
 // iPad Air + portrait
 @media (min-width: 768px) and (max-width: 820px) and (orientation: portrait){
-
+    img {
+        width: 350px;
+        height: 350px;
+    }
 }
 
 // iPhone 12 Pro + landscape 
 @media (min-width: 844px)  and (max-width: 844px) and (orientation: landscape) {
-
+    img {
+        width: 350px;
+        height: 350px;
+    }
 }
 
 // iPhone 12 Pro + portrait
 @media (min-width: 390px)  and (max-width: 390px) and (orientation: portrait) {
+    #cityInfo {
+        display: block;
+    }
 
+    img {
+        width: 320px;
+        height: 320px;
+    }
+    #rightSide {
+        margin-top: 40px;
+    }
 }

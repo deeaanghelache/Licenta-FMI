@@ -64,7 +64,23 @@
                 </div>
             </div>
             <div>
-                <div class="cityGrid" *ngIf="display === false">
+                <div class="row row-cols-1 row-cols-md-3 g-4 cards cityGrid" *ngIf="display === false">
+                    <div class="col" *ngFor="let city of cities">
+                      <div class="card city" (click)="show(city)">
+                        <img src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" class="card-img-top">
+                        <div class="card-body" (click)="showCityInfos(city)">
+                          <h5 class="card-title">{{ city['nameEng'] }}</h5>
+                          <h6> {{ city['countryEng'] }} </h6>
+                        </div>
+                        <div class="favouriteCity" (click)="addFavourite(city)" *ngIf="logged===true">
+                            <button class="favButton btn btn-outline-warning rounded-pill">
+                                <i [ngClass]="isFavourite(city) === true ? 'fas fa-heart' : 'far fa-heart'"></i>
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- <div class="cityGrid" *ngIf="display === false">
                     <div *ngFor="let city of cities" class="city">
                         <div id="cityImg" (click)="show(city)">
                             <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
@@ -78,7 +94,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div id="infoCity" class="infos" *ngIf="display === true">
                     <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closeCityInfos()">Go back to cities</button></div>
                     <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged" [currentUserId]="currentId"></app-city-info>
