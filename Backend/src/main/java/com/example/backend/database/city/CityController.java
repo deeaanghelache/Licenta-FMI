@@ -30,14 +30,7 @@ public class CityController {
 
     @GetMapping("getCityByNameContainsWord/{word}")
     public ResponseEntity<List<City>> getCitiesByNameContainsWord(@PathVariable("word") String word){
-        List<City> cities = new ArrayList<>();
-        List<City> dbCities = cityService.getAllCities();
-
-        for (var city : dbCities){
-            if (city.getNameEng().toLowerCase().contains(word)){
-                cities.add(city);
-            }
-        }
+        List<City> cities = cityService.getCitiesByNameContainsWord(word);
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 

@@ -91,6 +91,18 @@ public class CityService {
         return cityInterface.findCitiesByCountryRom(romanianName).orElseThrow(() -> new CountryRomNotFoundException("Couldn't find any city with the romanian country name: " + romanianName));
     }
 
+    public List<City> getCitiesByNameContainsWord(String word){
+        var cities = getAllCities();
+        List<City> citiesResponse = new ArrayList<>();
+
+        for (var city : cities){
+            if (city.getNameEng().toLowerCase().contains(word.toLowerCase())){
+                citiesResponse.add(city);
+            }
+        }
+        return citiesResponse;
+    }
+
     // POST
     public City addCity(City city){
         return cityInterface.save(city);
