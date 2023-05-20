@@ -13,12 +13,11 @@ import java.util.List;
 @Transactional
 public class UserRoleService {
     private UserRoleInterface userRoleInterface;
-    private UserService userService;
+//    private UserService userService;
 
     @Autowired
-    public UserRoleService(UserRoleInterface userRoleInterface, UserService userService) {
+    public UserRoleService(UserRoleInterface userRoleInterface) {
         this.userRoleInterface = userRoleInterface;
-        this.userService = userService;
     }
 
     // FIND(GET)
@@ -31,15 +30,14 @@ public class UserRoleService {
     }
 
     // POST
-    public void addUserRoleForUsers(Long userId){
+    public void addUserRoleForUsers(User user){
         UserRoleId userRoleId = new UserRoleId();
         userRoleId.setRoleId(2);
-        userRoleId.setUserId(userId);
+        userRoleId.setUserId(user.getUserId());
 
         UserRole userRole = new UserRole();
         userRole.setUserRoleId(userRoleId);
 
-        User user = userService.getUserByUserId(userId);
         Role role = new Role(2, "user");
         userRole.setUser(user);
         userRole.setRole(role);

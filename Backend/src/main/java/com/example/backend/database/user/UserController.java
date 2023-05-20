@@ -13,13 +13,12 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final UserRoleService userRoleService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UserService userService, UserRoleService userRoleService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRoleService = userRoleService;
     }
 
     @GetMapping("/findAllUsers")
@@ -48,55 +47,21 @@ public class UserController {
 
     @GetMapping("/checkAdminRole/{email}")
     public ResponseEntity<Boolean> checkAdminRoleForGivenUser(@PathVariable("email") String email){
-        var userRoles = userService.getAllRolesForGivenUser(email);
-        System.out.println(userRoles);
-
-        for (var userRole : userRoles) {
-            if (userRole.getRole().getRoleName().equalsIgnoreCase("Admin")) {
-                System.out.println(userRole.getRole().getRoleName());
-                return new ResponseEntity<>(true, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>(false, HttpStatus.OK);
+        boolean isAdmin = userService.checkAdminRoleForGivenUser(email);
+        return new ResponseEntity<>(isAdmin, HttpStatus.OK);
     }
-
-    // TODO: post si put
 
     // POST
     @PostMapping("/addUser")
     public ResponseEntity<User> register(@RequestBody User newUser) {
-        var users = userService.getAllUsers();
-
-        for (var user : users){
-            if ((user.getEmail().equals(newUser.getEmail())) || (user.getUsername().equals(newUser.getUsername()))){
-                return new ResponseEntity<>(null, HttpStatus.OK);
-            }
-        }
-
-        var password = newUser.getPassword();
-        System.out.println("Initial password: " + password);
-        var hashedPassword = bCryptPasswordEncoder.encode(password);
-        System.out.println("Hashed password: " + hashedPassword);
-
-        newUser.setPassword(hashedPassword);
         User user = userService.addUser(newUser);
-
-        userRoleService.addUserRoleForUsers(user.getUserId());
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User userTryingToLogIn){
-        var users = userService.getAllUsers();
-
-        for (var user : users){
-            if (user.getEmail().equals(userTryingToLogIn.getEmail())){
-                if (bCryptPasswordEncoder.matches(userTryingToLogIn.getPassword(), user.getPassword())){
-                    return new ResponseEntity<>(user, HttpStatus.OK);
-                }
-            }
-        }
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        var user = userService.login(userTryingToLogIn);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     // PUT
