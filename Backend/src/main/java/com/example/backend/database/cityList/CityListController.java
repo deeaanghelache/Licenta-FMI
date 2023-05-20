@@ -25,9 +25,7 @@ public class CityListController {
 
     @GetMapping("/getAllCitiesForGivenUser/{userId}")
     public ResponseEntity<List<City>> getAllCitiesForGivenUser(@PathVariable("userId") Integer userId) {
-        List<CityList> cityLists = cityListService.getAllCityListsForAGivenUser(userId);
-        List<City> cities = cityLists.stream().map(CityList::getCity).toList();
-
+        List<City> cities = cityListService.getAllCitiesForGivenUser(userId);
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 

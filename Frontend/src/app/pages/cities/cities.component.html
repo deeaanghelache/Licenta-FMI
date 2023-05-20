@@ -66,9 +66,9 @@
             <div>
                 <div class="row row-cols-1 row-cols-md-3 g-4 cards cityGrid" *ngIf="display === false">
                     <div class="col" *ngFor="let city of cities">
-                      <div class="card city" (click)="show(city)">
-                        <img src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" class="card-img-top">
-                        <div class="card-body" (click)="showCityInfos(city)">
+                      <div class="card city">
+                        <img src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" (click)="show(city)" class="card-img-top">
+                        <div class="card-body"  (click)="show(city)">
                           <h5 class="card-title">{{ city['nameEng'] }}</h5>
                           <h6> {{ city['countryEng'] }} </h6>
                         </div>
