@@ -104,8 +104,8 @@ img{
 #motto {
     font-size: 50px;
     position: relative;
-    top: -130px;
-    left: 20px;
+    top: -200px;
+    margin: 50px;
     text-align: center;
     z-index: 2;
     font-weight: bold;
@@ -115,7 +115,7 @@ img{
 
 #explore {
     position: relative;
-    top: -100px;
+    top: -170px;
     margin: 40px;
 }
 
@@ -208,6 +208,10 @@ img{
 .exploreGrid:hover, .planGrid:hover, .favGrid:hover {
     background-color: $color-2;
     box-shadow: 1px 1px 18px #888888;
+}
+
+.dropdown-item {
+    cursor: pointer;
 }
 
 #presentationGrid {

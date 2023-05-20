@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CityService } from 'src/app/services/city/city.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +12,11 @@ export class HomepageComponent implements OnInit {
   public logged:boolean = false;
   public cities = []
 
-  constructor(private cityService:CityService) { }
+  constructor(private cityService:CityService, public translate: TranslateService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+   }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
@@ -45,5 +50,10 @@ export class HomepageComponent implements OnInit {
 
   goToTop(){
     window.scrollTo(0, 0);
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    this.translate.use(language);
   }
 }

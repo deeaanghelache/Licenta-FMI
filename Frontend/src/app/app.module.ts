@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -25,6 +25,8 @@ import { JournalPostComponent } from './pages/journal/journal-post/journal-post.
 import { Page401Component } from './pages/page401/page401.component';
 import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-landmarks.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -55,9 +57,20 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     SharedInfoModule,
     NgbModule,
-    DragDropModule
+    DragDropModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

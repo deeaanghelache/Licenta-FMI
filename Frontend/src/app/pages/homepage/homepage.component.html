@@ -22,12 +22,11 @@
     <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
     <div class="dropdown"> &nbsp;
       <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Language
+                {{ 'menu-language' | translate }}
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
-        <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
-        <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
+        <li><a class="dropdown-item" (click)="switchAppsLanguage('en')">🇺🇸 English</a></li>
+        <li><a class="dropdown-item" (click)="switchAppsLanguage('ro')">🇷🇴 Română</a></li>
       </ul>
     </div>
   </nav>
@@ -48,12 +47,12 @@
           <img src="../../../assets/photos/pexels-alex-azabache-3757144.jpg">
        </div>
     </div>
-    <h1 id="motto">EXPERIENCE EUROPE, <br> WHERE HISTORY MEETS MODERNITY</h1>
+    <h1 id="motto">{{ 'homepage-title' | translate }}</h1>
 
     <div id="explore">
-      <h5 id="title1">EXPLORE THE OLD CONTINENT</h5>
-      <h2 id="title2">FIND OUT USEFUL INFORMATION ABOUT YOUR FUTURE DESTINATION</h2>
-      <button id="findOut" class="btn btn-outline-warning rounded-pill"><a href="/cities">View all capitals</a></button>
+      <h5 id="title1">{{ 'homepage-explore' | translate }}</h5>
+      <h2 id="title2">{{ 'homepage-find-out' | translate }}</h2>
+      <button id="findOut" class="btn btn-outline-warning rounded-pill"><a href="/cities">{{ 'homepage-capitals-button' | translate }}</a></button>
 
       <div id="cities">
         <div class="cityImage" *ngFor="let city of cities">
@@ -65,11 +64,11 @@
 
     <div id="presentationGrid">
       <div id="presentation">
-          <h2> Find out more about us </h2>
-          <p>Welcome to our innovative travel planning app, where you can turn your wanderlust into reality and capture every moment of your journey. With our seamless user experience, you can easily register and login to your account, choose your favorite cities, and plan your future trips like a pro.</p>
-          <p>Our app offers a wealth of information about your favorite cities, from famous landmarks to wonderful historical stories. With our trip planning feature, you can schedule your days and set landmarks to visit, ensuring that you won't miss a thing.</p>     
-          <p>But that's not all! Our app also lets you create your own travel journal, where you can write about your thoughts and upload photos from your trip, capturing the essence of your experience.</p>
-          <p>Whether you're a seasoned traveler or new to the game, our app is the perfect tool to make your next adventure unforgettable. So why wait? Sign up today and start planning your dream trip!</p>
+          <h2> {{ 'homepage-presentation-title' | translate }} </h2>
+          <p>{{ 'homepage-presentation-line1' | translate }}</p>
+          <p>{{ 'homepage-presentation-line2' | translate }}</p>     
+          <p>{{ 'homepage-presentation-line3' | translate }}</p>
+          <p>{{ 'homepage-presentation-line4' | translate }}</p>
       </div>
       <div id="presentationGif">
         <img src="../../../assets/gifs/homepage.gif">
@@ -78,19 +77,19 @@
 
     <div id="infoGrid">
       <div class="card favGrid">
-        <h5 class="card-title">Pick your favourite cities</h5>
-        <p class="card-text">Select and save your preferred destinations with ease.</p>
-        <p class="card-text">Our intuitive platform allows you to effortlessly pick and store your favorite cities, so you can plan your next adventure with ease.</p>
+        <h5 class="card-title">{{ 'homepage-fav-title' | translate }}</h5>
+        <p class="card-text">{{ 'homepage-fav-text-line1' | translate }}</p>
+        <p class="card-text">{{ 'homepage-fav-text-line2' | translate }}</p>
       </div>
       <div class="card planGrid">
-          <h5 class="card-title">Plan your trips</h5>
-          <p class="card-text">Create and organize your dream itinerary using our trip planning feature.</p>
-          <p class="card-text">With just a few clicks, you can map out your route by set landmarks to visit, ensuring a stress-free and unforgettable travel experience.</p>
+          <h5 class="card-title">{{ 'homepage-plan-title' | translate }}</h5>
+          <p class="card-text">{{ 'homepage-plan-text-line1' | translate }}</p>
+          <p class="card-text">{{ 'homepage-plan-text-line2' | translate }}</p>
       </div>
       <div class="card exploreGrid">
-        <h5 class="card-title">Capture your journey with our travel diary feature</h5>
-        <p class="card-text">Preserve your travel memories and cherish them for years to come with our travel diary feature.</p>
-        <p class="card-text">Write your thoughts, upload photos, and document your journey in one convenient location, so you can look back on your adventures whenever you like.</p>
+        <h5 class="card-title">{{ 'homepage-explore-title' | translate }}</h5>
+        <p class="card-text">{{ 'homepage-explore-text-line1' | translate }}</p>
+        <p class="card-text">{{ 'homepage-explore-text-line2' | translate }}</p>
     </div>
     </div>
 
@@ -108,12 +107,12 @@
       <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
         <img src="../../../assets/photos/logo_footer.png" style="width:250px;height:auto;">
         <p>
-          WanderJoy is an innovative travel app, where you can fulfill your wanderlust and capture every moment of your journey. Register, choose your favorite cities, and plan your trips like a pro.
+          {{ 'footer-description' | translate }}
         </p>
       </div>
 
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0 navigation">
-        <h5 class="text-uppercase">Navigation</h5>
+        <h5 class="text-uppercase">{{ 'footer-navigation-title' | translate }}</h5>
         <ul>
           <li><a class="navigationLink" routerLink="/homepage">Home</a></li>
           <li><a class="navigationLink" routerLink="/cities">Cities</a></li>
