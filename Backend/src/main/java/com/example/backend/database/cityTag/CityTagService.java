@@ -1,5 +1,7 @@
 package com.example.backend.database.cityTag;
 
+import com.example.backend.database.city.City;
+import com.example.backend.database.tag.Tag;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,18 @@ public class CityTagService {
     }
 
     // FIND(GET)
-    public List<CityTag> getAllCitiesForAGivenTag(Integer tagId){
-        return cityTagInterface.queryBy(tagId);
+    public List<City> getAllCitiesForAGivenTag(Integer tagId){
+        var cityTags =  cityTagInterface.queryBy(tagId);
+        var cities = cityTags.stream().map(CityTag::getCity).toList();
+
+        return cities;
     }
 
-    public  List<CityTag> getAllTagsForGivenCity(Long cityId) {
-        return cityTagInterface.queryBy(cityId);
+    public  List<Tag> getAllTagsForGivenCity(Long cityId) {
+        var cityTags = cityTagInterface.queryBy(cityId);
+        var tags = cityTags.stream().map(CityTag::getTag).toList();
+
+        return tags;
     }
 
     public List<CityTag> getAllCityTags(){

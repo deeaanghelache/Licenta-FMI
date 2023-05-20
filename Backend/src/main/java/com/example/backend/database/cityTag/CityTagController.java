@@ -31,17 +31,13 @@ public class CityTagController {
 
     @GetMapping("/getAllCitiesForGivenTag/{tagId}")
     public ResponseEntity<List<City>> getAllCitiesForGivenTag(@PathVariable("tagId") Integer tagId){
-        List<CityTag> cityTags = cityTagService.getAllCitiesForAGivenTag(tagId);
-        List<City> cities = cityTags.stream().map(CityTag::getCity).toList();
-
+        List<City> cities = cityTagService.getAllCitiesForAGivenTag(tagId);
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
     @GetMapping("/getAllTagsForGivenCity/{cityId}")
     public ResponseEntity<List<Tag>> getAllTagsForGivenCity(@PathVariable("cityId") Integer cityId) {
-        List<CityTag> cityTags = cityTagService.getAllTagsForGivenCity(Long.valueOf(cityId));
-        List<Tag> tags = cityTags.stream().map(CityTag::getTag).toList();
-
+        List<Tag> tags = cityTagService.getAllTagsForGivenCity(Long.valueOf(cityId));
         return new ResponseEntity<>(tags, HttpStatus.OK);
     }
 }
