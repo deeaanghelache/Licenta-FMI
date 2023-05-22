@@ -4,10 +4,10 @@
             <img id="image" src="../../../../assets/photos/pexels-alex-azabache-3757144.jpg" width="280px" height="280px">
         </div> 
         <div id="addToFavs" *ngIf="loggedUser === true && isFavourite() === false">
-            <button class="btn btn-outline-light rounded-pill buttonAddFav" (click)="addFavourite()">Add to favourites <i class="fa-regular fa-heart"></i></button>
+            <button class="btn btn-outline-light rounded-pill buttonAddFav" (click)="addFavourite()">&nbsp;{{ "city-info-add" | translate }} &nbsp;<i class="fa-regular fa-heart"></i>&nbsp;</button>
         </div>
         <div id="removeFromFavs" *ngIf="loggedUser === true && isFavourite() === true">
-            <button class="btn btn-outline-light rounded-pill buttonRemoveFav" (click)="removeFavourite()">Remove from favourites <i class="fa-solid fa-heart-crack"></i></button>
+            <button class="btn btn-outline-light rounded-pill buttonRemoveFav" (click)="removeFavourite()">&nbsp;&nbsp;{{ "city-info-remove" | translate }} &nbsp;<i class="fa-solid fa-heart-crack"></i>&nbsp;&nbsp;</button>
         </div>
     </div>
     <div id="rightSide">
@@ -19,12 +19,12 @@
         </div>
 
         <div id="history">
-            <h4> Brief History </h4>
+            <h4> {{ "city-info-history" | translate }} </h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
         </div>
 
         <div id="landmarks">
-            <h4> Landmarks </h4>
+            <h4> {{ "city-info-landmarks" | translate }} </h4>
             <div id="landmarkList">
                 <ul>
                     <li *ngFor="let landmark of landmarks">
@@ -35,7 +35,7 @@
         </div>
 
         <div id="airports">
-            <h4> Airports </h4>
+            <h4> {{ "city-info-airports" | translate }} </h4>
             <div id="airportsList">
                 <ul>
                     <li *ngFor="let airport of airports">

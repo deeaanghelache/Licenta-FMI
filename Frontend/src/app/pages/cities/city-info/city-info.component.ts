@@ -1,4 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { AirportService } from 'src/app/services/airport/airport.service';
 import { CityService } from 'src/app/services/city/city.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
@@ -14,13 +15,19 @@ export class CityInfoComponent implements OnInit {
   public tags = [];
   public airports = [];
   public landmarks = [];
+  public language:any;
 
   @Input() city: any;
   @Input() favourites: any;
   @Input() loggedUser: any;
   @Input() currentUserId: any;
 
-  constructor(private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService) { }
+  constructor(private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService, public translate: TranslateService) { 
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   ngOnInit(): void {
     this.getTagsForCurrentCity();
@@ -71,5 +78,17 @@ export class CityInfoComponent implements OnInit {
     this.cityListService.deleteCityList(this.city['cityId'], this.currentUserId).subscribe((response:any) => {
       this.getFavourite(this.currentUserId);
     })
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

@@ -3,8 +3,8 @@
         <img src="../../../assets/gifs/401Gif.gif" style="width: 300px; height: auto;">
     </div>
     <h1>Oops</h1>
-    <h3>It looks like you're not authorized to access this page.</h3>
+    <h3>{{ '401' | translate }}</h3>
     <div id="button">
-        <button class="btn btn-outline-warning rounded-pill" (click)="goHome()">Go home</button>
+        <button class="btn btn-outline-warning rounded-pill" (click)="goHome()">{{ 'goHome' | translate }}</button>
     </div>
 </div>

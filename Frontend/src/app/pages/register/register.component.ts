@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UserAuthenticationService } from 'src/app/services/userAuthentication/user-authentication.service';
 
 @Component({
@@ -14,8 +15,14 @@ export class RegisterComponent implements OnInit {
   public userAlreadyExists:String = "";
   public ok:boolean = false;
   public tryAgain: String = "";
+  public language:any;
 
-  constructor(private formBuilder:FormBuilder, private router: Router, private userAuthentication:UserAuthenticationService) { }
+  constructor(public translate: TranslateService, private formBuilder:FormBuilder, private router: Router, private userAuthentication:UserAuthenticationService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+   }
 
   passwordAndConfirmPasswordChecker : ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
     let password = group.get('password')?.value;
@@ -66,4 +73,15 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
+  }
 }

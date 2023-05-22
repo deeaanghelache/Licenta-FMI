@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CityService } from 'src/app/services/city/city.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -15,10 +16,16 @@ export class WishlistComponent implements OnInit {
   public currentEmail = '';
   public cityLists = [];
   public chosenCity:any;
+  public language:any;
   public displayLandmarkPlanning: boolean = false;
   public planLandmarks = false;
 
-  constructor(private cityService:CityService, private userService:UserService, private cityListService:CityListService) { }
+  constructor(public translate: TranslateService, private cityService:CityService, private userService:UserService, private cityListService:CityListService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+   }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
@@ -88,5 +95,17 @@ export class WishlistComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

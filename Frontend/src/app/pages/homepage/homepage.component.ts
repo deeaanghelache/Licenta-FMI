@@ -11,17 +11,25 @@ export class HomepageComponent implements OnInit {
   public admin:boolean = false;
   public logged:boolean = false;
   public cities = []
+  public language:any;
 
   constructor(private cityService:CityService, public translate: TranslateService) {
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
-    this.translate.use('en');
-   }
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
     this.checkIfAdmin();
     this.getAllCities();
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
   }
 
   checkIfLoggedIn(){
@@ -54,6 +62,7 @@ export class HomepageComponent implements OnInit {
 
   switchAppsLanguage(language: string) {
     console.log(language);
+    sessionStorage.setItem("language", language);
     this.translate.use(language);
   }
 }

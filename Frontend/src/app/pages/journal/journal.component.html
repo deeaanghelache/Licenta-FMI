@@ -1,35 +1,35 @@
 <div id="board">
-    <header>
+  <header>
     <!-- From bootstrap -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
         <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> -->
         <img src="../../../assets/photos/logo.png" style="width:130px;height:auto;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
-            <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
-            <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
-            <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
+            <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage"> {{ 'menu-home' | translate }} </a></li>
+            <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">{{ 'menu-cities' | translate }}</a></li>
+            <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">{{ 'menu-journal' | translate }}</a></li>
+            <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">{{ 'menu-wishlist' | translate }}</a></li>
             <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
             <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
           </ul>
         </div>
-        <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/login">Log in</button> &nbsp;
-        <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/register">Join</button>
-        <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
+        <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/login">{{ 'menu-login' | translate }}</button> &nbsp;
+        <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/register">{{ 'menu-join' | translate }}</button>
+        <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">{{ 'menu-logout' | translate }}</button>
         <div class="dropdown"> &nbsp;
           <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Language
-                </button>
+                    {{ 'menu-language' | translate }}
+          </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
-            <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
-            <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
+            <li><a class="dropdown-item" (click)="switchAppsLanguage('en')">🇺🇸 English</a></li>
+            <li><a class="dropdown-item" (click)="switchAppsLanguage('ro')">🇷🇴 Română</a></li>
           </ul>
         </div>
+        &nbsp; &nbsp; 
       </nav>
     </header>
 
@@ -41,7 +41,7 @@
         <div id="image2">
           <img src="{{ image2 }}" style="width:450px;height:635px;" >
           <div id="motto">
-            <p>Travel. Write. Repeat.</p>
+            <p>{{ 'journal-motto' | translate }}</p>
           </div>
         </div>
         <div id="image3">
@@ -64,13 +64,13 @@
             </div>
           </div>
           <div id="wholePost" *ngIf="display === true">
-            <div id="goBack"><button class="btn btn-outline-warning rounded-pill closeButton" (click)="closePost()">Go back to all posts</button></div>
+            <div id="goBack"><button class="btn btn-outline-warning rounded-pill closeButton" (click)="closePost()">{{ 'journal-go-back' | translate }}</button></div>
             <app-journal-post [post]="currentPost"></app-journal-post>
           </div>
         </div>
 
         <div id="gallery" *ngIf="display === false">
-          <h4> My memories </h4>
+          <h4> {{ 'journal-memories' | translate }} </h4>
           <div id="galleryGrid">
             <div class="image" *ngFor="let image of images">
               <img src="{{ image }}" style="width: 100%; height: 100%;">
@@ -82,11 +82,11 @@
       <br>
 
       <div id="addPost" *ngIf="display === false">
-        <h1>Let's digitally capture our travels</h1>
+        <h1>{{ 'journal-form-motto' | translate }}</h1>
           <div id="addPostForm">
             <form [formGroup]="journalPostForm" (ngSubmit)="addPost()">
               <div class="form-group">
-                  <label for="title">Title</label>
+                  <label for="title">{{ 'journal-title' | translate }}</label>
                   <input class="form-control input" 
                   id="title"
                   placeholder="Title"
@@ -95,7 +95,7 @@
               </div>
 
               <div class="form-group">
-                <label for="post">Post</label>
+                <label for="post">{{ 'journal-post' | translate }}</label>
                 <textarea id="post"
                 class="form-control input" 
                 placeholder="Post"
@@ -105,7 +105,7 @@
               </div>
 
               <div class="form-group">
-                <label for="photo">Photo</label>
+                <label for="photo">{{ 'journal-photo' | translate }}</label>
                 <input class="form-control photoLabel" 
                 id="photo"
                 placeholder="Photo"
@@ -119,7 +119,7 @@
               class="btn btn-dark rounded-pill"
               [disabled]="journalPostForm.invalid" 
               type="submit">
-              Submit
+              {{ 'journal-submit' | translate }}
               </button>
             </form>
           </div>

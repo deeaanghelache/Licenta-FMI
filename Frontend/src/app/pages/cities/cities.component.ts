@@ -4,6 +4,7 @@ import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { TagService } from 'src/app/services/tag/tag.service';
 import { UserService } from 'src/app/services/user/user.service';
 import * as leafletModule from 'leaflet';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cities',
@@ -27,8 +28,14 @@ export class CitiesComponent implements OnInit {
   private defaultMapLat = 44.439663;
   private defaultMapLong = 26.096306;
   private defaultMapZoom = 15;
+  public language:any;
 
-  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService) { }
+  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, public translate: TranslateService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+   }
 
   ngOnInit(): void {
     this.map = leafletModule.map('map').setView([this.defaultMapLat, this.defaultMapLong], this.defaultMapZoom);
@@ -187,5 +194,17 @@ export class CitiesComponent implements OnInit {
         return 0; 
       }
     });
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

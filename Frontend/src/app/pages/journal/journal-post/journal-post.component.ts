@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
@@ -11,8 +12,14 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 })
 export class JournalPostComponent implements OnInit {
   @Input() post:any;
+  public language:any;
 
-  constructor() { }
+  constructor(public translate: TranslateService) { 
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   ngOnInit(): void {
   }
@@ -46,6 +53,18 @@ export class JournalPostComponent implements OnInit {
         pdfMake.createPdf(docDefinition).download(pdfName);
       }
     };
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
   
 }

@@ -4,6 +4,7 @@ import { LandmarkService } from 'src/app/services/landmark/landmark.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { ListOfLandmarksService } from 'src/app/services/listOfLandmarks/list-of-landmarks.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-plan-landmarks',
@@ -22,10 +23,16 @@ export class PlanLandmarksComponent implements OnInit {
   public currentCityListId: any;
   public landmarkToAdd: any;
   public landmarkToDelete: any;
+  public language:any;
 
   @Input() chosenCity: any;
 
-  constructor(private landmarkService:LandmarkService, private userService:UserService, private cityListService:CityListService, private listOfLandmarksService:ListOfLandmarksService) { }
+  constructor(public translate: TranslateService, private landmarkService:LandmarkService, private userService:UserService, private cityListService:CityListService, private listOfLandmarksService:ListOfLandmarksService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+   }
 
   ngOnInit(): void {
     this.getAllLandmarksNamesForGivenCity();
@@ -146,6 +153,18 @@ export class PlanLandmarksComponent implements OnInit {
         }
       }
     }
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }
 

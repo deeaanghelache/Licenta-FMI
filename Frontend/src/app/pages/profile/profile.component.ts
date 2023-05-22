@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   public displayChangeUsernameForm: boolean = false;
   public changePasswordForm!:FormGroup;
   public changeUsernameForm!:FormGroup;
+  public language:any;
   public images = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -36,7 +38,12 @@ export class ProfileComponent implements OnInit {
     "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
   ];
 
-  constructor(private router: Router, private userService: UserService, private formBuilder:FormBuilder) { }
+  constructor(public translate: TranslateService, private router: Router, private userService: UserService, private formBuilder:FormBuilder) { 
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   getUsername(){
     this.currentUsername = sessionStorage.getItem("username") as string;
@@ -141,5 +148,17 @@ export class ProfileComponent implements OnInit {
     this.admin = false;
     this.logged = false;
     this.router.navigateByUrl("/homepage");
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

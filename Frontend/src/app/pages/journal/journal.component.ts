@@ -3,6 +3,7 @@ import { JournalPostService } from 'src/app/services/journalPost/journal-post.se
 import { UserService } from 'src/app/services/user/user.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-journal',
@@ -17,6 +18,7 @@ export class JournalComponent implements OnInit {
   public currentEmail: string = "";
   public display:boolean = false;
   public currentPost!:any;
+  public language:any;
   public images = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -64,7 +66,12 @@ export class JournalComponent implements OnInit {
   public image2:any;
   public image3:any;
 
-  constructor(private userService:UserService, private journalPostService:JournalPostService, private formBuilder:FormBuilder) { }
+  constructor(public translate: TranslateService, private userService:UserService, private journalPostService:JournalPostService, private formBuilder:FormBuilder) { 
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   ngOnInit(): void {
     this.journalPostForm = this.formBuilder.group({
@@ -142,5 +149,17 @@ export class JournalComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

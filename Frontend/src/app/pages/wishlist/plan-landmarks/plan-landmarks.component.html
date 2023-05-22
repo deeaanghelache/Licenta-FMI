@@ -1,7 +1,7 @@
 <div id="landmarkPageContainer">
 <!-- Model from: https://material.angular.io/cdk/drag-drop/overview -->
   <div id="cityLandmarks">
-    <h2>{{ chosenCity['nameEng'] }}'s landmarks</h2>
+    <h2>{{ chosenCity['nameEng'] }} {{ 'wishlist-plan-landmarks' | translate }}</h2>
 
     <div
       cdkDropList
@@ -22,7 +22,7 @@
   </div>
 
   <div id="myLandmarkPlan">
-    <h2>My landmark plan for {{ chosenCity['nameEng'] }} </h2>
+    <h2>{{ 'wishlist-plan-list' | translate }} {{ chosenCity['nameEng'] }} </h2>
 
     <div
       cdkDropList
