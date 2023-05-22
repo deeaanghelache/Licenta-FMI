@@ -13,7 +13,7 @@
                 <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">{{ 'menu-cities' | translate }}</a></li>
                 <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">{{ 'menu-journal' | translate }}</a></li>
                 <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">{{ 'menu-wishlist' | translate }}</a></li>
-                <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+                <li class="mainMenu" id="button6" *ngIf = "logged === true"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
                 <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
               </ul>
             </div>
