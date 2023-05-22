@@ -48,7 +48,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li class="dropdown-item" (click)="allButton()"> {{ 'cities-all' | translate }} </li>
-                        <li class="dropdown-item" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag['tagNameEng'] }}</li>
+                        <li class="dropdown-item" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag[tagNameAttribute] }}</li>
                     </ul>
                 </div>
 
@@ -68,8 +68,8 @@
                       <div class="card city">
                         <img src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" (click)="show(city)" class="card-img-top">
                         <div class="card-body"  (click)="show(city)">
-                          <h5 class="card-title">{{ city['nameEng'] }}</h5>
-                          <h6> {{ city['countryEng'] }} </h6>
+                          <h5 class="card-title">{{ city[cityNameAttribute] }}</h5>
+                          <h6> {{ city[cityCountryAttribute] }} </h6>
                         </div>
                         <div class="favouriteCity" (click)="addFavourite(city)" *ngIf="logged===true">
                             <button class="favButton btn btn-outline-warning rounded-pill">

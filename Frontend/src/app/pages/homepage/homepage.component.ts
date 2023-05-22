@@ -12,6 +12,7 @@ export class HomepageComponent implements OnInit {
   public logged:boolean = false;
   public cities = []
   public language:any;
+  public cityNameAttribute = 'nameEng';
 
   constructor(private cityService:CityService, public translate: TranslateService) {
     this.translate.addLangs(['en', 'ro'])
@@ -61,7 +62,11 @@ export class HomepageComponent implements OnInit {
   }
 
   switchAppsLanguage(language: string) {
-    console.log(language);
+    if (language === "ro"){
+      this.cityNameAttribute = 'nameRom';
+    } else {
+      this.cityNameAttribute = 'nameEng';
+    }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
   }

@@ -11,16 +11,16 @@
         </div>
     </div>
     <div id="rightSide">
-        <div id="nameCityText"><h2>{{ city['nameEng'] }} </h2></div> 
+        <div id="nameCityText"><h2>{{ city[cityNameAttribute] }} </h2></div> 
         <div id="cityTags">
             <ul id="cityTagsList">
-                <li *ngFor="let tag of tags">{{ tag['tagNameEng'] }}. &nbsp;</li>
+                <li *ngFor="let tag of tags">{{ tag[tagNameAttribute] }}. &nbsp;</li>
             </ul>
         </div>
 
         <div id="history">
             <h4> {{ "city-info-history" | translate }} </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                <p>{{ city[historyAttribute] }}</p>
         </div>
 
         <div id="landmarks">
@@ -39,7 +39,7 @@
             <div id="airportsList">
                 <ul>
                     <li *ngFor="let airport of airports">
-                        {{ airport['nameEng'] }}
+                        {{ airport[airportNameAttribute] }}
                         <span id="distanceToCity"> 
                             &nbsp; &nbsp; {{ airport['distanceToCity'] }}&nbsp;km &nbsp; &nbsp;
                         </span>

@@ -48,16 +48,16 @@
         </div>
         <div class="backendRequests">
           <div class="changePasswordButton">
-            <button class="btn btn-outline-dark rounded-pill" (click)="openChangePasswordForm()"> Change password </button>
+            <button class="btn btn-outline-dark rounded-pill" (click)="openChangePasswordForm()"> {{ 'profile-change-password' | translate }} </button>
           </div>
           <div class="changeUsernameButton">
-            <button class="btn btn-outline-dark rounded-pill" (click)="openChangeUsernameForm()"> Change username </button>
+            <button class="btn btn-outline-dark rounded-pill" (click)="openChangeUsernameForm()"> {{ 'profile-change-username' | translate }} </button>
           </div>
         </div>
         <div id="emptyMiddle">
           <div id="gallery" *ngIf="displayGallery === true">
-            <h3> My last adventures </h3>
-            <button class="btn btn-outline-warning rounded-pill" (click)="goToJournal()">Go to journal</button>
+            <h3> {{ 'profile-adventures' | translate }} </h3>
+            <button class="btn btn-outline-warning rounded-pill" (click)="goToJournal()">{{ 'profile-journal' | translate }}</button>
             <div id="photos">
               <div id="galleryImage" *ngFor="let image of images">
                 <img src="{{ image }}">
@@ -67,12 +67,12 @@
           <div id="displayChangePasswordForm" *ngIf="displayChangePasswordForm === true">
             <i class="fa-solid fa-xmark" (click)="closeChangePasswordForm()"></i>
             <div id="passwordForm">
-              <h2>Change your password</h2>
+              <h2>{{ 'profile-password-button' | translate }}</h2>
               <div id="form">
                 <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
                     <div class="form-group">
                         <input class="form-control" 
-                        placeholder="New password"
+                        placeholder="{{ 'profile-pass' | translate }}"
                         type="password"
                         [ngClass]="changePasswordForm.controls['password'].errors ? 'is-invalid' : ''"
                         formControlName="password" />
@@ -80,7 +80,7 @@
 
                     <div class="form-group">
                         <input class="form-control" 
-                        placeholder="Confirm your new password"
+                        placeholder="{{ 'profile-confirm-pass' | translate }}"
                         type="password"
                         [ngClass]="changePasswordForm.controls['confirmPassword'].errors ? 'is-invalid' : ''"
                         formControlName="confirmPassword"/>
@@ -93,7 +93,7 @@
                     id="changePasswordButton" 
                     [disabled]="changePasswordForm.invalid" 
                     type="submit">
-                        Change password
+                      {{ 'profile-password-button' | translate }}
                     </button>
                 </form>
             </div>
@@ -102,12 +102,12 @@
           <div id="displayChangeUsernameForm" *ngIf="displayChangeUsernameForm === true">
             <i class="fa-solid fa-xmark" (click)="closeChangeUsernameForm()"></i>
             <div id="usernameForm">
-              <h2>Change your username</h2>
+              <h2>{{ 'profile-username-button' | translate }}</h2>
               <div id="form">
                 <form [formGroup]="changeUsernameForm" (ngSubmit)="changeUsername()">
                     <div class="form-group">
                         <input class="form-control" 
-                        placeholder="New username"
+                        placeholder="{{ 'profile-user' | translate }}"
                         [ngClass]="changeUsernameForm.controls['newUsername'].errors ? 'is-invalid' : ''"
                         formControlName="newUsername" />
                     </div>
@@ -119,7 +119,7 @@
                     id="changeUsernameButton" 
                     [disabled]="changeUsernameForm.invalid" 
                     type="submit">
-                        Change username
+                      {{ 'profile-username-button' | translate }}
                     </button>
                 </form>
             </div>

@@ -28,6 +28,9 @@ export class CitiesComponent implements OnInit {
   private defaultMapLat = 44.439663;
   private defaultMapLong = 26.096306;
   private defaultMapZoom = 15;
+  public cityNameAttribute = 'nameEng';
+  public tagNameAttribute = 'tagNameEng';
+  public cityCountryAttribute = 'countryEng';
   public language:any;
 
   constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, public translate: TranslateService) {
@@ -203,7 +206,15 @@ export class CitiesComponent implements OnInit {
   }
 
   switchAppsLanguage(language: string) {
-    console.log(language);
+    if (language === "ro"){
+      this.cityNameAttribute = 'nameRom';
+      this.tagNameAttribute = 'tagNameRom';
+      this.cityCountryAttribute = 'countryRom';
+    } else {
+      this.cityNameAttribute = 'nameEng';
+      this.tagNameAttribute = 'tagNameEng';
+      this.cityCountryAttribute = 'countryEng';
+    }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
   }

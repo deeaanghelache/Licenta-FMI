@@ -19,6 +19,8 @@ export class WishlistComponent implements OnInit {
   public language:any;
   public displayLandmarkPlanning: boolean = false;
   public planLandmarks = false;
+  public cityNameAttribute = 'nameEng';
+  public cityCountryAttribute = 'countryEng';
 
   constructor(public translate: TranslateService, private cityService:CityService, private userService:UserService, private cityListService:CityListService) {
     this.translate.addLangs(['en', 'ro'])
@@ -104,7 +106,13 @@ export class WishlistComponent implements OnInit {
   }
 
   switchAppsLanguage(language: string) {
-    console.log(language);
+    if (language === "ro"){
+      this.cityNameAttribute = 'nameRom';
+      this.cityCountryAttribute = 'countryRom';
+    } else {
+      this.cityNameAttribute = 'nameEng';
+      this.cityCountryAttribute = 'countryEng';
+    }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
   }

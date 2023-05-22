@@ -16,6 +16,10 @@ export class CityInfoComponent implements OnInit {
   public airports = [];
   public landmarks = [];
   public language:any;
+  public cityNameAttribute = 'nameEng';
+  public tagNameAttribute = 'tagNameEng';
+  public historyAttribute = 'briefHistoryEng';
+  public airportNameAttribute = 'nameEng';
 
   @Input() city: any;
   @Input() favourites: any;
@@ -87,7 +91,17 @@ export class CityInfoComponent implements OnInit {
   }
 
   switchAppsLanguage(language: string) {
-    console.log(language);
+    if (language === "ro"){
+      this.cityNameAttribute = 'nameRom';
+      this.tagNameAttribute = 'tagNameRom';
+      this.airportNameAttribute = 'nameRom';
+      this.historyAttribute = 'briefHistoryRom';
+    } else {
+      this.cityNameAttribute = 'nameEng';
+      this.tagNameAttribute = 'tagNameEng';
+      this.airportNameAttribute = 'nameEng';
+      this.historyAttribute = 'briefHistoryEng';
+    }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
   }

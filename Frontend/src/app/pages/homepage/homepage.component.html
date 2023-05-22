@@ -58,7 +58,7 @@
       <div id="cities">
         <div class="cityImage" *ngFor="let city of cities">
           <img class="imgTagCities" src="../../../assets/photos/{city['photo']}">
-          <h3 class="cityName"> &nbsp; {{ city['nameEng'] }} </h3>
+          <h3 class="cityName"> &nbsp; {{ city[cityNameAttribute] }} </h3>
         </div>
       </div>
     </div>
