@@ -96,7 +96,8 @@ export class ProfileComponent implements OnInit {
       this.currentId = response.userId;
       this.currentFirstName = response.firstName;
       this.currentLastName = response.lastName;
-      this.currentPhotoPath = "../../../../../../UserUploads/UserProfilePics/" + response.photo;
+      this.currentPhotoPath = response.photo;
+      console.log(this.currentPhotoPath);
       this.currentUsername = response.username;
     })
   }
