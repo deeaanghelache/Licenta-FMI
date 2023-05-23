@@ -52,6 +52,7 @@
     "login-button": "Sign up",
     "register-button": "Sign up",
     "register-extra": "Already a member?",
+    "register-password-requirements": "Must contain at least 8 characters, one digit and one letter.",
     "profile-change-username": "Change your username",
     "profile-change-password": "Change your password",
     "profile-journal": "Go to journal",

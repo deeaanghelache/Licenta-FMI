@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class UserAuthenticationService {
   private privateHttpHeaders = {
     headers: new HttpHeaders({
-      responseType: 'text',
+      'Content-Type': 'application/json',
       observe: 'response'
     }),
   };
@@ -19,11 +19,7 @@ export class UserAuthenticationService {
   constructor(private http: HttpClient) { }
 
   register(user: any){
-    return this.http.post(
-      this.baseUrl + 'user/addUser',
-      user,
-      this.privateHttpHeaders
-    )
+    return this.http.post(this.baseUrl + 'user/addUser', user);
   }
 
   login(user: any){

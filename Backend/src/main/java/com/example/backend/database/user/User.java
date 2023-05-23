@@ -6,6 +6,8 @@ import com.example.backend.database.preference.Preference;
 import com.example.backend.database.userRole.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -34,6 +36,8 @@ public class User implements Serializable {
 
     @Column(columnDefinition = "varchar(100)")
     private String photo;
+
+//    private MultipartFile photo;
 
     // Foreign Keys
 

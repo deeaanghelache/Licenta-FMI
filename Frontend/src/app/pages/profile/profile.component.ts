@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   public currentId:number = 0;
   public currentEmail:string = '';
   public currentUsername: string = '';
-  public currentPhoto:string = '';
+  public currentPhotoPath:string = '';
   public displayGallery:boolean = true;
   public message: string = '';
   public displayChangePasswordForm: boolean = false;
@@ -92,10 +92,11 @@ export class ProfileComponent implements OnInit {
 
   getUserByEmail(email:string){
     this.userService.getUserByEmail(email).subscribe((response:any) => {
+      console.log(response);
       this.currentId = response.userId;
       this.currentFirstName = response.firstName;
       this.currentLastName = response.lastName;
-      this.currentPhoto = response.photo;
+      this.currentPhotoPath = "../../../../../../UserUploads/UserProfilePics/" + response.photo;
       this.currentUsername = response.username;
     })
   }

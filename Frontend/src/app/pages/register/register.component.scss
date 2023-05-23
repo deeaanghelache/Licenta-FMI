@@ -29,7 +29,6 @@ h1{
 }
 
 .leftSide{
-    background-color: $color-2;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 1;
@@ -48,7 +47,7 @@ h1{
     width: 20vw;
 }
 
-input {
+.input {
     border-width: 3px;
     border-top: solid white;
     border-right: solid white;

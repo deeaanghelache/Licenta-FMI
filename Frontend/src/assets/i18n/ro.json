@@ -52,6 +52,7 @@
   "login-button": "Înregistrare",
   "register-button": "Înregistrare",
   "register-extra": "Ai deja un cont?",
+  "register-password-requirements": "Trebuie să conțină cel puțin 8 caractere, o literă și o cifră.",
   "profile-change-username": "Schimbă-ți username-ul",
   "profile-change-password": "Schimbă-ți parola",
   "profile-journal": "Mergi la jurnal",

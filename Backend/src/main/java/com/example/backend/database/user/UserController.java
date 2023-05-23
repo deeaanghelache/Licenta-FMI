@@ -1,13 +1,21 @@
 package com.example.backend.database.user;
 
 import com.example.backend.database.userRole.UserRoleService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -16,6 +24,9 @@ public class UserController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Value("${upload.directory}")
+    private String userUploadsToDirectory;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -52,10 +63,34 @@ public class UserController {
     }
 
     // POST
-    @PostMapping("/addUser")
-    public ResponseEntity<User> register(@RequestBody User newUser) {
-        User user = userService.addUser(newUser);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    @PostMapping(value="/addUser")
+    public ResponseEntity<User> register(@RequestParam("photo") MultipartFile file, @RequestParam("user") String userJson) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserRegisterModel userRegisterModel = objectMapper.readValue(userJson, UserRegisterModel.class);
+        try {
+            String fullPathForProfilePictures = userUploadsToDirectory + "/UserProfilePics";
+            String photoName = file.getOriginalFilename();
+            String filePath = fullPathForProfilePictures + "/" + photoName;
+            file.transferTo(new File(filePath));
+
+            User newUser = new User();
+            newUser.setFirstName(userRegisterModel.getFirstName());
+            newUser.setLastName(userRegisterModel.getLastName());
+            newUser.setEmail(userRegisterModel.getEmail());
+            newUser.setUsername(userRegisterModel.getUsername());
+            newUser.setPassword(userRegisterModel.getPassword());
+            newUser.setPhoto(photoName);
+
+            System.out.println("---");
+            System.out.println(newUser);
+            System.out.println("---");
+
+            User user = userService.addUser(newUser);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/login")
