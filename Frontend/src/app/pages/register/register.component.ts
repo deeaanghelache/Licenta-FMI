@@ -38,8 +38,8 @@ export class RegisterComponent implements OnInit {
         lastName : ['', Validators.required],
         email : ['', Validators.compose([Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
         username : ['', Validators.required],
-        password: ['', Validators.required],
-        // password : ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]],
+        //password: ['', Validators.required],
+        password : ['', [Validators.required, Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–{}:;',?/*~$^+=<>]).{8,}$")]],
         photo : [null, Validators.required],
         confirmPassword : ['', Validators.required]
       }, { validators: [this.passwordAndConfirmPasswordChecker] }

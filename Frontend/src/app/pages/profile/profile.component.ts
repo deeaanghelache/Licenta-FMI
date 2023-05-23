@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
     this.getUserByEmail(this.currentEmail);
     this.changePasswordForm = this.formBuilder.group(
       {
-        password : ['', Validators.required],
+        password : ['', [Validators.required, Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–{}:;',?/*~$^+=<>]).{8,}$")]],
         confirmPassword : ['', Validators.required] 
       }, { validators: [this.passwordAndConfirmPasswordChecker]}
     );
