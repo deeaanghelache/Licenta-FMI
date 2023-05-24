@@ -20,42 +20,42 @@ export class JournalComponent implements OnInit {
   public currentPost!:any;
   public language:any;
   public uploadedPhoto: File | undefined;
-  public images = [
-    "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
-    "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
-    "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
-    "../../../assets/photos/pexels-nicolas-2925146.jpg",
-    "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
-    "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
-    "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
-    "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
-    "../../../assets/photos/pexels-nicolas-2925146.jpg",
-    "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
-  ];
-  // public posts = [];
-  public posts = [
-    {
-      journalPostId: 1,
-      name: "post name 1",
-      post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor risus in enim consectetur, in mattis lorem efficitur. Nulla sit amet consectetur massa. Sed tincidunt vitae odio vel pretium. Fusce non ipsum in risus cursus congue. Nunc id euismod nisi. Nulla ornare eros magna, id dignissim nulla interdum in. Sed fringilla convallis mauris, vitae suscipit elit faucibus vel. Nam eu tortor vel nisi iaculis tincidunt a in dui. Praesent eu tellus a eros porttitor facilisis. Praesent euismod nibh vitae risus eleifend, in maximus odio elementum. Nam malesuada dolor ac libero facilisis, vel hendrerit ipsum tristique. Maecenas sit amet metus non massa bibendum pulvinar.",
-      photo: "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
-      dateWritten: "10 may 2023"
-    },
-    {
-      journalPostId: 2,
-      name: "post name 2",
-      post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor risus in enim consectetur, in mattis lorem efficitur. Nulla sit amet consectetur massa. Sed tincidunt vitae odio vel pretium. Fusce non ipsum in risus cursus congue. Nunc id euismod nisi. Nulla ornare eros magna, id dignissim nulla interdum in. Sed fringilla convallis mauris, vitae suscipit elit faucibus vel. Nam eu tortor vel nisi iaculis tincidunt a in dui. Praesent eu tellus a eros porttitor facilisis. Praesent euismod nibh vitae risus eleifend, in maximus odio elementum. Nam malesuada dolor ac libero facilisis, vel hendrerit ipsum tristique. Maecenas sit amet metus non massa bibendum pulvinar.",
-      photo: "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
-      dateWritten: "11 may 2023"
-    },
-    {
-      journalPostId: 3,
-      name: "post name 3",
-      post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor risus in enim consectetur, in mattis lorem efficitur. Nulla sit amet consectetur massa. Sed tincidunt vitae odio vel pretium. Fusce non ipsum in risus cursus congue. Nunc id euismod nisi. Nulla ornare eros magna, id dignissim nulla interdum in. Sed fringilla convallis mauris, vitae suscipit elit faucibus vel. Nam eu tortor vel nisi iaculis tincidunt a in dui. Praesent eu tellus a eros porttitor facilisis. Praesent euismod nibh vitae risus eleifend, in maximus odio elementum. Nam malesuada dolor ac libero facilisis, vel hendrerit ipsum tristique. Maecenas sit amet metus non massa bibendum pulvinar.",
-      photo: "../../../assets/photos/pexels-nicolas-2925146.jpg",
-      dateWritten: "12 may 2023"
-    }
-  ];
+  // public images = [
+  //   "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+  //   "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
+  //   "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+  //   "../../../assets/photos/pexels-nicolas-2925146.jpg",
+  //   "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
+  //   "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+  //   "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
+  //   "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+  //   "../../../assets/photos/pexels-nicolas-2925146.jpg",
+  //   "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
+  // ];
+  public userPosts:any[] = [];
+  // public posts = [
+  //   {
+  //     journalPostId: 1,
+  //     name: "post name 1",
+  //     post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor risus in enim consectetur, in mattis lorem efficitur. Nulla sit amet consectetur massa. Sed tincidunt vitae odio vel pretium. Fusce non ipsum in risus cursus congue. Nunc id euismod nisi. Nulla ornare eros magna, id dignissim nulla interdum in. Sed fringilla convallis mauris, vitae suscipit elit faucibus vel. Nam eu tortor vel nisi iaculis tincidunt a in dui. Praesent eu tellus a eros porttitor facilisis. Praesent euismod nibh vitae risus eleifend, in maximus odio elementum. Nam malesuada dolor ac libero facilisis, vel hendrerit ipsum tristique. Maecenas sit amet metus non massa bibendum pulvinar.",
+  //     photo: "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+  //     dateWritten: "10 may 2023"
+  //   },
+  //   {
+  //     journalPostId: 2,
+  //     name: "post name 2",
+  //     post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor risus in enim consectetur, in mattis lorem efficitur. Nulla sit amet consectetur massa. Sed tincidunt vitae odio vel pretium. Fusce non ipsum in risus cursus congue. Nunc id euismod nisi. Nulla ornare eros magna, id dignissim nulla interdum in. Sed fringilla convallis mauris, vitae suscipit elit faucibus vel. Nam eu tortor vel nisi iaculis tincidunt a in dui. Praesent eu tellus a eros porttitor facilisis. Praesent euismod nibh vitae risus eleifend, in maximus odio elementum. Nam malesuada dolor ac libero facilisis, vel hendrerit ipsum tristique. Maecenas sit amet metus non massa bibendum pulvinar.",
+  //     photo: "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+  //     dateWritten: "11 may 2023"
+  //   },
+  //   {
+  //     journalPostId: 3,
+  //     name: "post name 3",
+  //     post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor risus in enim consectetur, in mattis lorem efficitur. Nulla sit amet consectetur massa. Sed tincidunt vitae odio vel pretium. Fusce non ipsum in risus cursus congue. Nunc id euismod nisi. Nulla ornare eros magna, id dignissim nulla interdum in. Sed fringilla convallis mauris, vitae suscipit elit faucibus vel. Nam eu tortor vel nisi iaculis tincidunt a in dui. Praesent eu tellus a eros porttitor facilisis. Praesent euismod nibh vitae risus eleifend, in maximus odio elementum. Nam malesuada dolor ac libero facilisis, vel hendrerit ipsum tristique. Maecenas sit amet metus non massa bibendum pulvinar.",
+  //     photo: "../../../assets/photos/pexels-nicolas-2925146.jpg",
+  //     dateWritten: "12 may 2023"
+  //   }
+  // ];
   public mainPhotos = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -83,7 +83,6 @@ export class JournalComponent implements OnInit {
 
     this.checkIfLoggedIn();
     this.checkIfAdmin();
-    //this.getAllJournalPosts();
     this.randomlyDisplayImages();
   }
 
@@ -102,6 +101,7 @@ export class JournalComponent implements OnInit {
   getUserByEmail(email:string){
     this.userService.getUserByEmail(email).subscribe((response:any) => {
       this.currentId = response.userId;
+      this.getAllJournalPostsForCurrentUser(this.currentId);
     })
   }
 
@@ -111,10 +111,11 @@ export class JournalComponent implements OnInit {
     }
   }
 
-  getAllJournalPosts(){
-    this.journalPostService.getAllJournalPostsForGivenUser(this.currentId).subscribe((response:any) => {
+  getAllJournalPostsForCurrentUser(userId:any){
+    this.journalPostService.getAllJournalPostsForGivenUser(userId).subscribe((response:any) => {
       console.log(response);
-      this.posts = response;
+      this.userPosts = response;
+
     })
   }
 
@@ -158,7 +159,13 @@ export class JournalComponent implements OnInit {
 
     if (this.journalPostForm.valid){
       this.journalPostService.addJournalPostForGivenUser(this.currentId, formData).subscribe((response:any) => {
-        console.log(response);
+        if (response != null) {
+          alert("Journal Post added!");
+          window.location.reload();
+        } else {
+          alert("Something went wrong! Please try again!");
+          window.location.reload();
+        }
       })
     }
   }
