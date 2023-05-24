@@ -19,6 +19,7 @@ export class JournalComponent implements OnInit {
   public display:boolean = false;
   public currentPost!:any;
   public language:any;
+  public uploadedPhoto: File | undefined;
   public images = [
     "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
     "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
@@ -77,7 +78,7 @@ export class JournalComponent implements OnInit {
     this.journalPostForm = this.formBuilder.group({
       name : ['', Validators.required],
       post : ['', Validators.required],
-      photo : ['']
+      photo : [null, Validators.required]
     })
 
     this.checkIfLoggedIn();
@@ -141,8 +142,25 @@ export class JournalComponent implements OnInit {
     this.display = false;
   }
 
-  addPost(){
+  onFileSelected(event: any) {
+    this.uploadedPhoto = event.target.files[0];
+  }
 
+  addPost(){
+    const formData = new FormData();
+    if(this.uploadedPhoto){
+      formData.append('photo', this.uploadedPhoto, this.uploadedPhoto.name);
+    }
+    formData.append('post', JSON.stringify({
+      name: this.journalPostForm.get('name')?.value,
+      post: this.journalPostForm.get('post')?.value
+    }));
+
+    if (this.journalPostForm.valid){
+      this.journalPostService.addJournalPostForGivenUser(this.currentId, formData).subscribe((response:any) => {
+        console.log(response);
+      })
+    }
   }
 
   logout(){

@@ -29,9 +29,6 @@ public class UserService {
         this.userRoleService = userRoleService;
     }
 
-    @Autowired
-
-
     // FIND (GET)
     public List<User> getAllUsers(){
         return userInterface.findAll();

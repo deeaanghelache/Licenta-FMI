@@ -20,4 +20,10 @@ public class JournalPostService {
     public List<JournalPost> getAllJournalPostsForGivenUser(Integer userId){
         return journalPostInterface.queryBy(userId);
     }
+
+    // POST
+    public JournalPost addJournalPost(JournalPost journalPost){
+        JournalPost newJournalPost = journalPostInterface.save(journalPost);
+        return newJournalPost;
+    }
 }

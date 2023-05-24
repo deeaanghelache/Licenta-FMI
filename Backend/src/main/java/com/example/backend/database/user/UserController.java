@@ -64,14 +64,14 @@ public class UserController {
 
     // POST
     @PostMapping(value="/addUser")
-    public ResponseEntity<User> register(@RequestParam("photo") MultipartFile file, @RequestParam("user") String userJson) throws JsonProcessingException {
+    public ResponseEntity<User> register(@RequestParam("photo") MultipartFile photo, @RequestParam("user") String userJson) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         UserRegisterModel userRegisterModel = objectMapper.readValue(userJson, UserRegisterModel.class);
         try {
             String fullPathForProfilePictures = userUploadsToDirectory + "/UserProfilePics";
-            String photoName = file.getOriginalFilename();
+            String photoName = photo.getOriginalFilename();
             String filePath = fullPathForProfilePictures + "/" + photoName;
-            file.transferTo(new File(filePath));
+            photo.transferTo(new File(filePath));
 
             User newUser = new User();
             newUser.setFirstName(userRegisterModel.getFirstName());
@@ -80,10 +80,6 @@ public class UserController {
             newUser.setUsername(userRegisterModel.getUsername());
             newUser.setPassword(userRegisterModel.getPassword());
             newUser.setPhoto(photoName);
-
-            System.out.println("---");
-            System.out.println(newUser);
-            System.out.println("---");
 
             User user = userService.addUser(newUser);
             return new ResponseEntity<>(user, HttpStatus.CREATED);

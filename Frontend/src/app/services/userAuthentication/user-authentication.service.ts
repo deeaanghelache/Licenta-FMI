@@ -19,7 +19,10 @@ export class UserAuthenticationService {
   constructor(private http: HttpClient) { }
 
   register(user: any){
-    return this.http.post(this.baseUrl + 'user/addUser', user);
+    return this.http.post(
+      this.baseUrl + 'user/addUser', 
+      user
+    );
   }
 
   login(user: any){

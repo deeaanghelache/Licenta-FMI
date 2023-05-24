@@ -2,8 +2,6 @@ package com.example.backend.database.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
-
 public class UserRegisterModel {
     @JsonProperty
     private String firstName;

@@ -111,7 +111,8 @@
                 placeholder="Photo"
                 type="file"
                 [ngClass]="journalPostForm.controls['photo'].errors ? 'is-invalid' : ''"
-                formControlName="photo" />
+                formControlName="photo" 
+                (change)="onFileSelected($event)" />
               </div>
 
               <button 
