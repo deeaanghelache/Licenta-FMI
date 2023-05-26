@@ -28,4 +28,8 @@ public class ListOfLandmarksService {
         System.out.println(listOfLandmarks);
         return listOfLandmarksInterface.save(listOfLandmarks);
     }
+
+    public void deleteCityList(Integer cityListId, Integer landmarkId){
+        listOfLandmarksInterface.queryBy(cityListId, landmarkId);
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.backend.database.listOfLandmarks;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -13,5 +15,8 @@ public interface ListOfLandmarksInterface extends JpaRepository<ListOfLandmarks,
             "WHERE list_of_landmarks.city_list_id = :cityListId", nativeQuery = true)
     List<ListOfLandmarks> getAllLandmarksForGivenCityList(@Param("cityListId") Integer cityListId);
 
-
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM ListOfLandmarks l WHERE l.cityList.cityListId = :cityListId AND l.landmark.landmarkId = :landmarkId")
+    void queryBy(@Param("cityListId") Integer cityListId, @Param("landmarkId") Integer landmarkId);
 }

@@ -116,6 +116,12 @@ export class PlanLandmarksComponent implements OnInit {
     })
   }
 
+  deleteListOfLandmarks(cityListId:any, landmarkdId:any){
+    this.listOfLandmarksService.deleteListOfLandmarks(cityListId, landmarkdId).subscribe((response:any) => {
+      console.log(response);
+    })
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       // moving elements inside the same container
@@ -128,23 +134,21 @@ export class PlanLandmarksComponent implements OnInit {
         event.currentIndex,
       );
       const containerBoxName = event.container.id;
-      console.log(containerBoxName);
       const landmarkName = event.container.data[event.currentIndex];
       const priority = event.currentIndex + 1;
       
       // cdk-drop-list-0 is the city landmark container
       if (containerBoxName === 'cdk-drop-list-0'){
           // should delete list of landmarks for current moved landmark
-          // this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
-          //   console.log(response);
-          //   this.landmarkToDelete = response;
-          //   this.addListOfLandmarks(this.currentCityListId, this.landmarkToDelete['landmarkId'], priority);
-          // })
+          this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
+            console.log(response);
+            this.landmarkToDelete = response;
+            this.deleteListOfLandmarks(this.currentCityListId, this.landmarkToDelete['landmarkId']);
+          })
       } else {
         // cdk-drop-list-1 is my landmark planning container
         if (containerBoxName == 'cdk-drop-list-1'){
           // should add list of landmarks for current moved landmark
-          console.log("aaa");
           this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
             console.log(response);
             this.landmarkToAdd = response;

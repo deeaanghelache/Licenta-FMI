@@ -54,4 +54,10 @@ public class ListOfLandmarksController {
         System.out.println(4);
         return new ResponseEntity<>(newListOfLandmarks, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/deleteListOfLandmarks/{cityListId}/{landmarkId}")
+    public ResponseEntity<?> deleteListOfLandmarks(@PathVariable("cityListId") Integer cityListId, @PathVariable("landmarkId") Integer landmarkId){
+        listOfLandmarksService.deleteCityList(cityListId, landmarkId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

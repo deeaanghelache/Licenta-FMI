@@ -32,13 +32,8 @@ public class CityListController {
 
     @GetMapping("/getCityListForGivenUserAndCity/{userId}/{cityId}")
     public ResponseEntity<CityList> getCityListForGivenUserAndCity(@PathVariable("userId") Integer userId, @PathVariable("cityId") Integer cityId){
-        System.out.println("USERID: " + userId);
-        System.out.println("CITYID: " + cityId);
-        CityList cityList= cityListService.getCityListByUserAndCity(userId, cityId).get(0);
-        System.out.println(cityList);
-        var rq = new ResponseEntity<>(cityList, HttpStatus.OK);
-        System.out.println(rq);
-        return rq;
+        CityList cityList = cityListService.getCityListByUserAndCity(userId, cityId).get(0);
+        return new ResponseEntity<>(cityList, HttpStatus.OK);
     }
 
     @PostMapping("/addCityList/{cityId}/{userId}")

@@ -29,4 +29,11 @@ export class ListOfLandmarksService {
       this.privateHttpHeaders
     )
   }
+
+  deleteListOfLandmarks(cityListId:any, landmarkdId:any){
+    return this.http.delete(
+      this.baseUrl + "listOfLandmarks/deleteListOfLandmarks/" + cityListId + "/" + landmarkdId,
+      this.privateHttpHeaders
+    )
+  }
 }
