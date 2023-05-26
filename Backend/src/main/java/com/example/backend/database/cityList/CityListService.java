@@ -22,7 +22,10 @@ public class CityListService {
     }
 
     public List<CityList> getCityListByUserAndCity(Integer userId, Integer cityId) {
-        return cityListInterface.getCityListByUserAndCity(userId, cityId);
+        System.out.println("_____");
+        var cl = cityListInterface.getCityListByUserAndCity(userId, cityId);
+        System.out.println(cl);
+        return cl;
     }
 
     public CityList getCityListById(Integer cityListId){

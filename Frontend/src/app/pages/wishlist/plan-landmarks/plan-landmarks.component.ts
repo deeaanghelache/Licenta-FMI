@@ -86,7 +86,7 @@ export class PlanLandmarksComponent implements OnInit {
   getCurrentCityList(userId:any){
     this.cityListService.getCityListByUserAndCity(userId, this.chosenCity['cityId']).subscribe((response:any) => {
       console.log(response);
-      this.currentCityList = response[0];
+      this.currentCityList = response;
       this.currentCityListId = this.currentCityList['cityListId'];
       console.log(this.currentCityListId);
       this.getAllLandmarksForGivenCityList(this.currentCityListId);

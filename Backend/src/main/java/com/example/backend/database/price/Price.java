@@ -1,6 +1,7 @@
 package com.example.backend.database.price;
 
 import com.example.backend.database.landmark.Landmark;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class Price implements Serializable {
     @OneToOne
     @MapsId
     @JoinColumn(name = "landmark_id")
+    @JsonIgnore
     private Landmark landmark;
 
     public Price() {
@@ -93,7 +95,7 @@ public class Price implements Serializable {
                 ", discount=" + discount +
                 ", freeTicketsRequirementsEng='" + freeTicketsRequirementsEng + '\'' +
                 ", getFreeTicketsRequirementsRom='" + getFreeTicketsRequirementsRom + '\'' +
-                ", landmark=" + landmark +
+//                ", landmark=" + landmark +
                 '}';
     }
 }

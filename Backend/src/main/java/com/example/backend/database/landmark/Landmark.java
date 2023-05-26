@@ -3,6 +3,7 @@ package com.example.backend.database.landmark;
 import com.example.backend.database.city.City;
 import com.example.backend.database.listOfLandmarks.ListOfLandmarks;
 import com.example.backend.database.price.Price;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -36,6 +37,7 @@ public class Landmark implements Serializable {
     // With Price
     @OneToOne(mappedBy = "landmark", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
+    @JsonIgnore
     private Price price;
 
     // With City
@@ -100,5 +102,19 @@ public class Landmark implements Serializable {
 
     public void setTypeRom(String typeRom) {
         this.typeRom = typeRom;
+    }
+
+    @Override
+    public String toString() {
+        return "Landmark{" +
+                "landmarkId=" + landmarkId +
+                ", name='" + name + '\'' +
+                ", descriptionEng='" + descriptionEng + '\'' +
+                ", descriptionRom='" + descriptionRom + '\'' +
+                ", typeEng='" + typeEng + '\'' +
+                ", typeRom='" + typeRom + '\'' +
+//                ", price=" + price +
+//                ", city=" + city +
+                '}';
     }
 }

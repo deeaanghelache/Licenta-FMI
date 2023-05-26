@@ -186,11 +186,11 @@ public class City implements Serializable {
                 ", photo='" + photo + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", airports=" + airports +
-                ", landmarks=" + landmarks +
-                ", cityLists=" + cityLists +
+//                ", airports=" + airports +
+//                ", landmarks=" + landmarks +
+//                ", cityLists=" + cityLists +
 //                ", cityWishlists=" + cityWishlists +
-                ", cityTags=" + cityTags +
+//                ", cityTags=" + cityTags +
                 '}';
     }
 }
