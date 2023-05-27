@@ -23,4 +23,19 @@ export class AirportService {
       this.privateHttpHeaders
     )
   }
+
+  getAllAirports(){
+    return this.http.get(
+      this.baseUrl + "airport/getAllAirports",
+      this.privateHttpHeaders
+    )
+  }
+
+  addAirport(airport:any, cityId:any){
+    return this.http.post(
+      this.baseUrl + "airport/addAirport/" + cityId,
+      airport,
+      this.privateHttpHeaders
+    )
+  }
 }

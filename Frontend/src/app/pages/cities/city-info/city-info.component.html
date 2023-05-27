@@ -1,7 +1,7 @@
 <div id="cityInfo">
     <div id="leftSide">
         <div id="imageDiv">
-            <img id="image" src="../../../../assets/photos/pexels-alex-azabache-3757144.jpg" width="280px" height="280px">
+            <img id="image" src="../../../../assets/photos/cities/{{ city['photo'] }}" width="280px" height="280px">
         </div> 
         <div id="addToFavs" *ngIf="loggedUser === true && isFavourite() === false">
             <button class="btn btn-outline-light rounded-pill buttonAddFav" (click)="addFavourite()">&nbsp;{{ "city-info-add" | translate }} &nbsp;<i class="fa-regular fa-heart"></i>&nbsp;</button>
@@ -17,28 +17,28 @@
                 <li *ngFor="let tag of tags">{{ tag[tagNameAttribute] }}. &nbsp;</li>
             </ul>
         </div>
-
+        <br>
         <div id="history">
             <h4> {{ "city-info-history" | translate }} </h4>
                 <p>{{ city[historyAttribute] }}</p>
         </div>
-
+        <br>
         <div id="landmarks">
             <h4> {{ "city-info-landmarks" | translate }} </h4>
             <div id="landmarkList">
-                <ul>
-                    <li *ngFor="let landmark of landmarks">
+                <ul class="list-group">
+                    <li *ngFor="let landmark of landmarks" class="list-group-item" (click)="goToLocation(landmark['latitude'], landmark['longitude'], landmark['name'])">
                         {{ landmark['name'] }}
                     </li>
                 </ul>
             </div>
         </div>
-
+        <br>
         <div id="airports">
             <h4> {{ "city-info-airports" | translate }} </h4>
             <div id="airportsList">
-                <ul>
-                    <li *ngFor="let airport of airports">
+                <ul class="list-group">
+                    <li *ngFor="let airport of airports" class="list-group-item" (click)="goToLocation(airport['latitude'], airport['longitude'], airport[airportNameAttribute])">
                         {{ airport[airportNameAttribute] }}
                         <span id="distanceToCity"> 
                             &nbsp; &nbsp; {{ airport['distanceToCity'] }}&nbsp;km &nbsp; &nbsp;

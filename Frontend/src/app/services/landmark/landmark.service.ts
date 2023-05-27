@@ -16,6 +16,13 @@ export class LandmarkService {
 
   constructor(private http: HttpClient) { }
 
+  getAllLandmarks(){
+    return this.http.get(
+      this.baseUrl + "landmark/getAllLandmarks",
+      this.privateHttpHeaders
+    )
+  }
+
   getAllLandmarksForGivenCity(cityId:any){
     return this.http.get(
       this.baseUrl + "landmark/getAllLandmarksForGivenCity/" + cityId,
@@ -33,6 +40,14 @@ export class LandmarkService {
   getLandmarkByName(name:any){
     return this.http.get(
       this.baseUrl + "landmark/getLandmarkByName/" + name,
+      this.privateHttpHeaders
+    )
+  }
+
+  addLandmark(landmark:any, cityId:any){
+    return this.http.post(
+      this.baseUrl + "landmark/addLandmark/" + cityId,
+      landmark,
       this.privateHttpHeaders
     )
   }

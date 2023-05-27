@@ -5,6 +5,7 @@ import { CityService } from 'src/app/services/city/city.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { CityTagService } from 'src/app/services/cityTag/city-tag.service';
 import { LandmarkService } from 'src/app/services/landmark/landmark.service';
+import * as leafletModule from 'leaflet';
 
 @Component({
   selector: 'app-city-info',
@@ -25,6 +26,7 @@ export class CityInfoComponent implements OnInit {
   @Input() favourites: any;
   @Input() loggedUser: any;
   @Input() currentUserId: any;
+  @Input() map: any;
 
   constructor(private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService, public translate: TranslateService) { 
     this.translate.addLangs(['en', 'ro'])
@@ -104,5 +106,11 @@ export class CityInfoComponent implements OnInit {
     }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
+  }
+
+  goToLocation(latitude:any, longitude:any, name:any){
+    leafletModule.marker([latitude, longitude]).addTo(this.map)
+    .bindPopup(name)
+    .openPopup();
   }
 }

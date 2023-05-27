@@ -1,1 +1,111 @@
-<p>airports works!</p>
+<main>
+    <div id="listAirports">
+        <button *ngIf="buttonOpen === false" (click)="openAddDataEntry()" class="btn btn-info">Add</button>
+        <button *ngIf="buttonOpen === false" (click)="openDeleteDataEntry()" class="btn btn-info">Delete</button>
+    </div>
+
+    <div class="add" *ngIf="openAdd === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeAddForm()"></i> <span> &nbsp; &nbsp; Add Airports in the Database</span></div>
+
+        <div class="formAddDelete">
+            <div class="formBox">
+                <form [formGroup]="addForm" (ngSubmit)="addAirport()">
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engName"
+                        placeholder="English Name"
+                        [ngClass]="addForm.controls['nameEng'].errors ? 'is-invalid' : ''"
+                        formControlName="nameEng" />
+                    </div>
+
+                    <div class="form-group romName">
+                        <input class="form-control"
+                        id="romName"
+                        placeholder="Romanian Name"
+                        [ngClass]="addForm.controls['nameRom'].errors ? 'is-invalid' : ''"
+                        formControlName="nameRom" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="distance"
+                        placeholder="Distance To City"
+                        [ngClass]="addForm.controls['distanceToCity'].errors ? 'is-invalid' : ''"
+                        formControlName="distanceToCity" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="latitude"
+                        placeholder="Latitude"
+                        [ngClass]="addForm.controls['latitude'].errors ? 'is-invalid' : ''"
+                        formControlName="latitude" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="longitude"
+                        placeholder="Longitude"
+                        [ngClass]="addForm.controls['longitude'].errors ? 'is-invalid' : ''"
+                        formControlName="longitude" />
+                    </div>
+
+                    <input type="text" class="form-control"
+                    #cityId 
+                    placeholder="cityId"
+                    (input)="getValue(cityId.value)">
+<!-- 
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="cityId"
+                        placeholder="City Id"
+                        [ngClass]="addForm.controls['cityId'].errors ? 'is-invalid' : ''"
+                        formControlName="cityId" />
+                    </div> -->
+
+                    <p *ngIf="ok === true"> {{ message }} </p>
+
+                    <button 
+                    id="addButton"
+                    [disabled]="addForm.invalid"
+                    class="btn btn-info"
+                    type="submit">
+                    Add Airport
+                    </button>
+                </form>
+            </div>
+            <div class="rightSide">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">English Name</th>
+                        <th scope="col">Romanian Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let airport of dbAirports">
+                            <td class="id">
+                                {{ airport['airportId'] }}
+                            </td>
+                            <td class="engName">
+                                {{ airport['nameEng'] }}
+                            </td>
+                            <td class="romName">
+                                {{ airport['nameRom'] }}
+                            </td>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="delete" *ngIf="openDelete === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeDeleteForm()"></i></div>
+        <div class="formAddDelete">
+            <form>
+                    
+            </form>
+        </div>
+    </div>
+</main>

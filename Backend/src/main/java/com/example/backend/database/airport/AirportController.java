@@ -15,7 +15,7 @@ public class AirportController {
         this.airportService = airportService;
     }
 
-    @GetMapping("/findAllAirports")
+    @GetMapping("/getAllAirports")
     public ResponseEntity<List<Airport>> getAllAirports(){
         List<Airport> airports = airportService.getAllAirports();
         return new ResponseEntity<>(airports, HttpStatus.OK);
@@ -33,11 +33,15 @@ public class AirportController {
         return new ResponseEntity<>(airportsByCity, HttpStatus.OK);
     }
 
+    @PostMapping("/addAirport/{cityId}")
+    public ResponseEntity<Airport> addAirport(@RequestBody Airport airport, @PathVariable("cityId") Integer cityId){
+        Airport newAirport = airportService.addAirport(airport, cityId);
+        return new ResponseEntity<>(newAirport, HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/deleteByAirportId/{id}")
     public ResponseEntity<?> deleteAirportByAirportId(@PathVariable("id") Integer airportId){
         airportService.deleteAirportById(airportId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    // TODO: alte mappings
 }

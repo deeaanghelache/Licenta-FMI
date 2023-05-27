@@ -32,6 +32,15 @@ public class Landmark implements Serializable {
     @Column(columnDefinition = "varchar(200)")
     private String typeRom;
 
+    @Column(columnDefinition="Decimal(10,6)")
+    private Double latitude;
+
+    @Column(columnDefinition="Decimal(10,6)")
+    private Double longitude;
+
+    @Column(columnDefinition = "varchar(100)")
+    private String photo;
+
     // Foreign Keys
 
     // With Price
@@ -52,12 +61,16 @@ public class Landmark implements Serializable {
     public Landmark() {
     }
 
-    public Landmark(String name, String descriptionEng, String descriptionRom, String typeEng, String typeRom) {
+    public Landmark(Integer landmarkId, String name, String descriptionEng, String descriptionRom, String typeEng, String typeRom, Double latitude, Double longitude, String photo) {
+        this.landmarkId = landmarkId;
         this.name = name;
         this.descriptionEng = descriptionEng;
         this.descriptionRom = descriptionRom;
         this.typeEng = typeEng;
         this.typeRom = typeRom;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.photo = photo;
     }
 
     public Integer getLandmarkId() {
@@ -102,6 +115,38 @@ public class Landmark implements Serializable {
 
     public void setTypeRom(String typeRom) {
         this.typeRom = typeRom;
+    }
+
+    public void setLandmarkId(Integer landmarkId) {
+        this.landmarkId = landmarkId;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override

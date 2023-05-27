@@ -1,5 +1,7 @@
 package com.example.backend.database.landmark;
 
+import com.example.backend.database.city.City;
+import com.example.backend.database.city.CityService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import java.util.List;
 @Transactional
 public class LandmarkService {
     private LandmarkInterface landmarkInterface;
+    private final CityService cityService;
 
     @Autowired
-    public LandmarkService(LandmarkInterface landmarkInterface) {
+    public LandmarkService(LandmarkInterface landmarkInterface, CityService cityService) {
         this.landmarkInterface = landmarkInterface;
+        this.cityService = cityService;
     }
 
     // FIND(GET)
@@ -34,7 +38,9 @@ public class LandmarkService {
     }
 
     // POST
-    public Landmark addLandmark(Landmark landmark){
+    public Landmark addLandmark(Landmark landmark, Integer cityId){
+        City city = cityService.getCityById(cityId);
+        landmark.setCity(city);
         return landmarkInterface.save(landmark);
     }
 

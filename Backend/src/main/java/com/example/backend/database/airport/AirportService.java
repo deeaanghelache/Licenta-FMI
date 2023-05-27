@@ -1,5 +1,7 @@
 package com.example.backend.database.airport;
 
+import com.example.backend.database.city.City;
+import com.example.backend.database.city.CityService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import java.util.List;
 @Transactional
 public class AirportService {
     private final AirportInterface airportInterface;
+    private final CityService cityService;
 
     @Autowired
-    public AirportService(AirportInterface airportInterface) {
+    public AirportService(AirportInterface airportInterface, CityService cityService) {
         this.airportInterface = airportInterface;
+        this.cityService = cityService;
     }
 
     // FIND (GET)
@@ -38,7 +42,9 @@ public class AirportService {
     }
 
     // POST
-    public Airport addAirport(Airport airport){
+    public Airport addAirport(Airport airport, Integer cityId){
+        City city = cityService.getCityById(cityId);
+        airport.setCity(city);
         return airportInterface.save(airport);
     }
 

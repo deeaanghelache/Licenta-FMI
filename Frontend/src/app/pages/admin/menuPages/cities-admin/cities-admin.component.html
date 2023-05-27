@@ -65,14 +65,29 @@
                         formControlName="currencyName" />
                     </div>
 
-                    <input 
-                    id="imagePath"
-                    type="file"
-                    accept="image/*"
-                    (change)="addImage($event)"
-                    >
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="latitude"
+                        placeholder="Latitude"
+                        [ngClass]="addForm.controls['latitude'].errors ? 'is-invalid' : ''"
+                        formControlName="latitude" />
+                    </div>
 
-                    <input formControlName="image"  type="text" hidden>
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="longitude"
+                        placeholder="Longitude"
+                        [ngClass]="addForm.controls['longitude'].errors ? 'is-invalid' : ''"
+                        formControlName="longitude" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="imageInput"
+                        placeholder="Photo name"
+                        [ngClass]="addForm.controls['photo'].errors ? 'is-invalid' : ''"
+                        formControlName="photo" required/>
+                    </div>
 
                     <p *ngIf="ok === true"> {{ message }} </p>
 

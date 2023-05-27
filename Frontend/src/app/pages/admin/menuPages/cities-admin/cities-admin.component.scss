@@ -79,6 +79,8 @@ i:hover {
     width: 25vw;
     height: inherit;
     padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .rightSide {
