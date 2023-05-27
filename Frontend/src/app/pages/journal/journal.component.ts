@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-journal',
@@ -67,7 +68,7 @@ export class JournalComponent implements OnInit {
   public image2:any;
   public image3:any;
 
-  constructor(public translate: TranslateService, private userService:UserService, private journalPostService:JournalPostService, private formBuilder:FormBuilder) { 
+  constructor(private router:Router, public translate: TranslateService, private userService:UserService, private journalPostService:JournalPostService, private formBuilder:FormBuilder) { 
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -174,6 +175,7 @@ export class JournalComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+    this.router.navigateByUrl('/homepage');
   }
 
   getLanguageFromSessionStorage(){

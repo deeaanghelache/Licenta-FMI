@@ -148,6 +148,12 @@ export class PlanLandmarksComponent implements OnInit {
       } else {
         // cdk-drop-list-1 is my landmark planning container
         if (containerBoxName == 'cdk-drop-list-1'){
+          // const indexToDelete: number = this.currentLandmarksNames.findIndex(item => item === landmarkName);
+
+          // if (indexToDelete !== -1) {
+          //   this.currentLandmarksNames.splice(indexToDelete, 1);
+          // }
+
           // should add list of landmarks for current moved landmark
           this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
             console.log(response);

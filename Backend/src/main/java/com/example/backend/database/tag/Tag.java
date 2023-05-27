@@ -24,7 +24,7 @@ public class Tag implements Serializable {
     // Foreign Keys
 
     // With CityTag
-    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityTag> cityTags;
 
     public Tag() {

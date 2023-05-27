@@ -5,6 +5,7 @@ import { TagService } from 'src/app/services/tag/tag.service';
 import { UserService } from 'src/app/services/user/user.service';
 import * as leafletModule from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cities',
@@ -33,7 +34,7 @@ export class CitiesComponent implements OnInit {
   public cityCountryAttribute = 'countryEng';
   public language:any;
 
-  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, public translate: TranslateService) {
+  constructor(private router:Router, private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, public translate: TranslateService) {
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -75,6 +76,7 @@ export class CitiesComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+    this.router.navigateByUrl('/homepage');
   }
 
   getAllTags(){

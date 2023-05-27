@@ -52,23 +52,19 @@ public class City implements Serializable {
     // Foreign Keys
 
     // With Airport
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Airport> airports;
 
     // With Landmark
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Landmark> landmarks;
 
-    // With LandmarkList
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    // With CityList
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityList> cityLists;
 
-    // With CityWishList
-//    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-//    private Set<CityWishlist> cityWishlists;
-
     // With CityTag
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityTag> cityTags;
 
     public City() {

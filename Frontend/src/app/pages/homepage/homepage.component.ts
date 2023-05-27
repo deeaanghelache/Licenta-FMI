@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CityService } from 'src/app/services/city/city.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -14,7 +15,7 @@ export class HomepageComponent implements OnInit {
   public language:any;
   public cityNameAttribute = 'nameEng';
 
-  constructor(private cityService:CityService, public translate: TranslateService) {
+  constructor(private router:Router, private cityService:CityService, public translate: TranslateService) {
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -49,6 +50,7 @@ export class HomepageComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+    this.router.navigateByUrl('/homepage');
   }
 
   getAllCities(){

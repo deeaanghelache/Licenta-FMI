@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CityService } from 'src/app/services/city/city.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
@@ -22,7 +23,7 @@ export class WishlistComponent implements OnInit {
   public cityNameAttribute = 'nameEng';
   public cityCountryAttribute = 'countryEng';
 
-  constructor(public translate: TranslateService, private cityService:CityService, private userService:UserService, private cityListService:CityListService) {
+  constructor(private router:Router, public translate: TranslateService, private cityService:CityService, private userService:UserService, private cityListService:CityListService) {
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -97,6 +98,7 @@ export class WishlistComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+    this.router.navigateByUrl('/homepage');
   }
 
   getLanguageFromSessionStorage(){

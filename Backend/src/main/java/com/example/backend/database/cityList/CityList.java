@@ -32,7 +32,7 @@ public class CityList implements Serializable {
     private City city;
 
     // With ListOfLandmarks
-    @OneToMany(mappedBy = "cityList")
+    @OneToMany(mappedBy = "cityList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ListOfLandmarks> listOfLandmarks;
 
     public CityList() {

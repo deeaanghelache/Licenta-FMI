@@ -27,9 +27,7 @@ public class ListOfLandmarksController {
     @GetMapping("/getAllLandmarksForGivenCityList/{cityListId}")
     public ResponseEntity<List<Landmark>> getAllLandmarksForGivenCityList(@PathVariable("cityListId") Integer cityListId){
         List<ListOfLandmarks> listOfLandmarks = listOfLandmarksService.getAllLandmarksForGivenCityList(cityListId);
-        System.out.println("-----");
         List<Landmark> landmarks = listOfLandmarks.stream().map(ListOfLandmarks::getLandmark).toList();
-        System.out.println("*****");
         return new ResponseEntity<>(landmarks, HttpStatus.OK);
     }
 

@@ -19,7 +19,7 @@ public class Role implements Serializable {
     // Foreign Keys
 
     // With UserRole
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRole> userRoles;
 
     public Role() {

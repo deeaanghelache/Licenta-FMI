@@ -46,7 +46,7 @@ public class Landmark implements Serializable {
     City city;
 
     // With ListOfLandmarks
-    @OneToMany(mappedBy = "landmark")
+    @OneToMany(mappedBy = "landmark", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ListOfLandmarks> listOfLandmarks;
 
     public Landmark() {
