@@ -18,6 +18,7 @@ h6 {
 }
 
 .navbar{
+    margin: 2.5px;
     border-top-right-radius: 25px !important; 
     border-top-left-radius: 25px !important; 
 }
@@ -117,7 +118,7 @@ h6 {
 
 .favouriteCity {
     position: relative;
-    bottom: 0px;
+    bottom: 10px;
     left: 135px;
     z-index: 5;
 }
@@ -178,9 +179,9 @@ h6 {
     height: 250px;
 }
 
-.card img {
+.card-img-top {
     width: 200px;
-    height: 150px;
+    height: 115px;
 }
 
 // responsive screens

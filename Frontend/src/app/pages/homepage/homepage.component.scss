@@ -150,8 +150,8 @@ img{
 }
 
 .imgTagCities {
-    width: 20vw;
-    height: 25vh;
+    width: 320px;
+    height: 200px;
     border: 2px solid lightgrey;
     border-radius: 25px !important;
 }
@@ -166,7 +166,7 @@ img{
 
 #infoGrid {
     position: relative;
-    top: -50px;
+    top: -80px;
     left: 0;
     right: 0;
     display: flex;
@@ -216,12 +216,12 @@ img{
 
 #presentationGrid {
     position: relative;
-    top: -80px;
+    top: -140px;
     left: 0;
     right: 0;
     display: flex;
     background-color: $color-1;
-    height: 70vh;
+    height: 550px;
     margin: 40px;
     box-shadow: 1px 1px 18px #888888;
 }

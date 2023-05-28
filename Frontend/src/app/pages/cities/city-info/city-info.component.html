@@ -1,7 +1,7 @@
 <div id="cityInfo">
     <div id="leftSide">
         <div id="imageDiv">
-            <img id="image" src="../../../../assets/photos/cities/{{ city['photo'] }}" width="280px" height="280px">
+            <img id="image" src="../../../../assets/photos/citiesInfoImages/{{ city['photo'] }}" width="280px" height="280px">
         </div> 
         <div id="addToFavs" *ngIf="loggedUser === true && isFavourite() === false">
             <button class="btn btn-outline-light rounded-pill buttonAddFav" (click)="addFavourite()">&nbsp;{{ "city-info-add" | translate }} &nbsp;<i class="fa-regular fa-heart"></i>&nbsp;</button>
