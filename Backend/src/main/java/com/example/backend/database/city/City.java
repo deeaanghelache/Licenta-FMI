@@ -31,10 +31,10 @@ public class City implements Serializable {
     @Column(columnDefinition = "varchar(300)")
     private String countryRom;
 
-    @Column(columnDefinition = "varchar(1000)")
+    @Column(columnDefinition = "varchar(5000)")
     private String briefHistoryEng;
 
-    @Column(columnDefinition = "varchar(1000)")
+    @Column(columnDefinition = "varchar(5000)")
     private String briefHistoryRom;
 
     @Column(columnDefinition = "varchar(50)")

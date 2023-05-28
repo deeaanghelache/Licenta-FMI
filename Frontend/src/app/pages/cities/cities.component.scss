@@ -173,6 +173,16 @@ h6 {
     top: 0;
 }
 
+.card {
+    width: 200px;
+    height: 250px;
+}
+
+.card img {
+    width: 200px;
+    height: 150px;
+}
+
 // responsive screens
 // iPad Air + landscape
 @media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {
