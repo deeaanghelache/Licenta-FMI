@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -14,7 +14,9 @@ export class JournalPostComponent implements OnInit {
   @Input() post:any;
   public language:any;
 
-  constructor(public translate: TranslateService) { 
+  @ViewChild("top") Top!: ElementRef;
+
+  constructor(public translate: TranslateService, private elementRef: ElementRef) { 
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -22,6 +24,7 @@ export class JournalPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.scrollIntoView();
   }
 
   generateJournalPostPdf() {
@@ -67,4 +70,8 @@ export class JournalPostComponent implements OnInit {
     this.translate.use(language);
   }
   
+  scrollIntoView() {
+    const topElement = this.elementRef.nativeElement;
+    topElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AirportService } from 'src/app/services/airport/airport.service';
 import { CityService } from 'src/app/services/city/city.service';
@@ -28,7 +28,9 @@ export class CityInfoComponent implements OnInit {
   @Input() currentUserId: any;
   @Input() map: any;
 
-  constructor(private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService, public translate: TranslateService) { 
+  @ViewChild("top") Top!: ElementRef;
+
+  constructor(private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService, public translate: TranslateService, private renderer: Renderer2, private elementRef: ElementRef) { 
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -39,6 +41,7 @@ export class CityInfoComponent implements OnInit {
     this.getTagsForCurrentCity();
     this.getAirportsForCurrentCity();
     this.getLandmarksForCurrentCity();
+    this.scrollIntoView();
   }
 
   getTagsForCurrentCity(){
@@ -112,5 +115,10 @@ export class CityInfoComponent implements OnInit {
     leafletModule.marker([latitude, longitude]).addTo(this.map)
     .bindPopup(name)
     .openPopup();
+  }
+
+  scrollIntoView() {
+    const topElement = this.elementRef.nativeElement;
+    topElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
