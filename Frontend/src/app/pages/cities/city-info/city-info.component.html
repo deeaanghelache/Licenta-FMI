@@ -39,10 +39,10 @@
             <div id="airportsList">
                 <ul class="list-group">
                     <li *ngFor="let airport of airports" class="list-group-item" (click)="goToLocation(airport['latitude'], airport['longitude'], airport[airportNameAttribute])">
-                        {{ airport[airportNameAttribute] }}
                         <span id="distanceToCity"> 
-                            &nbsp; &nbsp; {{ airport['distanceToCity'] }}&nbsp;km &nbsp; &nbsp;
-                        </span>
+                            &nbsp; {{ airport['distanceToCity'] }}&nbsp;km 
+                        </span> &nbsp;
+                        {{ airport[airportNameAttribute] }}
                     </li>
                 </ul>
             </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JournalPostService } from 'src/app/services/journalPost/journal-post.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';

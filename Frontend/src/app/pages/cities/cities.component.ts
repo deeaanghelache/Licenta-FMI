@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CityService } from 'src/app/services/city/city.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { TagService } from 'src/app/services/tag/tag.service';
@@ -6,7 +6,6 @@ import { UserService } from 'src/app/services/user/user.service';
 import * as leafletModule from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { CityInfoComponent } from './city-info/city-info.component';
 
 @Component({
   selector: 'app-cities',

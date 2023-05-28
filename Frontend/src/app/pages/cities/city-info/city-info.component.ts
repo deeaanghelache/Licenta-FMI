@@ -112,6 +112,7 @@ export class CityInfoComponent implements OnInit {
   }
 
   goToLocation(latitude:any, longitude:any, name:any){
+    this.map.setView([latitude, longitude], 13);
     leafletModule.marker([latitude, longitude]).addTo(this.map)
     .bindPopup(name)
     .openPopup();

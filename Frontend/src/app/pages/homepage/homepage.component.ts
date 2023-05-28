@@ -15,7 +15,9 @@ export class HomepageComponent implements OnInit {
   public language:any;
   public cityNameAttribute = 'nameEng';
 
-  constructor(private router:Router, private cityService:CityService, public translate: TranslateService) {
+  @ViewChild("top") Top!: ElementRef;
+
+  constructor(private router:Router, private cityService:CityService, public translate: TranslateService, private elementRef: ElementRef) {
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -59,10 +61,6 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  goToTop(){
-    window.scrollTo(0, 0);
-  }
-
   switchAppsLanguage(language: string) {
     if (language === "ro"){
       this.cityNameAttribute = 'nameRom';
@@ -71,5 +69,10 @@ export class HomepageComponent implements OnInit {
     }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
+  }
+
+  scrollIntoView() {
+    const topElement = this.elementRef.nativeElement;
+    topElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
