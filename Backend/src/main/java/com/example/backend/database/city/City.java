@@ -1,6 +1,7 @@
 package com.example.backend.database.city;
 
 import com.example.backend.database.airport.Airport;
+import com.example.backend.database.cityRating.CityRating;
 import com.example.backend.database.cityTag.CityTag;
 //import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.database.landmark.Landmark;
@@ -66,6 +67,10 @@ public class City implements Serializable {
     // With CityTag
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityTag> cityTags;
+
+    // With CityRating
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CityRating> cityRatings;
 
     public City() {
     }

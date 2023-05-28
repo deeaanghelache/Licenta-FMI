@@ -179,9 +179,9 @@ export class CitiesComponent implements OnInit {
 
   sortByNameAscending(){
     this.cities = this.cities.sort((city1, city2) => {
-      if (city1['nameEng'] < city2['nameEng']) {
+      if (city1[this.cityNameAttribute] < city2[this.cityNameAttribute]) {
         return -1; 
-      } else if (city1['nameEng'] > city2['nameEng']) {
+      } else if (city1[this.cityNameAttribute] > city2[this.cityNameAttribute]) {
         return 1; 
       } else {
         return 0; 
@@ -191,9 +191,9 @@ export class CitiesComponent implements OnInit {
 
   sortByNameDescending(){
     this.cities = this.cities.sort((city1, city2) => {
-      if (city1['nameEng'] > city2['nameEng']) {
+      if (city1[this.cityNameAttribute] > city2[this.cityNameAttribute]) {
         return -1; 
-      } else if (city1['nameEng'] < city2['nameEng']) {
+      } else if (city1[this.cityNameAttribute] < city2[this.cityNameAttribute]) {
         return 1; 
       } else {
         return 0; 

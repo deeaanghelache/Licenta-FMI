@@ -1,5 +1,5 @@
 <div id="board">
-  <header>
+    <header>
     <!-- From bootstrap -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
         <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> -->
@@ -33,58 +33,29 @@
         &nbsp; &nbsp; 
       </nav>
     </header>
-    
-    <main>
-        <div id="heart" *ngIf="displayLandmarkPlanning === false">
-            <i class="far fa-heart"></i>
-        </div>
-        <div id="title" *ngIf="displayLandmarkPlanning === false">
-            <h1>{{ 'wishlist-title' | translate }}</h1>
-        </div>
-        <div id="cityTable" *ngIf="displayLandmarkPlanning === false">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th id="trash" scope="col"></th>
-                    <th id="cityName" scope="col">{{ 'wishlist-city' | translate }}</th>
-                    <th id="countryName" scope="col">{{ 'wishlist-country' | translate }}</th>
-                    <th id="distance" scope="col"></th>
-                    <th id="plan" scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let city of cityLists">
-                    <td>
-                      <i class="fas fa-trash" (click)="deleteFunction(city['cityId'])"></i>
-                    </td>
-                    <td id="name">
-                      {{ city[cityNameAttribute] }}
-                    </td>
-                    <td id="country">
-                      {{ city[cityCountryAttribute] }}
-                    </td>
-                    <td>
-                      <!-- <button class="btn btn-outline-warning rounded-pill" (click)="showRatingPopup()">Rate</button>  -->
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-warning rounded-pill" (click)="openPlanningLandmarks(city)">{{ 'wishlist-plan' | translate }}</button> 
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <div id="planningLandmarks" *ngIf="displayLandmarkPlanning === true">
-          <button id="goBack" class="btn btn-outline-warning rounded-pill" (click)="closePlanningLandmarks()">{{ 'wishlist-go-back' | translate }}</button>
-          <app-plan-landmarks [chosenCity]="chosenCity"></app-plan-landmarks>
-        </div>
-    </main>
 
-    <!-- <footer>
-      <div class="text-center p-3" style="background-color: rgb(250, 143, 35);">
-        Copyright © 2023 Andreea Anghelache | All rights reserved
-      </div>
-    </footer> -->
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-center flex-column align-items-center">
+              <h1>{{ 'menu-destinations' | translate }}</h1>
+              <div id="citiesCards" class="d-flex flex-wrap">
+                <div class="card" style="width: 15rem;" *ngFor="let city of topDestinations">
+                  <img src="../../../assets/photos/citiesInfoImages/{{ city['photo'] }}" class="img-top">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ city[cityNameAttribute] }}</h5>
+                    <h6> {{ city[cityCountryAttribute] }} </h6>
+                    <h6> {{ city['averageRating'] }}&nbsp;⭐️ </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+        <footer>
+            <div class="text-center p-3" style="color: white; background-color: black;">
+                Copyright © 2023 Andreea Anghelache | All rights reserved
+            </div>
+        </footer>
+    </main>
 </div>
-    
-    
-    

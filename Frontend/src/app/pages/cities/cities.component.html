@@ -11,6 +11,7 @@
               <ul class="navbar-nav">
                 <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage"> {{ 'menu-home' | translate }} </a></li>
                 <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">{{ 'menu-cities' | translate }}</a></li>
+                <li class="mainMenu" id="button8"><a class="nav-link" routerLink="/topDestinations">{{ 'menu-destinations' | translate }}</a></li>
                 <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">{{ 'menu-journal' | translate }}</a></li>
                 <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">{{ 'menu-wishlist' | translate }}</a></li>
                 <li class="mainMenu" id="button6" *ngIf = "logged === true"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
@@ -66,7 +67,7 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4 cards cityGrid" *ngIf="display === false">
                     <div class="col" *ngFor="let city of cities">
                       <div class="card city">
-                        <img src="../../../assets/photos/citiesInfoImages/{{ city['photo'] }}" (click)="show(city)" class="card-img-top">
+                        <img src="../../../assets/photos/citiesInfoImages/{{ city['photo'] }}" (click)="show(city)" class="img-top">
                         <div class="card-body"  (click)="show(city)">
                           <h5 class="card-title">{{ city[cityNameAttribute] }}</h5>
                           <h6> {{ city[cityCountryAttribute] }} </h6>

@@ -6,6 +6,7 @@ import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { CityTagService } from 'src/app/services/cityTag/city-tag.service';
 import { LandmarkService } from 'src/app/services/landmark/landmark.service';
 import * as leafletModule from 'leaflet';
+import { CityRatingService } from 'src/app/services/cityRating/city-rating.service';
 
 @Component({
   selector: 'app-city-info',
@@ -21,6 +22,7 @@ export class CityInfoComponent implements OnInit {
   public tagNameAttribute = 'tagNameEng';
   public historyAttribute = 'briefHistoryEng';
   public airportNameAttribute = 'nameEng';
+  public currentRating = 0;
 
   @Input() city: any;
   @Input() favourites: any;
@@ -30,7 +32,7 @@ export class CityInfoComponent implements OnInit {
 
   @ViewChild("top") Top!: ElementRef;
 
-  constructor(private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService, public translate: TranslateService, private renderer: Renderer2, private elementRef: ElementRef) { 
+  constructor(private cityRatingService:CityRatingService, private cityService:CityService, private cityTagService:CityTagService, private airportService:AirportService, private landmarkService:LandmarkService, private cityListService:CityListService, public translate: TranslateService, private renderer: Renderer2, private elementRef: ElementRef) { 
     this.translate.addLangs(['en', 'ro'])
     this.translate.setDefaultLang('en');
     this.getLanguageFromSessionStorage();
@@ -121,5 +123,12 @@ export class CityInfoComponent implements OnInit {
   scrollIntoView() {
     const topElement = this.elementRef.nativeElement;
     topElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  addCityRate(){
+    console.log(this.currentRating);
+    this.cityRatingService.addRating(this.city['cityId'], this.currentRating).subscribe((response:any) => {
+      console.log(response);
+    })
   }
 }

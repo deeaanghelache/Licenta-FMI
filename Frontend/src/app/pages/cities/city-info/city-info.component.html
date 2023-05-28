@@ -9,6 +9,9 @@
         <div id="removeFromFavs" *ngIf="loggedUser === true && isFavourite() === true">
             <button class="btn btn-outline-light rounded-pill buttonRemoveFav" (click)="removeFavourite()">&nbsp;&nbsp;{{ "city-info-remove" | translate }} &nbsp;<i class="fa-solid fa-heart-crack"></i>&nbsp;&nbsp;</button>
         </div>
+        <div class="rate" *ngIf="loggedUser === true">
+            <ngb-rating id="stars" [max]="5" [(rate)]="currentRating" [readonly]="false" (rateChange)="addCityRate()"></ngb-rating>
+        </div>
     </div>
     <div id="rightSide">
         <div #top id="nameCityText"><h2>{{ city[cityNameAttribute] }} </h2></div> 

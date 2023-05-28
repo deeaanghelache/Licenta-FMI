@@ -1,0 +1,57 @@
+// Site's colors
+$color-1: #E0D8B0;
+$color-2: #ffc533;
+$color-3: #CE9461;
+$color-4: #FCFFE7;
+$color-5: #DEA057;
+$color-6: #ccaf8f;
+
+#logout{
+    cursor: pointer;
+}
+
+nav{
+    z-index: 10;
+}
+
+#board {
+    border: 2px solid lightgrey;
+    border-radius: 25px !important;
+    height: 98vh;
+    margin: 5px;
+    margin-top: 10px !important;
+    box-shadow: 1px 1px 18px #888888;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.navbar{
+    border-top-right-radius: 25px !important; 
+    border-top-left-radius: 25px !important; 
+}
+
+#citiesCards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 5px;
+}
+  
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 83.5vh; 
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.img-top {
+    width: auto;
+    height: 180px;
+}

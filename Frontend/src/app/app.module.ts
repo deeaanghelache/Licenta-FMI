@@ -27,6 +27,7 @@ import { PlanLandmarksComponent } from './pages/wishlist/plan-landmarks/plan-lan
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TopDestinationsComponent } from './pages/top-destinations/top-destinations.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ButtonDirective,
     JournalPostComponent,
     PlanLandmarksComponent,
+    TopDestinationsComponent,
   ],
   imports: [
     BrowserModule,
