@@ -51,4 +51,12 @@ export class LandmarkService {
       this.privateHttpHeaders
     )
   }
+
+  addLandmarkByCityName(landmark:any, cityName:any){
+    return this.http.post(
+      this.baseUrl + "landmark/addLandmarkByCityName/" + cityName,
+      landmark,
+      this.privateHttpHeaders
+    )
+  }
 }

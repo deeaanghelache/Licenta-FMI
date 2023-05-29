@@ -17,6 +17,10 @@ $color-5: #DEA057;
     overflow-y: hidden;
 }
 
+.dropdownLi {
+    cursor: pointer;
+}
+
 .body{
     position: absolute;
     top: 30vh;

@@ -1,10 +1,10 @@
 package com.example.backend.database.city;
 
+import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,6 +20,18 @@ public class CityController {
     public ResponseEntity<List<City>> getAllCities(){
         List<City> cities = cityService.getAllCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllCitiesNames")
+    public ResponseEntity<List<String>> getAllCityNames(){
+        List<String> cities = cityService.getAllCityNames();
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllCityCoordinates")
+    public ResponseEntity<List<Pair<Integer, Pair<Double, Double>>>> getAllCityCoordinates(){
+        List<Pair<Integer, Pair<Double, Double>>> cityCoordinates = cityService.getAllCityCoordinates();
+        return new ResponseEntity<>(cityCoordinates, HttpStatus.OK);
     }
 
     @GetMapping("/getDistanceMatrix")

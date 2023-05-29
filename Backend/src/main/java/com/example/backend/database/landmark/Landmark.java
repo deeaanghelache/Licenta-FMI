@@ -17,13 +17,13 @@ public class Landmark implements Serializable {
     @Column(nullable = false, updatable = false)
     private Integer landmarkId;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(500)")
     private String name;
 
-    @Column(columnDefinition = "varchar(1000)")
+    @Column(columnDefinition = "varchar(2000)")
     private String descriptionEng;
 
-    @Column(columnDefinition = "varchar(1000)")
+    @Column(columnDefinition = "varchar(2000)")
     private String descriptionRom;
 
     @Column(columnDefinition = "varchar(200)")

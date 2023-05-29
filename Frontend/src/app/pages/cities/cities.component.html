@@ -26,8 +26,8 @@
                         {{ 'menu-language' | translate }}
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" (click)="switchAppsLanguage('en')">🇺🇸 English</a></li>
-                <li><a class="dropdown-item" (click)="switchAppsLanguage('ro')">🇷🇴 Română</a></li>
+                <li class="dropdownLi"><a class="dropdown-item" (click)="switchAppsLanguage('en')">🇺🇸 English</a></li>
+                <li class="dropdownLi"><a class="dropdown-item" (click)="switchAppsLanguage('ro')">🇷🇴 Română</a></li>
               </ul>
             </div>
             &nbsp; &nbsp; 
@@ -48,8 +48,8 @@
                         {{ 'cities-filter' | translate }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="dropdown-item" (click)="allButton()"> {{ 'cities-all' | translate }} </li>
-                        <li class="dropdown-item" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag[tagNameAttribute] }}</li>
+                        <li class="dropdown-item dropdownLi" (click)="allButton()"> {{ 'cities-all' | translate }} </li>
+                        <li class="dropdown-item dropdownLi" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag[tagNameAttribute] }}</li>
                     </ul>
                 </div>
 

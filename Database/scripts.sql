@@ -129,5 +129,3 @@ INSERT INTO city_tag(city_id, tag_id) VALUES
     (22, 16),
     (23, 1),
     (23, 2);
-
-INSERT INTO landmark()    

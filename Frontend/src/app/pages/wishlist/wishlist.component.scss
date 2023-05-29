@@ -18,6 +18,10 @@ $color-5: #DEA057;
     overflow-x: hidden !important;
 }
 
+.dropdownLi {
+    cursor: pointer;
+}
+
 .navbar{
     border-top-right-radius: 25px !important; 
     border-top-left-radius: 25px !important; 

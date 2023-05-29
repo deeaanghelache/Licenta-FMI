@@ -184,6 +184,10 @@ h6 {
     height: 145px;
 }
 
+.dropdownLi {
+    cursor: pointer;
+}
+
 // responsive screens
 // iPad Air + landscape
 @media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {

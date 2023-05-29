@@ -2,6 +2,7 @@
     <div id="listLandmarks">
         <button *ngIf="buttonOpen === false" (click)="openAddDataEntry()" class="btn btn-info">Add</button>
         <button *ngIf="buttonOpen === false" (click)="openDeleteDataEntry()" class="btn btn-info">Delete</button>
+        <button *ngIf="buttonOpen === false" (click)="fetchLandmarksData()" class="btn btn-info">Fetch Data</button>
     </div>
 
     <div class="add" *ngIf="openAdd === true">
