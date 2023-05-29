@@ -5,6 +5,7 @@
 
     <div
       cdkDropList
+      id="cdk-drop-list-city"
       #cityLandmarkList="cdkDropList"
       [cdkDropListData]="currentLandmarksNames"
       [cdkDropListConnectedTo]="[myLandmarkList]"
@@ -26,6 +27,7 @@
 
     <div
       cdkDropList
+      id="cdk-drop-list-landmark"
       #myLandmarkList="cdkDropList"
       [cdkDropListData]="currentUserLandmarksNames"
       [cdkDropListConnectedTo]="[cityLandmarkList]"
