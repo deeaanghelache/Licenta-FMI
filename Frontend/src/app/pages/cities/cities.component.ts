@@ -52,6 +52,17 @@ export class CitiesComponent implements OnInit {
     this.checkIfAdmin();
     this.getAllTags();
     this.getAllCities();
+    this.getNameAttributesFromSessionStorage();
+  }
+
+  getNameAttributesFromSessionStorage(){
+    const cityNameAttribute = sessionStorage.getItem('cityNameAttribute');
+    const cityCountryAttribute = sessionStorage.getItem('cityCountryAttribute');
+
+    if (cityNameAttribute !== null && cityCountryAttribute !== null) {
+      this.cityNameAttribute = cityNameAttribute;
+      this.cityCountryAttribute = cityCountryAttribute;
+    }
   }
 
   getEmail(){
@@ -212,10 +223,14 @@ export class CitiesComponent implements OnInit {
       this.cityNameAttribute = 'nameRom';
       this.tagNameAttribute = 'tagNameRom';
       this.cityCountryAttribute = 'countryRom';
+      sessionStorage.setItem('cityNameAttribute', 'nameRom');
+      sessionStorage.setItem('cityCountryAttribute', 'countryRom');
     } else {
       this.cityNameAttribute = 'nameEng';
       this.tagNameAttribute = 'tagNameEng';
       this.cityCountryAttribute = 'countryEng';
+      sessionStorage.setItem('cityNameAttribute', 'nameEng');
+      sessionStorage.setItem('cityCountryAttribute', 'countryEng');
     }
     sessionStorage.setItem("language", language);
     this.translate.use(language);

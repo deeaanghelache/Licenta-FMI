@@ -28,7 +28,18 @@ export class HomepageComponent implements OnInit {
     this.checkIfLoggedIn();
     this.checkIfAdmin();
     this.getAllCities();
+    this.getNameAttributesFromSessionStorage();
   }
+
+  getNameAttributesFromSessionStorage(){
+    const cityNameAttribute = sessionStorage.getItem('cityNameAttribute');
+    const cityCountryAttribute = sessionStorage.getItem('cityCountryAttribute');
+
+    if (cityNameAttribute !== null && cityCountryAttribute !== null) {
+      this.cityNameAttribute = cityNameAttribute;
+    }
+  }
+
 
   getLanguageFromSessionStorage(){
     if ("language" in sessionStorage){
@@ -64,8 +75,10 @@ export class HomepageComponent implements OnInit {
   switchAppsLanguage(language: string) {
     if (language === "ro"){
       this.cityNameAttribute = 'nameRom';
+      sessionStorage.setItem('cityNameAttribute', 'nameRom');
     } else {
       this.cityNameAttribute = 'nameEng';
+      sessionStorage.setItem('cityNameAttribute', 'nameEng');
     }
     sessionStorage.setItem("language", language);
     this.translate.use(language);
