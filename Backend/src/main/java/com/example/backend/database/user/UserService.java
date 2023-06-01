@@ -3,10 +3,9 @@ package com.example.backend.database.user;
 import com.example.backend.database.userRole.UserRole;
 import com.example.backend.database.userRole.UserRoleInterface;
 import com.example.backend.database.userRole.UserRoleService;
+import com.example.backend.emailSenderConfiguration.EmailSenderConfigurationService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +18,16 @@ public class UserService {
     private final UserInterface userInterface;
     private final UserRoleInterface userRoleInterface;
     private final UserRoleService userRoleService;
+    private final EmailSenderConfigurationService emailSenderConfigurationService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserService(UserInterface userInterface, UserRoleInterface userRoleInterface, UserRoleService userRoleService) {
+    public UserService(UserInterface userInterface, UserRoleInterface userRoleInterface, UserRoleService userRoleService, EmailSenderConfigurationService emailSenderConfigurationService) {
         this.userInterface = userInterface;
         this.userRoleInterface = userRoleInterface;
         this.userRoleService = userRoleService;
+        this.emailSenderConfigurationService = emailSenderConfigurationService;
     }
 
     // FIND (GET)
@@ -91,6 +92,9 @@ public class UserService {
         User user = userInterface.save(newUser);
 
         userRoleService.addUserRoleForUsers(user);
+        emailSenderConfigurationService.sendRegistrationEmail(newUser.getEmail(), newUser.getFirstName(), newUser.getLastName());
+        System.out.println("Everything ok!");
+
         return user;
     }
 
