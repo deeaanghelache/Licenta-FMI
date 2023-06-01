@@ -22,12 +22,12 @@
         </div>
         <br>
         <div id="history">
-            <h4> {{ "city-info-history" | translate }} </h4>
+            <h4> {{ "city-info-history" | translate }} <i class="fa-solid fa-circle-info informationCity"></i></h4>
                 <p>{{ city[historyAttribute] }}</p>
         </div>
         <br>
         <div id="landmarks">
-            <h4> {{ "city-info-landmarks" | translate }} </h4>
+            <h4> {{ "city-info-landmarks" | translate }} <i class="fa-solid fa-circle-info informationLandmark"></i></h4>
             <div id="landmarkList">
                 <ul class="list-group">
                     <li *ngFor="let landmark of landmarks" class="list-group-item" (click)="goToLocation(landmark['latitude'], landmark['longitude'], landmark['name'])">

@@ -98,7 +98,7 @@ export class LandmarksComponent implements OnInit {
     for (let city of this.allCities){
       var latitude = city['second']['first'];
       var longitude = city['second']['second'];
-      var numberOfLandmarks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      var numberOfLandmarks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
       const overpassQuery = `[out:json];
       (
         node(around:5000, ${latitude}, ${longitude})["tourism"="museum"];

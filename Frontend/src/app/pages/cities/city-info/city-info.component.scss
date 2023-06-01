@@ -121,6 +121,58 @@ ul {
     cursor: pointer;
 }
 
+.informationCity {
+    position: relative;
+}
+  
+.informationCity::after {
+    content: "I got the city's information from Wikipedia!";
+    font-size: 15px;
+    font-family:Arial, Helvetica, sans-serif;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+    width: 150px;
+    background-color: $color-2;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
+.informationCity:hover::after {
+    display: block;
+}
+
+.informationLandmark {
+    position: relative;
+  }
+  
+.informationLandmark::after {
+    content: "I got the landmarks from Overpass API!";
+    font-size: 15px;
+    font-family:Arial, Helvetica, sans-serif;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transform: translateY(-90%);
+    width: 150px;
+    background-color: $color-2;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
+.informationLandmark:hover::after {
+    display: block;
+}
+
 // responsive screens
 // iPad Air + landscape
 @media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {
