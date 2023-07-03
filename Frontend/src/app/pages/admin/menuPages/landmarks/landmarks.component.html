@@ -1,1 +1,124 @@
-<p>landmarks works!</p>
+<main>
+    <div id="listLandmarks">
+        <button *ngIf="buttonOpen === false" (click)="openAddDataEntry()" class="btn btn-info">Add</button>
+        <button *ngIf="buttonOpen === false" (click)="openDeleteDataEntry()" class="btn btn-info">Delete</button>
+        <button *ngIf="buttonOpen === false" (click)="fetchLandmarksData()" class="btn btn-info">Fetch Data</button>
+    </div>
+
+    <div class="add" *ngIf="openAdd === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeAddForm()"></i> <span> &nbsp; &nbsp; Add Landmarks in the Database</span></div>
+
+        <div class="formAddDelete">
+            <div class="formBox">
+                <form [formGroup]="addForm" (ngSubmit)="addLandmark()">
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="name"
+                        placeholder="Name"
+                        [ngClass]="addForm.controls['name'].errors ? 'is-invalid' : ''"
+                        formControlName="name" />
+                    </div>
+
+                    <div class="form-group romName">
+                        <input class="form-control"
+                        id="romDesc"
+                        placeholder="Romanian Description"
+                        [ngClass]="addForm.controls['descriptionRom'].errors ? 'is-invalid' : ''"
+                        formControlName="descriptionRom" />
+                    </div>
+
+                    <div class="form-group romName">
+                        <input class="form-control"
+                        id="engDesc"
+                        placeholder="English Description"
+                        [ngClass]="addForm.controls['descriptionEng'].errors ? 'is-invalid' : ''"
+                        formControlName="descriptionEng" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="romType"
+                        placeholder="English Type"
+                        [ngClass]="addForm.controls['typeEng'].errors ? 'is-invalid' : ''"
+                        formControlName="typeEng" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="engType"
+                        placeholder="Romanian Type"
+                        [ngClass]="addForm.controls['typeRom'].errors ? 'is-invalid' : ''"
+                        formControlName="typeRom" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="latitude"
+                        placeholder="Latitude"
+                        [ngClass]="addForm.controls['latitude'].errors ? 'is-invalid' : ''"
+                        formControlName="latitude" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="longitude"
+                        placeholder="Longitude"
+                        [ngClass]="addForm.controls['longitude'].errors ? 'is-invalid' : ''"
+                        formControlName="longitude" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"
+                        id="imageInput"
+                        placeholder="Photo name"
+                        [ngClass]="addForm.controls['photo'].errors ? 'is-invalid' : ''"
+                        formControlName="photo" required/>
+                    </div>
+
+                    <input type="text" class="form-control"
+                    #cityId 
+                    placeholder="cityId"
+                    (input)="getValue(cityId.value)">
+
+                    <p *ngIf="ok === true"> {{ message }} </p>
+
+                    <button 
+                    id="addButton"
+                    [disabled]="addForm.invalid"
+                    class="btn btn-info"
+                    type="submit">
+                    Add Landmark
+                    </button>
+                </form>
+            </div>
+            <div class="rightSide">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let landmark of dbLandmarks">
+                            <td class="id">
+                                {{ landmark['landmarkId'] }}
+                            </td>
+                            <td class="engName">
+                                {{ landmark['name'] }}
+                            </td>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="delete" *ngIf="openDelete === true">
+        <div class="goBack"><i class="fa fa-arrow-left" (click)="closeDeleteForm()"></i></div>
+        <div class="formAddDelete">
+            <form>
+                    
+            </form>
+        </div>
+    </div>
+</main>

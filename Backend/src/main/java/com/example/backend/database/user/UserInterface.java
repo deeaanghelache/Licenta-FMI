@@ -16,16 +16,13 @@ public interface UserInterface extends JpaRepository<User, Integer> {
     Boolean existsByEmail(String email);
 
     @Modifying
-    @Query(value = "UPDATE user " +
-            "SET user.password = :newPassword " +
-            "WHERE user.user_id = :userId", nativeQuery = true)
+    @Query("UPDATE User u SET u.password = :newPassword WHERE u.userId = :userId")
     void queryBy(@Param("userId") Long userId, @Param("newPassword") String newPassword);
 
     @Modifying
-    @Query(value = "UPDATE user " +
-            "SET user.username = :newUsername " +
-            "WHERE user.user_id = :userId", nativeQuery = true)
-    void queryBy(@Param("userId") Integer userId, @Param("newUsername") String newUsername);
+    @Query("UPDATE User u SET u.username = :newUsername WHERE u.userId = :userId")
+    void queryBy(@Param("userId") Integer userId,
+                 @Param("newUsername") String newUsername);
 
     void deleteUserByUserId(Integer userId);
     void deleteUserByUsername(String username);

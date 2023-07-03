@@ -2,6 +2,8 @@ package com.example.backend.database.listOfLandmarks;
 
 import com.example.backend.database.landmark.Landmark;
 import com.example.backend.database.cityList.CityList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,15 +21,16 @@ public class ListOfLandmarks implements Serializable {
     // Foreign Keys
 
     // With Landmark
-    @ManyToOne
-    @MapsId("landmarkId")
-    @JoinColumn(name = "landmark_id", referencedColumnName = "landmarkId")
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @MapsId("landmarkId")
+    @JoinColumn(name = "landmarkId", referencedColumnName = "landmarkId", nullable = false)
     private Landmark landmark;
 
-    // With Landmark List
-    @ManyToOne
-    @MapsId("cityListId")
-    @JoinColumn(name = "city_list_id", referencedColumnName = "cityListId")
+    // With City List
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @MapsId("cityListId")
+    @JoinColumn(name = "cityListId", referencedColumnName = "cityListId", nullable = false)
     private CityList cityList;
 
     public ListOfLandmarks() {
@@ -80,6 +83,8 @@ public class ListOfLandmarks implements Serializable {
         return "ListOfLandmarks{" +
                 "listOfLandmarksId=" + listOfLandmarksId +
                 ", priority=" + priority +
+//                ", landmark=" + landmark.getLandmarkId() +
+//                ", cityList=" + cityList.getCityListId() +
                 '}';
     }
 }

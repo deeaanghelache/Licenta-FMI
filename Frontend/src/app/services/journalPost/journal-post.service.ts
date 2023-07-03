@@ -22,4 +22,11 @@ export class JournalPostService {
       this.privateHttpHeaders
     )
   }
+
+  addJournalPostForGivenUser(userId: any, post: any){
+    return this.http.post(
+      this.baseUrl + 'journalPost/addJournalPost/' + userId , 
+      post
+    );
+  }
 }

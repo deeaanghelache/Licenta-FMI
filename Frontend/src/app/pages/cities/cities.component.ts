@@ -4,6 +4,8 @@ import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { TagService } from 'src/app/services/tag/tag.service';
 import { UserService } from 'src/app/services/user/user.service';
 import * as leafletModule from 'leaflet';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cities',
@@ -27,8 +29,17 @@ export class CitiesComponent implements OnInit {
   private defaultMapLat = 44.439663;
   private defaultMapLong = 26.096306;
   private defaultMapZoom = 15;
+  public cityNameAttribute = 'nameEng';
+  public tagNameAttribute = 'tagNameEng';
+  public cityCountryAttribute = 'countryEng';
+  public language:any;
 
-  constructor(private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService) { }
+  constructor(private router:Router, private tagService: TagService, private cityService: CityService, private userService:UserService, private cityListService:CityListService, public translate: TranslateService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+   }
 
   ngOnInit(): void {
     this.map = leafletModule.map('map').setView([this.defaultMapLat, this.defaultMapLong], this.defaultMapZoom);
@@ -41,6 +52,17 @@ export class CitiesComponent implements OnInit {
     this.checkIfAdmin();
     this.getAllTags();
     this.getAllCities();
+    this.getNameAttributesFromSessionStorage();
+  }
+
+  getNameAttributesFromSessionStorage(){
+    const cityNameAttribute = sessionStorage.getItem('cityNameAttribute');
+    const cityCountryAttribute = sessionStorage.getItem('cityCountryAttribute');
+
+    if (cityNameAttribute !== null && cityCountryAttribute !== null) {
+      this.cityNameAttribute = cityNameAttribute;
+      this.cityCountryAttribute = cityCountryAttribute;
+    }
   }
 
   getEmail(){
@@ -65,6 +87,7 @@ export class CitiesComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+    this.router.navigateByUrl('/homepage');
   }
 
   getAllTags(){
@@ -167,9 +190,9 @@ export class CitiesComponent implements OnInit {
 
   sortByNameAscending(){
     this.cities = this.cities.sort((city1, city2) => {
-      if (city1['nameEng'] < city2['nameEng']) {
+      if (city1[this.cityNameAttribute] < city2[this.cityNameAttribute]) {
         return -1; 
-      } else if (city1['nameEng'] > city2['nameEng']) {
+      } else if (city1[this.cityNameAttribute] > city2[this.cityNameAttribute]) {
         return 1; 
       } else {
         return 0; 
@@ -179,13 +202,37 @@ export class CitiesComponent implements OnInit {
 
   sortByNameDescending(){
     this.cities = this.cities.sort((city1, city2) => {
-      if (city1['nameEng'] > city2['nameEng']) {
+      if (city1[this.cityNameAttribute] > city2[this.cityNameAttribute]) {
         return -1; 
-      } else if (city1['nameEng'] < city2['nameEng']) {
+      } else if (city1[this.cityNameAttribute] < city2[this.cityNameAttribute]) {
         return 1; 
       } else {
         return 0; 
       }
     });
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    if (language === "ro"){
+      this.cityNameAttribute = 'nameRom';
+      this.tagNameAttribute = 'tagNameRom';
+      this.cityCountryAttribute = 'countryRom';
+      sessionStorage.setItem('cityNameAttribute', 'nameRom');
+      sessionStorage.setItem('cityCountryAttribute', 'countryRom');
+    } else {
+      this.cityNameAttribute = 'nameEng';
+      this.tagNameAttribute = 'tagNameEng';
+      this.cityCountryAttribute = 'countryEng';
+      sessionStorage.setItem('cityNameAttribute', 'nameEng');
+      sessionStorage.setItem('cityCountryAttribute', 'countryEng');
+    }
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

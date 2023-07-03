@@ -6,6 +6,8 @@ import com.example.backend.database.preference.Preference;
 import com.example.backend.database.userRole.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -35,22 +37,24 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(100)")
     private String photo;
 
+//    private MultipartFile photo;
+
     // Foreign Keys
 
     // With UserRole
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRole> userRoles;
 
     // With Preference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Preference> preferences;
 
     // With CityList
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityList> cityLists;
 
     // With JournalPost
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<JournalPost> journalPosts;
 
     public User() {

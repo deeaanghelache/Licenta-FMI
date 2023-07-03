@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UserAuthenticationService } from 'src/app/services/userAuthentication/user-authentication.service';
 
 @Component({
@@ -17,8 +18,14 @@ export class LoginComponent implements OnInit {
   public ok:boolean = false;
   public tryAgain: String = "";
   public currentUserId:string = "";
+  public language:any;
 
-  constructor(private router:Router, private formBuilder:FormBuilder, private userAuthentication: UserAuthenticationService) { }
+  constructor(public translate: TranslateService, private router:Router, private formBuilder:FormBuilder, private userAuthentication: UserAuthenticationService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -71,5 +78,17 @@ export class LoginComponent implements OnInit {
       this.tryAgain = "Some of the data you typed didn't pass the validation tests. Please, be careful when completing this form.";
       this.loginForm.reset();
     }
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

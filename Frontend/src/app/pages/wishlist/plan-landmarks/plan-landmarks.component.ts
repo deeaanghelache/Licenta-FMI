@@ -4,6 +4,7 @@ import { LandmarkService } from 'src/app/services/landmark/landmark.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { CityListService } from 'src/app/services/cityList/city-list.service';
 import { ListOfLandmarksService } from 'src/app/services/listOfLandmarks/list-of-landmarks.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-plan-landmarks',
@@ -22,10 +23,16 @@ export class PlanLandmarksComponent implements OnInit {
   public currentCityListId: any;
   public landmarkToAdd: any;
   public landmarkToDelete: any;
+  public language:any;
 
   @Input() chosenCity: any;
 
-  constructor(private landmarkService:LandmarkService, private userService:UserService, private cityListService:CityListService, private listOfLandmarksService:ListOfLandmarksService) { }
+  constructor(public translate: TranslateService, private landmarkService:LandmarkService, private userService:UserService, private cityListService:CityListService, private listOfLandmarksService:ListOfLandmarksService) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+   }
 
   ngOnInit(): void {
     this.getAllLandmarksNamesForGivenCity();
@@ -79,7 +86,7 @@ export class PlanLandmarksComponent implements OnInit {
   getCurrentCityList(userId:any){
     this.cityListService.getCityListByUserAndCity(userId, this.chosenCity['cityId']).subscribe((response:any) => {
       console.log(response);
-      this.currentCityList = response[0];
+      this.currentCityList = response;
       this.currentCityListId = this.currentCityList['cityListId'];
       console.log(this.currentCityListId);
       this.getAllLandmarksForGivenCityList(this.currentCityListId);
@@ -109,7 +116,15 @@ export class PlanLandmarksComponent implements OnInit {
     })
   }
 
+  deleteListOfLandmarks(cityListId:any, landmarkdId:any){
+    this.listOfLandmarksService.deleteListOfLandmarks(cityListId, landmarkdId).subscribe((response:any) => {
+      console.log(response);
+    })
+  }
+
   drop(event: CdkDragDrop<string[]>) {
+    console.log(event.previousContainer.id)
+    console.log(event.container.id)
     if (event.previousContainer === event.container) {
       // moving elements inside the same container
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -121,31 +136,51 @@ export class PlanLandmarksComponent implements OnInit {
         event.currentIndex,
       );
       const containerBoxName = event.container.id;
-      console.log(containerBoxName);
       const landmarkName = event.container.data[event.currentIndex];
       const priority = event.currentIndex + 1;
       
-      // cdk-drop-list-0 is the city landmark container
-      if (containerBoxName === 'cdk-drop-list-0'){
+      // cdk-drop-list-city is the city landmark container
+      if (containerBoxName === 'cdk-drop-list-city'){
           // should delete list of landmarks for current moved landmark
-          // this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
-          //   console.log(response);
-          //   this.landmarkToDelete = response;
-          //   this.addListOfLandmarks(this.currentCityListId, this.landmarkToDelete['landmarkId'], priority);
-          // })
-      } else {
-        // cdk-drop-list-1 is my landmark planning container
-        if (containerBoxName == 'cdk-drop-list-1'){
-          // should add list of landmarks for current moved landmark
-          console.log("aaa");
           this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
+            console.log("------")
             console.log(response);
+            console.log("------")
+            this.landmarkToDelete = response;
+            this.deleteListOfLandmarks(this.currentCityListId, this.landmarkToDelete['landmarkId']);
+          })
+      } else {
+        // cdk-drop-list-landmark is my landmark planning container
+        if (containerBoxName == 'cdk-drop-list-landmark'){
+          // const indexToDelete: number = this.currentLandmarksNames.findIndex(item => item === landmarkName);
+
+          // if (indexToDelete !== -1) {
+          //   this.currentLandmarksNames.splice(indexToDelete, 1);
+          // }
+
+          // should add list of landmarks for current moved landmark
+          this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
+            console.log("#")
+            console.log(response);
+            console.log("#")
             this.landmarkToAdd = response;
             this.addListOfLandmarks(this.currentCityListId, this.landmarkToAdd['landmarkId'], priority);
           })
         }
       }
     }
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }
 

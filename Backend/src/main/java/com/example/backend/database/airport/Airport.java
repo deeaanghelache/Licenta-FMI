@@ -21,6 +21,12 @@ public class Airport implements Serializable {
     @Column(columnDefinition = "Decimal(5,2)")
     private Double distanceToCity;
 
+    @Column(columnDefinition="Decimal(10,6)")
+    private Double latitude;
+
+    @Column(columnDefinition="Decimal(10,6)")
+    private Double longitude;
+
     // Foreign keys
 
     // With City
@@ -31,10 +37,13 @@ public class Airport implements Serializable {
     public Airport() {
     }
 
-    public Airport(String nameEng, String nameRom, Double distanceToCity) {
+    public Airport(Integer airportId, String nameEng, String nameRom, Double distanceToCity, Double latitude, Double longitude) {
+        this.airportId = airportId;
         this.nameEng = nameEng;
         this.nameRom = nameRom;
         this.distanceToCity = distanceToCity;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Integer getAirportId() {
@@ -65,6 +74,34 @@ public class Airport implements Serializable {
         this.distanceToCity = distanceToCity;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setAirportId(Integer airportId) {
+        this.airportId = airportId;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "Airport{" +
@@ -72,7 +109,9 @@ public class Airport implements Serializable {
                 ", nameEng='" + nameEng + '\'' +
                 ", nameRom='" + nameRom + '\'' +
                 ", distanceToCity=" + distanceToCity +
-                ", city=" + city +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+//                ", city=" + city.getCityId() +
                 '}';
     }
 }

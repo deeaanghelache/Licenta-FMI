@@ -1,7 +1,7 @@
 // Light/dark theme
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 .dark-theme{
     --text-color: white;
@@ -23,9 +23,13 @@ body{
     overflow: hidden;
 }
 
+h5, h6 {
+    color: var(--text-color);
+}
+
 .themeButton{
-    // color: var(--text-color);
-    color: black;
+    color: var(--text-color);
+    // color: black;
     // background-color: var(--background-color);
     height: 50px;
     width: 50px;
@@ -49,3 +53,11 @@ body{
 .btn-outline-dark, .btn-outline-secondary {
     --bs-btn-font-weight: bold;
 }
+
+@media (min-width: 768px) and (max-width: 820px) and (orientation: portrait){
+    .themeSwitchContainer {
+        bottom: 50px;
+        right: 30px;
+    }
+}
+

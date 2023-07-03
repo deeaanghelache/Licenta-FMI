@@ -4,3 +4,95 @@ $color-2: #ffc533;
 $color-3: #CE9461;
 $color-4: #FCFFE7;
 $color-5: #DEA057;
+
+#listLandmark {
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.goBack {
+    position: relative;
+    top: 5px;
+    left: 10px;
+    font-size: 30px;
+    display: inline-block;
+}
+
+i {
+    cursor: pointer;
+    transition: color 0.3s linear;
+}
+
+span {
+    text-align: center;
+}
+
+i:hover {
+    color: $color-3;
+}
+
+.btn-info {
+    background-color: $color-2 !important;
+    border-color: $color-2 !important;
+    font-weight: bold;
+    transition: background-color 0.5s linear;
+}
+
+.btn-info:hover {
+    background-color: $color-1 !important;
+}
+
+.formAddDelete {
+    position: relative;
+    top: 1vh;
+    left: 1vw;
+    border: 1px solid grey;
+    width: 96vw;
+    height: 82vh;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 1px 1px 18px #888888;
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.form-control {
+    margin: 20px;
+    width: 20vw;
+}
+
+#addButton {
+    margin-left: 20px;
+    width: 20vw;
+}
+
+.formBox {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 25vw;
+    height: inherit;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.rightSide {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    height: inherit;
+    width: 75vw;
+    padding: 10px;
+}
+
+.table {
+    width: 70vw;
+}

@@ -1,5 +1,6 @@
 package com.example.backend.database.cityList;
 
+import com.example.backend.database.city.City;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,20 @@ public class CityListService {
     }
 
     public List<CityList> getCityListByUserAndCity(Integer userId, Integer cityId) {
-        return cityListInterface.getCityListByUserAndCity(userId, cityId);
+        System.out.println("_____");
+        var cl = cityListInterface.getCityListByUserAndCity(userId, cityId);
+        System.out.println(cl);
+        return cl;
     }
 
     public CityList getCityListById(Integer cityListId){
         return cityListInterface.findCityListByCityListId(cityListId).orElseThrow(() -> new CityListIdNotFoundException("Couldn't find any cityList with the id: " + cityListId));
+    }
+
+    public List<City> getAllCitiesForGivenUser(Integer userId){
+        List<CityList> cities = getAllCityListsForAGivenUser(userId);
+        List<City> userCities = cities.stream().map(CityList::getCity).toList();
+        return userCities;
     }
 
     // POST

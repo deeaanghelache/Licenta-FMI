@@ -4,6 +4,7 @@ import com.example.backend.database.city.City;
 import com.example.backend.database.user.User;
 import com.example.backend.database.city.CityService;
 import com.example.backend.database.user.UserService;
+import com.example.backend.database.userRole.UserRoleId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,16 +26,14 @@ public class CityListController {
 
     @GetMapping("/getAllCitiesForGivenUser/{userId}")
     public ResponseEntity<List<City>> getAllCitiesForGivenUser(@PathVariable("userId") Integer userId) {
-        List<CityList> cityLists = cityListService.getAllCityListsForAGivenUser(userId);
-        List<City> cities = cityLists.stream().map(CityList::getCity).toList();
-
+        List<City> cities = cityListService.getAllCitiesForGivenUser(userId);
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
     @GetMapping("/getCityListForGivenUserAndCity/{userId}/{cityId}")
-    public ResponseEntity<List<CityList>> getCityListForGivenUserAndCity(@PathVariable("userId") Integer userId, @PathVariable("cityId") Integer cityId){
-        List<CityList> cityLists = cityListService.getCityListByUserAndCity(userId, cityId);
-        return new ResponseEntity<>(cityLists, HttpStatus.OK);
+    public ResponseEntity<CityList> getCityListForGivenUserAndCity(@PathVariable("userId") Integer userId, @PathVariable("cityId") Integer cityId){
+        CityList cityList = cityListService.getCityListByUserAndCity(userId, cityId).get(0);
+        return new ResponseEntity<>(cityList, HttpStatus.OK);
     }
 
     @PostMapping("/addCityList/{cityId}/{userId}")

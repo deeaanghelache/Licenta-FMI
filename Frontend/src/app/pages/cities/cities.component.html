@@ -2,69 +2,85 @@
     <header>
         <!-- From bootstrap -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-            <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> --> &nbsp;
+            <!-- <a class="navbar-brand" href="#"> &nbsp; &nbsp; WanderJoy</a> -->
             <img src="../../../assets/photos/logo.png" style="width:130px;height:auto;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
-                <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage">Home</a></li>
-                <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">Cities</a></li>
-                <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">Journal</a></li>
-                <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">Wishlist</a></li>
-                <li class="mainMenu" id="button6" *ngIf = "logged === true && admin === false"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
+                <li class="mainMenu" id="button1" class="nav-item active"><a class="nav-link" routerLink="/homepage"> {{ 'menu-home' | translate }} </a></li>
+                <li class="mainMenu" id="button3"><a class="nav-link" routerLink="/cities">{{ 'menu-cities' | translate }}</a></li>
+                <li class="mainMenu" id="button8"><a class="nav-link" routerLink="/topDestinations">{{ 'menu-destinations' | translate }}</a></li>
+                <li class="mainMenu" id="button4" *ngIf = "logged === true"><a class="nav-link" routerLink="/journal">{{ 'menu-journal' | translate }}</a></li>
+                <li class="mainMenu" id="button5" *ngIf = "logged === true"><a class="nav-link" routerLink="/wishlist">{{ 'menu-wishlist' | translate }}</a></li>
+                <li class="mainMenu" id="button6" *ngIf = "logged === true"><a class="nav-link" routerLink="/profile"><i class="fa fa-user"></i></a></li>
                 <li class="mainMenu" id="button7" *ngIf = "logged === true && admin === true"><a class="nav-link" routerLink="/admin">Admin</a>
               </ul>
             </div>
-            <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/login">Log in</button> 
-            <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/register">Join</button>
-            <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">Logout</button>
-            <div class="dropdown">
+            <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/login">{{ 'menu-login' | translate }}</button> &nbsp;
+            <button class="btn btn-outline-dark rounded-pill signButtons" *ngIf = "logged === false" routerLink="/register">{{ 'menu-join' | translate }}</button>
+            <button class="btn btn-outline-dark rounded-pill" *ngIf = "logged === true" (click)="logout()" id="logout">{{ 'menu-logout' | translate }}</button>
+            <div class="dropdown"> &nbsp;
               <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Language
-                    </button>
+                        {{ 'menu-language' | translate }}
+              </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
-                <li><a class="dropdown-item" href="#">🇷🇴 Română</a></li>
-                <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
+                <li class="dropdownLi"><a class="dropdown-item" (click)="switchAppsLanguage('en')">🇺🇸 English</a></li>
+                <li class="dropdownLi"><a class="dropdown-item" (click)="switchAppsLanguage('ro')">🇷🇴 Română</a></li>
               </ul>
-              &nbsp;
             </div>
-        </nav>
-    </header>
+            &nbsp; &nbsp; 
+          </nav>
+        </header>
 
 <main>
     <div class="grid">
         <div class="leftSide">
             <div class="operations" *ngIf="displayTags === true">
                 <div id="searchCityBar">
-                    <div id="inputSearch"><input #searchCityName class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></div>
+                    <div id="inputSearch"><input #searchCityName class="form-control me-2" type="search" placeholder="{{'search' | translate}}..." aria-label="Search"></div>
                     <div id="buttonSearch"><button class="btn btn-outline-dark" type="submit" (click)="searchCity(searchCityName.value)"><i class="fa-solid fa-magnifying-glass"></i></button></div>
                 </div>
 
                 <div class="tags-dropdown">
-                    <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter
+                    <button class="btn btn-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ 'cities-filter' | translate }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="dropdown-item" (click)="allButton()">All</li>
-                        <li class="dropdown-item" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag['tagNameEng'] }}</li>
+                        <li class="dropdown-item dropdownLi" (click)="allButton()"> {{ 'cities-all' | translate }} </li>
+                        <li class="dropdown-item dropdownLi" *ngFor="let tag of tags" (click)="filterByTag(tag['tagNameEng'])">{{ tag[tagNameAttribute] }}</li>
                     </ul>
                 </div>
 
                 <div class="sort">
-                    <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sort by
+                    <button class="btn btn-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ 'cities-sort' | translate }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="dropdown-item" (click)="sortByNameAscending()">Name ascending</li>
-                        <li class="dropdown-item" (click)="sortByNameDescending()">Name descending</li>
+                        <li class="dropdown-item" (click)="sortByNameAscending()">{{ 'cities-name-asc' | translate }}</li>
+                        <li class="dropdown-item" (click)="sortByNameDescending()">{{ 'cities-name-desc' | translate }}</li>
                     </ul>
                 </div>
             </div>
             <div>
-                <div class="cityGrid" *ngIf="display === false">
+                <div class="row row-cols-1 row-cols-md-3 g-4 cards cityGrid" *ngIf="display === false">
+                    <div class="col" *ngFor="let city of cities">
+                      <div class="card city">
+                        <img src="../../../assets/photos/citiesInfoImages/{{ city['photo'] }}" (click)="show(city)" class="img-top">
+                        <div class="card-body"  (click)="show(city)">
+                          <h5 class="card-title">{{ city[cityNameAttribute] }}</h5>
+                          <h6> {{ city[cityCountryAttribute] }} </h6>
+                        </div>
+                        <div class="favouriteCity" (click)="addFavourite(city)" *ngIf="logged===true">
+                            <button class="favButton btn btn-outline-warning rounded-pill">
+                                <i [ngClass]="isFavourite(city) === true ? 'fas fa-heart' : 'far fa-heart'"></i>
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- <div class="cityGrid" *ngIf="display === false">
                     <div *ngFor="let city of cities" class="city">
                         <div id="cityImg" (click)="show(city)">
                             <img id="image" src="../../../assets/photos/luca-bravo-O453M2Liufs-unsplash.jpg" width="185vw" height="150vh">
@@ -78,10 +94,10 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div id="infoCity" class="infos" *ngIf="display === true">
-                    <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closeCityInfos()">Go back to cities</button></div>
-                    <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged" [currentUserId]="currentId"></app-city-info>
+                </div> -->
+                <div #cityInfo id="infoCity" class="infos" *ngIf="display === true">
+                    <div id="goBack"><button class="btn btn-warning rounded-pill" (click)="closeCityInfos()">{{ 'cities-go-back' | translate }}</button></div>
+                    <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged" [currentUserId]="currentId" [map]="map"></app-city-info>
                 </div>
             </div>
         </div>

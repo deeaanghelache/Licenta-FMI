@@ -1,6 +1,7 @@
 package com.example.backend.database.city;
 
 import com.example.backend.database.airport.Airport;
+import com.example.backend.database.cityRating.CityRating;
 import com.example.backend.database.cityTag.CityTag;
 //import com.example.backend.cityWishlist.CityWishlist;
 import com.example.backend.database.landmark.Landmark;
@@ -31,10 +32,10 @@ public class City implements Serializable {
     @Column(columnDefinition = "varchar(300)")
     private String countryRom;
 
-    @Column(columnDefinition = "varchar(1000)")
+    @Column(columnDefinition = "varchar(5000)")
     private String briefHistoryEng;
 
-    @Column(columnDefinition = "varchar(1000)")
+    @Column(columnDefinition = "varchar(5000)")
     private String briefHistoryRom;
 
     @Column(columnDefinition = "varchar(50)")
@@ -52,24 +53,24 @@ public class City implements Serializable {
     // Foreign Keys
 
     // With Airport
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Airport> airports;
 
     // With Landmark
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Landmark> landmarks;
 
-    // With LandmarkList
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    // With CityList
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityList> cityLists;
 
-    // With CityWishList
-//    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-//    private Set<CityWishlist> cityWishlists;
-
     // With CityTag
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CityTag> cityTags;
+
+    // With CityRating
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CityRating> cityRatings;
 
     public City() {
     }
@@ -186,11 +187,11 @@ public class City implements Serializable {
                 ", photo='" + photo + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", airports=" + airports +
-                ", landmarks=" + landmarks +
-                ", cityLists=" + cityLists +
+//                ", airports=" + airports +
+//                ", landmarks=" + landmarks +
+//                ", cityLists=" + cityLists +
 //                ", cityWishlists=" + cityWishlists +
-                ", cityTags=" + cityTags +
+//                ", cityTags=" + cityTags +
                 '}';
     }
 }

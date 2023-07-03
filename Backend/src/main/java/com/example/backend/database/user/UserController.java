@@ -1,25 +1,35 @@
 package com.example.backend.database.user;
 
 import com.example.backend.database.userRole.UserRoleService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final UserRoleService userRoleService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UserService userService, UserRoleService userRoleService) {
+    @Value("${upload.directory}")
+    private String userUploadsToDirectory;
+
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRoleService = userRoleService;
     }
 
     @GetMapping("/findAllUsers")
@@ -35,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping("/findUserByUsername/{username}")
-    public ResponseEntity<User> getUserById(@PathVariable("username") String username){
+    public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username){
         User user = userService.getUserByUsername(username);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -48,55 +58,41 @@ public class UserController {
 
     @GetMapping("/checkAdminRole/{email}")
     public ResponseEntity<Boolean> checkAdminRoleForGivenUser(@PathVariable("email") String email){
-        var userRoles = userService.getAllRolesForGivenUser(email);
-        System.out.println(userRoles);
-
-        for (var userRole : userRoles) {
-            if (userRole.getRole().getRoleName().equalsIgnoreCase("Admin")) {
-                System.out.println(userRole.getRole().getRoleName());
-                return new ResponseEntity<>(true, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>(false, HttpStatus.OK);
+        boolean isAdmin = userService.checkAdminRoleForGivenUser(email);
+        return new ResponseEntity<>(isAdmin, HttpStatus.OK);
     }
 
-    // TODO: post si put
-
     // POST
-    @PostMapping("/addUser")
-    public ResponseEntity<User> register(@RequestBody User newUser) {
-        var users = userService.getAllUsers();
+    @PostMapping(value="/addUser")
+    public ResponseEntity<User> register(@RequestParam("photo") MultipartFile photo, @RequestParam("user") String userJson) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserRegisterModel userRegisterModel = objectMapper.readValue(userJson, UserRegisterModel.class);
+        try {
+            String fullPathForProfilePictures = userUploadsToDirectory + "/UserProfilePics";
+            String photoName = photo.getOriginalFilename();
+            String filePath = fullPathForProfilePictures + "/" + photoName;
+            photo.transferTo(new File(filePath));
 
-        for (var user : users){
-            if ((user.getEmail().equals(newUser.getEmail())) || (user.getUsername().equals(newUser.getUsername()))){
-                return new ResponseEntity<>(null, HttpStatus.OK);
-            }
+            User newUser = new User();
+            newUser.setFirstName(userRegisterModel.getFirstName());
+            newUser.setLastName(userRegisterModel.getLastName());
+            newUser.setEmail(userRegisterModel.getEmail());
+            newUser.setUsername(userRegisterModel.getUsername());
+            newUser.setPassword(userRegisterModel.getPassword());
+            newUser.setPhoto(photoName);
+
+            User user = userService.addUser(newUser);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
-        var password = newUser.getPassword();
-        System.out.println("Initial password: " + password);
-        var hashedPassword = bCryptPasswordEncoder.encode(password);
-        System.out.println("Hashed password: " + hashedPassword);
-
-        newUser.setPassword(hashedPassword);
-        User user = userService.addUser(newUser);
-
-        userRoleService.addUserRoleForUsers(user.getUserId());
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User userTryingToLogIn){
-        var users = userService.getAllUsers();
-
-        for (var user : users){
-            if (user.getEmail().equals(userTryingToLogIn.getEmail())){
-                if (bCryptPasswordEncoder.matches(userTryingToLogIn.getPassword(), user.getPassword())){
-                    return new ResponseEntity<>(user, HttpStatus.OK);
-                }
-            }
-        }
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        var user = userService.login(userTryingToLogIn);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     // PUT

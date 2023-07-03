@@ -13,10 +13,10 @@ public class JournalPost implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long journalPostId;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(500)")
     private String name;
 
-    @Column(columnDefinition = "varchar(5000)")
+    @Column(columnDefinition = "varchar(30000)")
     private String post;
 
     @Column(columnDefinition = "varchar(100)")

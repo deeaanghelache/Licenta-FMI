@@ -105,3 +105,89 @@ input {
 #extra {
     padding: 20px;
 }
+
+// responsive screens
+// iPad Air + landscape
+@media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {
+}
+
+// iPad Air + portrait
+@media (min-width: 768px) and (max-width: 820px) and (orientation: portrait){
+    main {
+        overflow: hidden !important;
+    }
+
+    .loginGrid{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: grid;
+        margin: 10px;
+        margin-top: 190px !important;
+        padding: 10px;
+        width: 770px;
+        height: 87vw;
+    }
+
+    img {
+        width: 33vh !important;
+    }
+
+    .rightSide {
+        width: 28vh;
+        position: relative;
+        top: 0;
+        left: -115px;
+    }
+
+    .homeButtonContainer{
+        position: absolute;
+        bottom: 110px;
+        right: 30px;
+    }
+}
+
+// iPhone 12 Pro + landscape 
+@media (min-width: 844px)  and (max-width: 844px) and (orientation: landscape) {
+
+}
+
+// iPhone 12 Pro + portrait
+@media (min-width: 390px)  and (max-width: 390px) and (orientation: portrait) {
+    img {
+        display: none;
+    }
+
+    main {
+        overflow: hidden !important;
+    }
+
+    .loginGrid{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: grid;
+        margin: 10px;
+        padding: 10px;
+        width: 98vw;
+        height: 94vh;
+    }
+
+    .leftSide {
+        display: none;
+    }
+
+    .rightSide {
+        width: 28vh;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .homeButtonContainer{
+        position: absolute;
+        bottom: 80px;
+        right: 10px;
+        z-index: 10;
+    }
+}

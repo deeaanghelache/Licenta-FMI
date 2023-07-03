@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { JournalPostService } from 'src/app/services/journalPost/journal-post.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -16,27 +18,34 @@ export class ProfileComponent implements OnInit {
   public currentId:number = 0;
   public currentEmail:string = '';
   public currentUsername: string = '';
-  public currentPhoto:string = '';
+  public currentPhotoPath:string = '';
   public displayGallery:boolean = true;
   public message: string = '';
   public displayChangePasswordForm: boolean = false;
   public displayChangeUsernameForm: boolean = false;
   public changePasswordForm!:FormGroup;
   public changeUsernameForm!:FormGroup;
-  public images = [
-    "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
-    "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
-    "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
-    "../../../assets/photos/pexels-nicolas-2925146.jpg",
-    "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
-    "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
-    "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
-    "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
-    "../../../assets/photos/pexels-nicolas-2925146.jpg",
-    "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
-  ];
+  public language:any;
+  public userPosts:any[] = [];
+  // public images = [
+  //   "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+  //   "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
+  //   "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+  //   "../../../assets/photos/pexels-nicolas-2925146.jpg",
+  //   "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
+  //   "../../../assets/photos/pexels-anastasiya-vragova-6791741.jpg",
+  //   "../../../assets/photos/pexels-esrageziyor-7473041.jpg",
+  //   "../../../assets/photos/pexels-guillaume-hankenne-2792025.jpg",
+  //   "../../../assets/photos/pexels-nicolas-2925146.jpg",
+  //   "../../../assets/photos/pexels-spencer-davis-4353813.jpg",
+  // ];
 
-  constructor(private router: Router, private userService: UserService, private formBuilder:FormBuilder) { }
+  constructor(private journalPostService:JournalPostService, public translate: TranslateService, private router: Router, private userService: UserService, private formBuilder:FormBuilder) { 
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   getUsername(){
     this.currentUsername = sessionStorage.getItem("username") as string;
@@ -54,7 +63,7 @@ export class ProfileComponent implements OnInit {
     this.getUserByEmail(this.currentEmail);
     this.changePasswordForm = this.formBuilder.group(
       {
-        password : ['', Validators.required],
+        password : ['', [Validators.required, Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–{}:;',?/*~$^+=<>]).{8,}$")]],
         confirmPassword : ['', Validators.required] 
       }, { validators: [this.passwordAndConfirmPasswordChecker]}
     );
@@ -85,11 +94,22 @@ export class ProfileComponent implements OnInit {
 
   getUserByEmail(email:string){
     this.userService.getUserByEmail(email).subscribe((response:any) => {
+      console.log(response);
       this.currentId = response.userId;
       this.currentFirstName = response.firstName;
       this.currentLastName = response.lastName;
-      this.currentPhoto = response.photo;
+      this.currentPhotoPath = response.photo;
+      console.log(this.currentPhotoPath);
       this.currentUsername = response.username;
+      this.getAllJournalPostsForCurrentUser(this.currentId);
+    })
+  }
+
+  getAllJournalPostsForCurrentUser(userId:any){
+    this.journalPostService.getAllJournalPostsForGivenUser(userId).subscribe((response:any) => {
+      console.log(response);
+      this.userPosts = response;
+
     })
   }
 
@@ -141,5 +161,17 @@ export class ProfileComponent implements OnInit {
     this.admin = false;
     this.logged = false;
     this.router.navigateByUrl("/homepage");
+  }
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
+  }
+
+  switchAppsLanguage(language: string) {
+    console.log(language);
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
   }
 }

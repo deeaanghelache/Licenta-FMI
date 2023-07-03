@@ -23,6 +23,20 @@ export class CityService {
     );
   }
 
+  getAllCitiesNames(){
+    return this.http.get(
+      this.baseUrl + "city/findAllCitiesNames", 
+      this.privateHttpHeaders
+    )
+  }
+
+  getCityCoordinates(){
+    return this.http.get(
+      this.baseUrl + "city/getAllCityCoordinates",
+      this.privateHttpHeaders
+    )
+  }
+
   getAllCitiesForAGivenTag(tagId:any){
     console.log(tagId);
     return this.http.get(this.baseUrl + 'cityTag/getAllCitiesForGivenTag/' + tagId,

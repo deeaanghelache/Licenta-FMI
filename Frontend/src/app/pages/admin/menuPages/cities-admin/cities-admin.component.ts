@@ -29,7 +29,9 @@ export class CitiesAdminComponent implements OnInit {
       briefHistoryEng : ['', Validators.required],
       briefHistoryRom : ['', Validators.required],
       currencyName : ['', Validators.required],
-      image : ['']
+      photo : ['', Validators.required],
+      latitude : ['', Validators.required],
+      longitude : ['', Validators.required]
     })
     this.getAllCities();
   }
@@ -80,17 +82,4 @@ export class CitiesAdminComponent implements OnInit {
     this.openDelete = false;
     this.buttonOpen = false;
   }
-
-  addImage(event: any){
-    if (event.target.files.length > 0) {
-      const img = event.target.files[0];
-      var imgName = img.name;
-
-      console.log(imgName);
-      this.addForm.patchValue({
-        'image': imgName
-      });
-    }
-  }
-
 }

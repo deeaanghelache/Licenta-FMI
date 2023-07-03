@@ -18,6 +18,10 @@ $color-5: #DEA057;
     overflow-x: hidden !important;
 }
 
+.dropdownLi {
+    cursor: pointer;
+}
+
 .navbar{
     border-top-right-radius: 25px !important; 
     border-top-left-radius: 25px !important; 
@@ -79,4 +83,24 @@ tr {
 
 #goBack {
     margin: 20px;
+}
+
+// responsive screens
+// iPad Air + landscape
+@media (min-width: 1024px)  and (max-width: 1180px) and (orientation: landscape) {
+}
+
+// iPad Air + portrait
+@media (min-width: 768px) and (max-width: 820px) and (orientation: portrait){
+
+}
+
+// iPhone 12 Pro + landscape 
+@media (min-width: 844px)  and (max-width: 844px) and (orientation: landscape) {
+
+}
+
+// iPhone 12 Pro + portrait
+@media (min-width: 390px)  and (max-width: 390px) and (orientation: portrait) {
+
 }

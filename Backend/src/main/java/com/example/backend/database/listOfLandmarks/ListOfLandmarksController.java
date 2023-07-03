@@ -28,18 +28,34 @@ public class ListOfLandmarksController {
     public ResponseEntity<List<Landmark>> getAllLandmarksForGivenCityList(@PathVariable("cityListId") Integer cityListId){
         List<ListOfLandmarks> listOfLandmarks = listOfLandmarksService.getAllLandmarksForGivenCityList(cityListId);
         List<Landmark> landmarks = listOfLandmarks.stream().map(ListOfLandmarks::getLandmark).toList();
-
         return new ResponseEntity<>(landmarks, HttpStatus.OK);
     }
 
     @PostMapping("addListOfLandmarks/{cityListId}/{landmarkId}/{priority}")
     public ResponseEntity<ListOfLandmarks> addListOfLandmark(@PathVariable("cityListId") Integer cityListId, @PathVariable("landmarkId") Integer landmarkId, @PathVariable("priority") Integer priority){
+        System.out.println("CityListId " + cityListId);
+        System.out.println("LandmarkId " + landmarkId);
+        System.out.println("Priority " + priority);
         CityList cityList = cityListService.getCityListById(cityListId);
+        System.out.println(cityList);
         Landmark landmark = landmarkService.getLandmarkByLandmarkId(landmarkId);
-        ListOfLandmarks listOfLandmarks = new ListOfLandmarks(priority, landmark, cityList);
-        System.out.println(listOfLandmarks);
-        ListOfLandmarks newListOfLandmarks = listOfLandmarksService.addListOfLandmarks(listOfLandmarks);
+        System.out.println(landmark);
 
+        ListOfLandmarks listOfLandmarks = new ListOfLandmarks();
+        listOfLandmarks.setLandmark(landmark);
+        listOfLandmarks.setCityList(cityList);
+        listOfLandmarks.setPriority(priority);
+        System.out.println("CONTROLLER");
+        System.out.println(listOfLandmarks);
+
+        ListOfLandmarks newListOfLandmarks = listOfLandmarksService.addListOfLandmarks(listOfLandmarks);
+        System.out.println(4);
         return new ResponseEntity<>(newListOfLandmarks, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/deleteListOfLandmarks/{cityListId}/{landmarkId}")
+    public ResponseEntity<?> deleteListOfLandmarks(@PathVariable("cityListId") Integer cityListId, @PathVariable("landmarkId") Integer landmarkId){
+        listOfLandmarksService.deleteCityList(cityListId, landmarkId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

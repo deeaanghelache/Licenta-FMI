@@ -1,10 +1,10 @@
 package com.example.backend.database.city;
 
+import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,6 +22,18 @@ public class CityController {
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
+    @GetMapping("/findAllCitiesNames")
+    public ResponseEntity<List<String>> getAllCityNames(){
+        List<String> cities = cityService.getAllCityNames();
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllCityCoordinates")
+    public ResponseEntity<List<Pair<Integer, Pair<Double, Double>>>> getAllCityCoordinates(){
+        List<Pair<Integer, Pair<Double, Double>>> cityCoordinates = cityService.getAllCityCoordinates();
+        return new ResponseEntity<>(cityCoordinates, HttpStatus.OK);
+    }
+
     @GetMapping("/getDistanceMatrix")
     public ResponseEntity<String[][]> getDistanceMatrix(){
         var distanceMatrix = cityService.getDistanceMatrix();
@@ -30,14 +42,7 @@ public class CityController {
 
     @GetMapping("getCityByNameContainsWord/{word}")
     public ResponseEntity<List<City>> getCitiesByNameContainsWord(@PathVariable("word") String word){
-        List<City> cities = new ArrayList<>();
-        List<City> dbCities = cityService.getAllCities();
-
-        for (var city : dbCities){
-            if (city.getNameEng().toLowerCase().contains(word)){
-                cities.add(city);
-            }
-        }
+        List<City> cities = cityService.getCitiesByNameContainsWord(word);
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 

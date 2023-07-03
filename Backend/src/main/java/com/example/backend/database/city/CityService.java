@@ -2,6 +2,7 @@ package com.example.backend.database.city;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -67,6 +68,20 @@ public class CityService {
         return cityInterface.findAll();
     }
 
+    public List<String> getAllCityNames(){
+        var cities = getAllCities();
+        var cityNames = cities.stream().map(City::getNameEng).toList();
+        return cityNames;
+    }
+
+    public List<Pair<Integer, Pair<Double, Double>>> getAllCityCoordinates(){
+        var cities = getAllCities();
+        List<Pair<Integer, Pair<Double, Double>>> cityCoordinates = cities.stream()
+                                .map(city -> Pair.of(city.getCityId(), Pair.of(city.getLatitude(), city.getLongitude())))
+                                .toList();
+        return cityCoordinates;
+    }
+
     public City getCityById(Integer cityId){
         return cityInterface.findCityByCityId(cityId).orElseThrow(() -> new CityIdNotFoundException("Couldn't find any city with the id: " + cityId));
     }
@@ -89,6 +104,18 @@ public class CityService {
 
     public Set<City> getCitiesByCountryRom(String romanianName){
         return cityInterface.findCitiesByCountryRom(romanianName).orElseThrow(() -> new CountryRomNotFoundException("Couldn't find any city with the romanian country name: " + romanianName));
+    }
+
+    public List<City> getCitiesByNameContainsWord(String word){
+        var cities = getAllCities();
+        List<City> citiesResponse = new ArrayList<>();
+
+        for (var city : cities){
+            if (city.getNameEng().toLowerCase().startsWith(word.toLowerCase())){
+                citiesResponse.add(city);
+            }
+        }
+        return citiesResponse;
     }
 
     // POST

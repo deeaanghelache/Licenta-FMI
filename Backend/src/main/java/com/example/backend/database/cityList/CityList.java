@@ -3,6 +3,7 @@ package com.example.backend.database.cityList;
 import com.example.backend.database.city.City;
 import com.example.backend.database.listOfLandmarks.ListOfLandmarks;
 import com.example.backend.database.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -31,7 +32,7 @@ public class CityList implements Serializable {
     private City city;
 
     // With ListOfLandmarks
-    @OneToMany(mappedBy = "cityList")
+    @OneToMany(mappedBy = "cityList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ListOfLandmarks> listOfLandmarks;
 
     public CityList() {
@@ -84,9 +85,8 @@ public class CityList implements Serializable {
         return "CityList{" +
                 "cityListId=" + cityListId +
                 ", totalPrice=" + totalPrice +
-                ", user=" + user +
-                ", city=" + city +
-                ", listOfLandmarks=" + listOfLandmarks +
+//                ", user=" + user +
+//                ", city=" + city +
                 '}';
     }
 }

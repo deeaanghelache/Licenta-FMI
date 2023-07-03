@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CityService } from 'src/app/services/city/city.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -10,13 +12,39 @@ export class HomepageComponent implements OnInit {
   public admin:boolean = false;
   public logged:boolean = false;
   public cities = []
+  public language:any;
+  public cityNameAttribute = 'nameEng';
 
-  constructor(private cityService:CityService) { }
+  @ViewChild("top") Top!: ElementRef;
+
+  constructor(private router:Router, private cityService:CityService, public translate: TranslateService, private elementRef: ElementRef) {
+    this.translate.addLangs(['en', 'ro'])
+    this.translate.setDefaultLang('en');
+    this.getLanguageFromSessionStorage();
+    this.translate.use(this.language);
+  }
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
     this.checkIfAdmin();
     this.getAllCities();
+    this.getNameAttributesFromSessionStorage();
+  }
+
+  getNameAttributesFromSessionStorage(){
+    const cityNameAttribute = sessionStorage.getItem('cityNameAttribute');
+    const cityCountryAttribute = sessionStorage.getItem('cityCountryAttribute');
+
+    if (cityNameAttribute !== null && cityCountryAttribute !== null) {
+      this.cityNameAttribute = cityNameAttribute;
+    }
+  }
+
+
+  getLanguageFromSessionStorage(){
+    if ("language" in sessionStorage){
+      this.language = sessionStorage.getItem("language");
+    }
   }
 
   checkIfLoggedIn(){
@@ -35,6 +63,7 @@ export class HomepageComponent implements OnInit {
     sessionStorage.clear();
     this.admin = false;
     this.logged = false;
+    this.router.navigateByUrl('/homepage');
   }
 
   getAllCities(){
@@ -43,7 +72,20 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  goToTop(){
-    window.scrollTo(0, 0);
+  switchAppsLanguage(language: string) {
+    if (language === "ro"){
+      this.cityNameAttribute = 'nameRom';
+      sessionStorage.setItem('cityNameAttribute', 'nameRom');
+    } else {
+      this.cityNameAttribute = 'nameEng';
+      sessionStorage.setItem('cityNameAttribute', 'nameEng');
+    }
+    sessionStorage.setItem("language", language);
+    this.translate.use(language);
+  }
+
+  scrollIntoView() {
+    const topElement = this.elementRef.nativeElement;
+    topElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
