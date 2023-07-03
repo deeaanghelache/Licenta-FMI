@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="tags-dropdown">
-                    <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ 'cities-filter' | translate }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="sort">
-                    <button class="btn btn-outline-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-warning rounded-pill dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ 'cities-sort' | translate }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -96,7 +96,7 @@
                     </div>
                 </div> -->
                 <div #cityInfo id="infoCity" class="infos" *ngIf="display === true">
-                    <div id="goBack"><button class="btn btn-outline-warning rounded-pill" (click)="closeCityInfos()">{{ 'cities-go-back' | translate }}</button></div>
+                    <div id="goBack"><button class="btn btn-warning rounded-pill" (click)="closeCityInfos()">{{ 'cities-go-back' | translate }}</button></div>
                     <app-city-info [city]="currentCity" [favourites]="currentFavs" [loggedUser]="logged" [currentUserId]="currentId" [map]="map"></app-city-info>
                 </div>
             </div>

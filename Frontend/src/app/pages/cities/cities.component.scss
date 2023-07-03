@@ -69,6 +69,7 @@ h6 {
     height: inherit;
     width: 50vw;
     padding: 10px;
+    z-index: 10;
     border-bottom-right-radius: 25px !important; 
     border-bottom-left-radius: 25px !important;
     border-top-left-radius: 25px !important; 
@@ -111,7 +112,7 @@ h6 {
     z-index: 0;
 } 
 
-.btn-outline-warning {
+.btn-warning {
     --bs-btn-font-weight: bold;
     --bs-btn-color: black;
 }
@@ -177,6 +178,8 @@ h6 {
 .card {
     width: 200px;
     height: 250px;
+    background-color: var(--background-color);
+    border-color: var(--text-color);
 }
 
 .img-top {

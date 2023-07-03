@@ -154,5 +154,40 @@ input {
 
 // iPhone 12 Pro + portrait
 @media (min-width: 390px)  and (max-width: 390px) and (orientation: portrait) {
+    img {
+        display: none;
+    }
 
+    main {
+        overflow: hidden !important;
+    }
+
+    .loginGrid{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: grid;
+        margin: 10px;
+        padding: 10px;
+        width: 98vw;
+        height: 94vh;
+    }
+
+    .leftSide {
+        display: none;
+    }
+
+    .rightSide {
+        width: 28vh;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .homeButtonContainer{
+        position: absolute;
+        bottom: 80px;
+        right: 10px;
+        z-index: 10;
+    }
 }

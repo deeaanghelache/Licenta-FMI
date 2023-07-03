@@ -41,8 +41,8 @@ img{
 }
 
 .navbar{
-    border-top-right-radius: 25px !important; 
-    border-top-left-radius: 25px !important; 
+    border-top-right-radius: 10px !important; 
+    border-top-left-radius: 10px !important; 
 }
 
 .backgroundImagesGrid {
@@ -131,7 +131,7 @@ img{
 
 #findOut > a {
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
 }
 
 #cities {
@@ -177,6 +177,8 @@ img{
 
 .exploreGrid {
     border: 2px solid $color-2;
+    background-color: var(--background-color);
+    color: var(--text-color);
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
@@ -187,6 +189,8 @@ img{
 
 .planGrid {
     border: 2px solid $color-2;
+    background-color: var(--background-color);
+    color: var(--text-color);
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
@@ -197,6 +201,8 @@ img{
 
 .favGrid {
     border: 2px solid $color-2;
+    background-color: var(--background-color);
+    color: var(--text-color);
     flex: 33.33%;
     border-radius: 25px;
     padding: 15px;
@@ -402,6 +408,11 @@ a {
         width: 400px;
         height: 300px;
     }
+
+
+    #last {
+        display: none;
+    }
 }
 
 // iPhone 12 Pro + landscape 
@@ -565,7 +576,7 @@ a {
         width: 100%;
         padding-bottom: 40px;
         position: relative;
-        top: 50px;
+        top: 100px;
         left: 0px;
         margin: 0 !important;
     }
@@ -574,7 +585,7 @@ a {
         width: 100%;
         padding-bottom: 40px;
         position: relative;
-        top: 80px;
+        top: 120px;
         left: 0px;
         margin: 0 !important;
     }
@@ -583,7 +594,7 @@ a {
         width: 100%;
         padding-bottom: 40px;
         position: relative;
-        top: 110px;
+        top: 140px;
         left: 0px;
         margin: 0 !important;
     }

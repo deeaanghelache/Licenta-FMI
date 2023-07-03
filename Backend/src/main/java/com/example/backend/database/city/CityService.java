@@ -111,7 +111,7 @@ public class CityService {
         List<City> citiesResponse = new ArrayList<>();
 
         for (var city : cities){
-            if (city.getNameEng().toLowerCase().contains(word.toLowerCase())){
+            if (city.getNameEng().toLowerCase().startsWith(word.toLowerCase())){
                 citiesResponse.add(city);
             }
         }

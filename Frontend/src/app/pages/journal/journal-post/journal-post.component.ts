@@ -12,6 +12,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 })
 export class JournalPostComponent implements OnInit {
   @Input() post:any;
+  @Input() currentId:any;
   public language:any;
 
   @ViewChild("top") Top!: ElementRef;

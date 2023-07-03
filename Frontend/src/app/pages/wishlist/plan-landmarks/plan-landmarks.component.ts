@@ -139,7 +139,7 @@ export class PlanLandmarksComponent implements OnInit {
       const landmarkName = event.container.data[event.currentIndex];
       const priority = event.currentIndex + 1;
       
-      // cdk-drop-list-0 is the city landmark container
+      // cdk-drop-list-city is the city landmark container
       if (containerBoxName === 'cdk-drop-list-city'){
           // should delete list of landmarks for current moved landmark
           this.landmarkService.getLandmarkByName(landmarkName).subscribe((response:any) => {
@@ -150,7 +150,7 @@ export class PlanLandmarksComponent implements OnInit {
             this.deleteListOfLandmarks(this.currentCityListId, this.landmarkToDelete['landmarkId']);
           })
       } else {
-        // cdk-drop-list-1 is my landmark planning container
+        // cdk-drop-list-landmark is my landmark planning container
         if (containerBoxName == 'cdk-drop-list-landmark'){
           // const indexToDelete: number = this.currentLandmarksNames.findIndex(item => item === landmarkName);
 

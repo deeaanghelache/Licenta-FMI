@@ -66,7 +66,7 @@
           </div>
           <div id="wholePost" *ngIf="display === true">
             <div id="goBack"><button class="btn btn-outline-warning rounded-pill closeButton" (click)="closePost()">{{ 'journal-go-back' | translate }}</button></div>
-            <app-journal-post [post]="currentPost"></app-journal-post>
+            <app-journal-post [post]="currentPost" [currentId]="currentId"></app-journal-post>
           </div>
         </div>
 
